@@ -8,5 +8,12 @@ export const config: Config = {
       type: 'dist',
       esmLoaderPath: '../loader'
     },
+    {
+      type: 'docs-readme'
+    },
+    {
+      type: 'www',
+      serviceWorker: null // disable service workers
+    }
   ]
 };
