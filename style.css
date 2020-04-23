@@ -164,11 +164,16 @@ nav::after{
     transform:  translateY(-4px)rotate(135deg);
 }
 
+/* INDEX CARD */
 
-.index-card {
+.card-container{
     width: 100%;
     height: 55%;
     margin-top: 5%;
+}
+.index-card {
+    width: 100%;
+    height: 100%;
     background-color: white;
     box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
         -webkit-box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
@@ -176,17 +181,42 @@ nav::after{
     display: flex;
     justify-content: center;
     align-items: center;
-    }
+}
 
-.img {
-    height: 90%;
-    width: 40%;
+.front .img {
+    background-color: rosybrown;
     object-fit: cover;
     border: solid 0px white;
 }
 
 #content-bottom {
     margin-top: 2%;
+}
+
+/* FLIP */
+
+#card {
+    transform-style: preserve-3d;
+    perspective: 600;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+  
+.side {
+    backface-visibility: hidden;
+    height: 90%;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.card_hover {
+    transform: rotateY(180deg);
+}
+
+.card--back {
+    transform: rotateY(180deg);
 }
 
 /* BUTTONS */
@@ -265,3 +295,6 @@ nav::after{
     margin-top: 5%;
     margin-right: 5%;
 }
+
+
+
