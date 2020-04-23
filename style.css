@@ -146,6 +146,9 @@ nav::after{
     font-size: 1em;
     color: white;
 }
+.cancel {
+    background-color: rgba(0,0,0,0);
+}
 .cancel span{
     display: block;
     width: 20px;
@@ -189,39 +192,42 @@ nav::after{
 
 /* BUTTONS */
 .check{
-    display: none;
+    position: absolute;
+    margin:5% auto;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.check div {
+    width: 20%;
+    height: 50px;
+    border-radius: 25px;
+    margin: 0 5%;
 }
 
 .right{
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: seagreen;
 }
 .false{
-
-}
-.false span{
-    display: block;
-    width: 20px;
-    height: 4px;
-    border-radius: 4px;
-    background-color: white;
+    background-color: salmon;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.false span:nth-child(1){
-    transform: translateY(8px) rotate(45deg) ;
-}
 
-.false span:nth-child(2){
-    transform:  translateY(4px)rotate(135deg);
-}
 
 /* POPUP */
-.blur{
+/* .blur{
     filter: blur(30px);
-}
+} */
 
 #popup {
     position: absolute;
-    display: block;
+    display: none;
     width: 50%;
     height: 50%;
     background-color: white;
@@ -239,20 +245,4 @@ nav::after{
     float: right;
     margin-top: 5%;
     margin-right: 5%;
-}
-
-#close span{
-    display: block;
-    width: 20px;
-    height: 4px;
-    border-radius: 4px;
-    background-color: black;
-}
-
-#close span:nth-child(1){
-    transform: translateY(8px) rotate(45deg) ;
-}
-
-#close span:nth-child(2){
-    transform:  translateY(4px)rotate(135deg);
 }
