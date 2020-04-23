@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="index.js"></script>
+    
 </head>
 <body>
     <div id="background" class="blur"></div>
@@ -20,7 +20,6 @@
     </nav>
     <section id="wrapper" class="blur">
         <div id="content-top">
-            
             <h2>
                 <span id="line"></span>
                 Wer bin ich?
@@ -32,18 +31,20 @@
                 <span></span>
             </a>
         </div>
-        <div class="card-container">
+<!-- KARTE -->
+        <div class="card-container" id="buttonFlip">
             <div class="index-card" id="card">
-                <div class="front side">
-                    <img class="img" src="" alt="Juliane" style="height:100%; width: 100%;" >
-                </div>
-                <!-- <div class="card--back side">
-                    <img src="images/623A9824-2.jpg" alt="Juliane" style="width: 70px;" >
-                    <p>Juliane Speck</p>
-                    <p>PTV Group</p>
-                </div> -->
+              <div class="card--front display side">
+                <img class="img" src="" alt="Juliane">
+              </div>
+              <div class="card--back side">
+                <img class="img" src="" alt="Juliane backside">
+                <h3>Juliane Speck</h3>
+                <p>PTV Group</p>
+              </div>
             </div>
         </div>
+
         <div id="content-bottom">
             <p>Klicken Sie auf die Karte zur Überprüfung</p>
             <div class="check">
@@ -69,6 +70,6 @@
     </div>
 
 
-
+    <script src="index.js"></script>
 </body>
 </html>
