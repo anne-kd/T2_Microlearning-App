@@ -37,7 +37,66 @@ p {
     text-transform: uppercase;
     color: lightgrey;
 }
+/* NAVIGATION */
 
+nav {
+    position: absolute;
+    top: 3%;
+    left: 10%;
+    width: 100vw;
+    height: 10%;
+	display: block;
+}
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    float: left;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    color: white;
+    padding-right: 3%;
+}
+
+nav a {
+	padding: 15px;
+	color: white;
+	text-decoration: none;
+}
+  
+nav a:hover {
+	color: #88BC48;
+}
+
+#logo{
+    margin-left: 30%;
+    width: 100px;
+}
+  
+.active {
+	background-color: #88BC48;
+}
+
+.fa-home:before {
+    padding: 10px;
+}
+
+.fa-th-large:before {
+	padding: 10px;
+}
+
+.fa-address-card-o:before {
+	padding: 10px;
+}
+
+nav::after{
+    clear: both;
+}
+
+/* BALCK BOX */
 
 #background {
     background-color: black;
@@ -47,6 +106,8 @@ p {
     top: 0;
     z-index: 0;
 }
+
+/* CONTENT */
 
 #wrapper {
     width: 60%;
