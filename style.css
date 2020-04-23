@@ -9,12 +9,12 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    overflow: hidden;
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: visible;
 }
 
 h2 {
@@ -114,7 +114,7 @@ nav::after{
     width: 60%;
     height: 100%;
     z-index: 100;
-    margin-top: 20%;
+    margin-top: 15%;
 }
 
 #content-top {
@@ -123,7 +123,6 @@ nav::after{
     align-items: baseline;
     justify-content: baseline;
     height: 8%;
-
 }
 
 #line {
@@ -169,6 +168,7 @@ nav::after{
 .index-card {
     width: 100%;
     height: 55%;
+    margin-top: 5%;
     background-color: white;
     box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
         -webkit-box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
@@ -181,9 +181,8 @@ nav::after{
 .img {
     height: 90%;
     width: 40%;
-    background-color: tomato;
     object-fit: cover;
-    border: none;
+    border: solid 0px white;
 }
 
 #content-bottom {
@@ -193,8 +192,8 @@ nav::after{
 /* BUTTONS */
 .check{
     position: absolute;
-    margin:5% auto;
-    display: flex;
+    margin:2% auto;
+    display: none;
     flex-direction: row;
     width: 100%;
 }
@@ -209,7 +208,7 @@ nav::after{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: seagreen;
+    background-color: #88BC48;
 }
 .false{
     background-color: salmon;
@@ -217,7 +216,27 @@ nav::after{
     align-items: center;
     justify-content: center;
 }
+.right div,
+.false div {
+    margin: 0;
+    height: auto;
+    width: auto;
+}
+.ok span{
+    display: block;
+    width: 20px;
+    height: 4px;
+    border-radius: 4px;
+    background-color: white;
+}
+.ok span:nth-child(1){
+    width: 10px;
+    transform: translateY(3px) translateX(2px) rotate(45deg) ;
+}
 
+.ok span:nth-child(2){
+    transform:  translateY(-4px) translateX(5px) rotate(135deg);
+}
 
 
 /* POPUP */
