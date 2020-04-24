@@ -64,6 +64,12 @@ DOMCard.addEventListener('click', function() {
   DOMCheckButton.style.display = "flex";
 });
 
+function flipCardReverse(){
+  DOMCard.classList.remove('card_hover');
+  CardBack.classList.remove('display');
+  CardFront.classList.add('display');
+  DOMCheckButton.style.display = "none";
+}
 
 // ROUND END
 let bspArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -77,8 +83,10 @@ DOMButtonFalse.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", displayCardUp);
 
 function countAndNew(){
+  flipCardReverse();
   count ++;
   let arr = getCurrentArray();
+
 
   counterUp(count, arr);
   if (count == arr.length){
