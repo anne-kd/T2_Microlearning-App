@@ -72,7 +72,7 @@ let round = 1;
 
 DOMButtonRight.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", countAndNew);
-
+DOMButtonRight.addEventListener("click", displayCardsingle);
 DOMButtonFalse.addEventListener("click", displayCardUp);
 
 
@@ -99,9 +99,31 @@ function getCurrentArray(){
    // und arr.length
  }
 
+let numbarr = [1,2,3,4,5,6,7,8,9];
+
+let currenposition = 8;
+
+//let map1 = numbarr.map()
 
 function displayCardUp(){
-  console.log("funktion 2 is working");
+
+
+  if ( numbarr.includes( currenposition )){
+
+    numbarr.push(currenposition, currenposition);
+    console.log(numbarr)
+  }
+
+}
+
+function displayCardsingle(){
+
+
+  if ( numbarr.includes( currenposition )){
+
+    numbarr.push(currenposition);
+    console.log(numbarr)
+  }
 
 }
 
