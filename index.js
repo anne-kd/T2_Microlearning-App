@@ -72,8 +72,8 @@ let round = 1;
 
 DOMButtonRight.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", countAndNew);
-DOMButtonRight.addEventListener("click", displayCardsingle);
-DOMButtonFalse.addEventListener("click", displayCardUp);
+
+// DOMButtonRight.addEventListener("click", displayCardsingle);
 DOMButtonFalse.addEventListener("click", displayCardUp);
 
 function countAndNew(){
@@ -100,45 +100,32 @@ function counterUp(p_count, p_arr){
    // und arr.length
 }
 
+
+
+//ADD NEW ITEM INTO ARRAY
+
 function displayPic(p_arr){
   var randomItem = p_arr[Math.floor(Math.random()*p_arr.length)];
   return(randomItem);
 }
 
 function displayCardUp(){
-  console.log("funktion 2 is working");
   let arr = getCurrentArray();
   let num = displayPic(arr);
+    arr.push(num, num);
+    console.log(arr);
+  
 }
 
-//ADD NEW ITEM INTO ARRAY
-
-let numbarr = [1,2,3,4,5,6,7,8,9];
-
-let currenposition = 8;
-
-//let map1 = numbarr.map()
-
-function displayCardUp(){
+// function displayCardsingle(){
 
 
-  if ( numbarr.includes( currenposition )){
+//   if ( numbarr.includes( currenposition )){
 
-    numbarr.push(currenposition, currenposition);
-    console.log(numbarr)
-  }
+//     numbarr.push(currenposition);
+//     console.log(numbarr)
+//   }
 
-}
-
-function displayCardsingle(){
-
-
-  if ( numbarr.includes( currenposition )){
-
-    numbarr.push(currenposition);
-    console.log(numbarr)
-  }
-
-}
+// }
 
 //let removedItem = fruits.splice(pos, 1) // this is how to remove an item
