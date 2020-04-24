@@ -66,8 +66,10 @@ DOMCard.addEventListener('click', function() {
 
 
 // ROUND END
+const currentCard = document.getElementById('counter');
+
 let bspArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-let count = 9;
+let count = 1;
 let round = 1;
 
 DOMButtonRight.addEventListener("click", countAndNew);
@@ -80,7 +82,7 @@ function countAndNew(){
   counterUp(count, arr);
   if (count == arr.length){
     roundPopUp(round);
-    count = 0;
+    count = 1;
     round ++;
   }
 }
@@ -92,6 +94,9 @@ function getCurrentArray(){
  function counterUp(p_count, p_arr){
    let arrlength = p_arr.length;
    console.log(p_count, arrlength);
+
+   
+    currentCard.innerText = `Karte: ${count}/${ arrlength}`;
    //an dieser Stelle eigentlich counter span.innerhtml von count
    // und arr.length
  }
