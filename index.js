@@ -73,7 +73,7 @@ function flipCardReverse(){
 
 // ROUND END
 const currentCard = document.getElementById('counter');
-
+//Beispiel Array zur Umsetzung
 let bspArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let count = 1;
 let round = 1;
@@ -81,7 +81,7 @@ let round = 1;
 DOMButtonRight.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", countAndNew);
 
-// DOMButtonRight.addEventListener("click", displayCardsingle);
+DOMButtonRight.addEventListener("click", displayCardsingle);
 DOMButtonFalse.addEventListener("click", displayCardUp);
 
 function countAndNew(){
@@ -98,47 +98,53 @@ function countAndNew(){
   }
 }
 
-
+//Hier evtl für später wenn wir unterschiedliche Arrays haben
 function getCurrentArray(){
   return bspArray;
 }
 
+//COUNTER FUNKTION
 function counterUp(p_count, p_arr){
    let arrlength = p_arr.length;
    console.log(p_count, arrlength);
-
-   
-    currentCard.innerText = `Karte: ${count}/${ arrlength}`;
-   //an dieser Stelle eigentlich counter span.innerhtml von count
-   // und arr.length
+   currentCard.innerText = "";
+   currentCard.innerText = `Karte: ${count}/${ arrlength}`;
 }
 
 
 
-//ADD NEW ITEM INTO ARRAY
+//ADD NEW ITEM INTO NEW ARRAY
+let newArray= [];
 
+// Hier wird mir für die Anzeige eine Random nummer aus dem Array gegeben
 function displayPic(p_arr){
   var randomItem = p_arr[Math.floor(Math.random()*p_arr.length)];
   return(randomItem);
 }
 
+//funktion um zu mischen
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Nummer wird zweimal in ein neues Array eingefügt (click auf false)
 function displayCardUp(){
   let arr = getCurrentArray();
   let num = displayPic(arr);
-    arr.push(num, num);
-    console.log(arr);
+
+    newArray.push(num, num);
+    console.log(newArray);
   
 }
+// Nummer wird einmal in ein neues Array eingefügt
+function displayCardsingle(){
+  let arr = getCurrentArray();
+  let num = displayPic(arr);
 
-// function displayCardsingle(){
-
-
-//   if ( numbarr.includes( currenposition )){
-
-//     numbarr.push(currenposition);
-//     console.log(numbarr)
-//   }
-
-// }
-
-//let removedItem = fruits.splice(pos, 1) // this is how to remove an item
+    newArray.push(num, num);
+    console.log(newArray);
+}
