@@ -73,6 +73,9 @@ let round = 1;
 DOMButtonRight.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", countAndNew);
 
+DOMButtonFalse.addEventListener("click", displayCardUp);
+
+
 function countAndNew(){
   count ++;
   let arr = getCurrentArray();
@@ -96,5 +99,10 @@ function getCurrentArray(){
    // und arr.length
  }
 
+
+function displayCardUp(){
+  console.log("funktion 2 is working");
+
+}
 
 //let removedItem = fruits.splice(pos, 1) // this is how to remove an item
