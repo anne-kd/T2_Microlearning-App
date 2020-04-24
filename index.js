@@ -74,7 +74,7 @@ DOMButtonRight.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", countAndNew);
 
 DOMButtonFalse.addEventListener("click", displayCardUp);
-
+DOMButtonFalse.addEventListener("click", displayCardUp);
 
 function countAndNew(){
   count ++;
@@ -92,17 +92,23 @@ function countAndNew(){
 function getCurrentArray(){
   return bspArray;
 }
- function counterUp(p_count, p_arr){
+
+function counterUp(p_count, p_arr){
    let arrlength = p_arr.length;
    console.log(p_count, arrlength);
    //an dieser Stelle eigentlich counter span.innerhtml von count
    // und arr.length
- }
+}
 
+function displayPic(p_arr){
+  var randomItem = p_arr[Math.floor(Math.random()*p_arr.length)];
+  return(randomItem);
+}
 
 function displayCardUp(){
   console.log("funktion 2 is working");
-
+  let arr = getCurrentArray();
+  let num = displayPic(arr);
 }
 
 //let removedItem = fruits.splice(pos, 1) // this is how to remove an item
