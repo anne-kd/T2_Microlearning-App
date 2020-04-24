@@ -25,13 +25,17 @@
                 Wer bin ich?
             </h2>
             <h3 class="course">ON19</h3>
-            <div id="counter">Placeholder</div>
+
+        <!-- MENGENZÄHLER -->
+            <div id="counter">Karte: 1/10</div>
+        <!-- EXIT BUTTON -->
             <a href="#" class="cancel">
                 <span></span>
                 <span></span>
             </a>
         </div>
-<!-- KARTE -->
+
+        <!-- KARTE -->
         <div class="card-container" id="buttonFlip">
             <div class="index-card" id="card">
               <div class="card--front display side">
@@ -47,7 +51,7 @@
 
         <div id="content-bottom">
             <p>Klicken Sie auf die Karte zur Überprüfung</p>
-            <div class="check">
+            <div class="button" id="check">
                 <div class="right">
                     <div class="ok">
                         <span></span>
@@ -65,10 +69,26 @@
     </section>
     
 <!-- POPUP -->
-    <div id="popup">
-        <a id="close" href="#" class="cancel"><span></span><span></span></a>
+    <div class="popup" id="popup-first">
+        <a href="#" class="cancel close"><span></span><span></span></a>
         <h3>Welchen Kurs wollen Sie lernen?</h3>
     </div>
+
+    <div class="popup" id="popup-round">
+        <a href="#" class="cancel close"><span></span><span></span></a>
+        <h3 id="round">Sie haben Runde 1 geschafft!</h3>
+        <h3>Wollen Sie eine weitere Runde spielen?</h3>
+
+        <div class="button">
+            <div class="continue">
+                WEITER
+            </div>
+            <div class="exit">
+                ABBRECHEN
+            </div>
+        </div>
+    </div>
+   
 
 
     <script src="index.js"></script>
