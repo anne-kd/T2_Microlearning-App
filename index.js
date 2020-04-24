@@ -68,25 +68,12 @@ DOMCard.addEventListener('click', function() {
 
 
 
-// Show Images 
+// Gibt Pfad des jeweiligen Kurses zurück 
 
-let imagesArray = [];
-let i = 0;
-const course = document.querySelector('.course');
-const okButton = document.querySelector('.check').firstElementChild;
-const cancelButton = document.querySelector('.check').lastElementChild;
-
-okButton.addEventListener('click',showImages);
-cancelButton.addEventListener('click',showImages);
-
-for(let i = 1; i<=20; i++){
-  imagesArray[i]=i;
-}
-
-showImages();
+const Course = document.querySelector('.course');
 
 function getSrc(){
-  switch(course.innerHTML){
+  switch(Course.innerHTML){
       case 'ON19':
           return 'assets/ON19/';
       case 'ON18':
@@ -95,17 +82,6 @@ function getSrc(){
           return 'assets/ON17/';
       default:
           return 'Jemand hat einen Fehler gemacht'
-  }
-}
-
-
-function showImages(){
-  i++;
-  if(i<imagesArray.length){
-    //Vorderseite
-    CardFront.firstElementChild.src = `${getSrc()}${i}-vs.jpeg`; 
-    //Rückseite
-    CardBack.firstElementChild.src = `${getSrc()}${i}-rs.jpeg`;
   }
 }
 
@@ -119,9 +95,21 @@ function flipCardReverse(){
 // ROUND END
 const currentCard = document.getElementById('counter');
 //Beispiel Array zur Umsetzung
-let bspArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let bspArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 let count = 1;
 let round = 1;
+
+//Macht jeweiliges Bild sichtbar
+function showImages(){
+  let arr = getCurrentArray();
+    //Vorderseite
+    CardFront.firstElementChild.src = `${getSrc()}${arr[count-1]}-vs.jpeg`; 
+    //Rückseite
+    CardBack.firstElementChild.src = `${getSrc()}${arr[count-1]}-rs.jpeg`;
+}
+
+shuffle();
+showImages();
 
 DOMButtonRight.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", countAndNew);
@@ -132,12 +120,15 @@ DOMButtonFalse.addEventListener("click", displayCardUp);
 function countAndNew(){
   flipCardReverse();
   count ++;
+  showImages();
   let arr = getCurrentArray();
 
 
   counterUp(count, arr);
   if (count == arr.length){
     roundPopUp(round);
+    shuffle();
+    console.log(arr);
     count = 1;
     round ++;
   }
@@ -168,7 +159,8 @@ function displayPic(p_arr){
 }
 
 //funktion um zu mischen
-function shuffle(a) {
+function shuffle() {
+  let a = getCurrentArray();
   for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [a[i], a[j]] = [a[j], a[i]];
