@@ -64,6 +64,12 @@ DOMCard.addEventListener('click', function() {
   DOMCheckButton.style.display = "flex";
 });
 
+function flipCardReverse(){
+  DOMCard.classList.remove('card_hover');
+  CardBack.classList.remove('display');
+  CardFront.classList.add('display');
+  DOMCheckButton.style.display = "none";
+}
 
 // ROUND END
 const currentCard = document.getElementById('counter');
@@ -75,9 +81,14 @@ let round = 1;
 DOMButtonRight.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", countAndNew);
 
+// DOMButtonRight.addEventListener("click", displayCardsingle);
+DOMButtonFalse.addEventListener("click", displayCardUp);
+
 function countAndNew(){
+  flipCardReverse();
   count ++;
   let arr = getCurrentArray();
+
 
   counterUp(count, arr);
   if (count == arr.length){
@@ -91,7 +102,8 @@ function countAndNew(){
 function getCurrentArray(){
   return bspArray;
 }
- function counterUp(p_count, p_arr){
+
+function counterUp(p_count, p_arr){
    let arrlength = p_arr.length;
    console.log(p_count, arrlength);
 
@@ -99,7 +111,34 @@ function getCurrentArray(){
     currentCard.innerText = `Karte: ${count}/${ arrlength}`;
    //an dieser Stelle eigentlich counter span.innerhtml von count
    // und arr.length
- }
+}
 
+
+
+//ADD NEW ITEM INTO ARRAY
+
+function displayPic(p_arr){
+  var randomItem = p_arr[Math.floor(Math.random()*p_arr.length)];
+  return(randomItem);
+}
+
+function displayCardUp(){
+  let arr = getCurrentArray();
+  let num = displayPic(arr);
+    arr.push(num, num);
+    console.log(arr);
+  
+}
+
+// function displayCardsingle(){
+
+
+//   if ( numbarr.includes( currenposition )){
+
+//     numbarr.push(currenposition);
+//     console.log(numbarr)
+//   }
+
+// }
 
 //let removedItem = fruits.splice(pos, 1) // this is how to remove an item
