@@ -65,6 +65,12 @@ DOMCard.addEventListener('click', function() {
 });
 
 
+function flipCardReverse(){
+  DOMCard.classList.remove('card_hover');
+  CardBack.classList.remove('display');
+  CardFront.classList.add('display');
+  DOMCheckButton.style.display = "none";
+}
 
 
 
@@ -85,27 +91,29 @@ function getSrc(){
   }
 }
 
-function flipCardReverse(){
-  DOMCard.classList.remove('card_hover');
-  CardBack.classList.remove('display');
-  CardFront.classList.add('display');
-  DOMCheckButton.style.display = "none";
+function createArray(){
+  let path = getSrc();
+  let folder = new File (path);
+  
+  let FileArr = folder.listFiles();
+  console.log(FileArr);
 }
+
 
 // ROUND END
 const currentCard = document.getElementById('counter');
 //Beispiel Array zur Umsetzung
 let bspArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-let count = 1;
+let count = 0;
 let round = 1;
 
 //Macht jeweiliges Bild sichtbar
 function showImages(){
   let arr = getCurrentArray();
     //Vorderseite
-    CardFront.firstElementChild.src = `${getSrc()}${arr[count-1]}-vs.jpeg`; 
+    CardFront.firstElementChild.src = `${getSrc()}${arr[count]}-vs.jpeg`; 
     //Rückseite
-    CardBack.firstElementChild.src = `${getSrc()}${arr[count-1]}-rs.jpeg`;
+    CardBack.firstElementChild.src = `${getSrc()}${arr[count]}-rs.jpeg`;
 }
 
 shuffle();
@@ -122,7 +130,7 @@ function countAndNew(){
   count ++;
   showImages();
   let arr = getCurrentArray();
-
+  createArray();
 
   counterUp(count, arr);
   if (count == arr.length){
