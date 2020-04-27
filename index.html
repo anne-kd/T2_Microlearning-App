@@ -34,68 +34,91 @@
       <img id="logo" src="images/cropped-ONLINEMEDIEN_Logo_neu.png" />
     </nav>
     <section id="wrapper" class="">
-      <div id="content-top">
-        <h2>
-          <span id="line"></span>
-          Wer bin ich?
-        </h2>
-        <h3 class="course">ON19</h3>
-        <div id="counter">Placeholder</div>
-        <a href="#" class="cancel">
-          <span></span>
-          <span></span>
-        </a>
-      </div>
-      <!-- KARTE -->
-      <div class="card-container" id="buttonFlip">
-        <div class="index-card" id="card">
-          <div class="card--front display side">
-            <img class="img" src="" alt="Juliane" />
-          </div>
-          <div class="card--back side">
-            <img class="img" src="" alt="Juliane backside" />
-            <h3>Juliane Speck</h3>
-            <p>PTV Group</p>
-          </div>
+        <div id="content-top">
+            <h2>
+                <span id="line"></span>
+                Wer bin ich?
+            </h2>
+            <h3 class="course">ON19</h3>
+
+        <!-- MENGENZÄHLER -->
+            <div id="counter">Karte: 1/10</div>
+        <!-- EXIT BUTTON -->
+            <a href="#" class="cancel">
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+
+        <!-- KARTE -->
+        <div class="card-container" id="buttonFlip">
+            <div class="index-card" id="card">
+              <div class="card--front display side">
+                <img class="img" src="" alt="Juliane">
+              </div>
+              <div class="card--back side">
+                <img class="img" src="" alt="Juliane backside">
+                <h3>Juliane Speck</h3>
+                <p>PTV Group</p>
+              </div>
+            </div>
         </div>
       </div>
 
-      <div id="content-bottom">
-        <p>Klicken Sie auf die Karte zur Überprüfung</p>
-        <div class="check">
-          <div class="right">
-            <div class="ok">
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-          <div class="false">
-            <div class="cancel">
-              <span></span>
-              <span></span>
+        <div id="content-bottom">
+            <p>Klicken Sie auf die Karte zur Überprüfung</p>
+            <div class="button" id="check">
+                <div class="right">
+                    <div class="ok">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="false">
+                    <div class="cancel">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- POPUP -->
-    <div id="popup">
-      <a id="close" href="#" class="cancel"><span></span><span></span></a>
-     
-      <h3>
-        <span id="line"></span>
-        Welchen Kurs wollen Sie lernen?</h3>
-      <div class="btn-course">
-        <div class="right">
-          <p id="ON">ON17</p>
+    
+<!-- POPUP -->
+    <div class="popup" id="popup-first">
+        <a href="#" class="cancel close"><span></span><span></span></a>
+        <h3>
+          <span id="line"></span>
+          Welchen Kurs wollen Sie lernen?</h3>
+        <div class="btn-course">
+          <div class="right">
+            <p id="ON">ON17</p>
+          </div>
+          <div class="right">
+          <p id="ON">ON18</p>
         </div>
-        <div class="right">
-        <p id="ON">ON18</p>
-      </div>
-        <div class="right">
-        <p id="ON">ON19</p>
+          <div class="right">
+          <p id="ON">ON19</p>
     </div>
+
+    <div class="popup" id="popup-round">
+        <a href="#" class="cancel close"><span></span><span></span></a>
+        <h3 id="round">Sie haben Runde 1 geschafft!</h3>
+        <h3>Wollen Sie eine weitere Runde spielen?</h3>
+
+        <div class="button">
+            <div class="continue">
+                WEITER
+            </div>
+            <div class="exit">
+                ABBRECHEN
+            </div>
+        </div>
+    </div>
+   
+
 
     <script src="index.js"></script>
   </body>

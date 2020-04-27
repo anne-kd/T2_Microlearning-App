@@ -1,3 +1,4 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;700&display=swap");
 
 * {
@@ -126,24 +127,24 @@ nav::after {
 }
 
 #line {
-  display: block;
-  width: 70px;
-  background-color: white;
-  height: 8px;
-  border-radius: 4px;
-  margin-bottom: 10%;
+    display: block;
+    width: 70px;
+    background-color: white;
+    height: 8px;
+    border-radius: 4px;
+    margin-bottom: 10%;
 }
-.course {
-  margin: 0 auto;
+.course{
+    margin: 0 auto;
 }
-#counter {
-  width: 10%;
-  height: 10px;
-  margin-right: 6%;
-  font-family: "Montserrat";
-  font-weight: 200;
-  font-size: 1em;
-  color: white;
+#counter{
+    width: 15%;
+    height: 10px;
+    margin-right: 6%;
+    font-family: 'Montserrat';
+    font-weight: 200;
+    font-size: 1em;
+    color: white;
 }
 
 #content-bottom {
@@ -246,31 +247,47 @@ nav::after {
 }
 
 /* BUTTONS */
-.check {
-  position: absolute;
-  margin: 2% auto;
-  display: none;
-  flex-direction: row;
-  width: 100%;
-}
-.check div {
-  width: 20%;
-  height: 50px;
-  border-radius: 25px;
-  margin: 0 5%;
+#check {
+    display: none;
 }
 
-.right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #88bc48;
+.button{
+    position: relative;
+    margin: 5% 10%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
-.false {
-  background-color: salmon;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.button div {
+    position: relative;
+    width: 30%;
+    height: 50px;
+    border-radius: 25px;
+    margin: 0 5%;
+}
+#popup-round .button {
+    margin-left: 0;
+    margin-top: 15%;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1em;
+    color: white;
+}
+
+.continue,
+.right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #88BC48;
+}
+.exit,
+.false{
+    background-color: salmon;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .right div,
 .false div {
@@ -323,35 +340,32 @@ nav::after {
   filter: blur(25px);
 }
 
-#popup {
-  position: absolute;
-  display: none;
-  width: 50%;
-  height: 50%;
-  background-color: white;
-  z-index: 200;
-  box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
-  -webkit-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
-  -moz-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
+.popup {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    z-index: 200;
+    box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
+        -webkit-box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
+        -moz-box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
 }
-#popup h3 {
-  color: black;
-  margin-top: 7%;
-  margin-left: 10%;
+.popup h3 {
+    color: black;
+    margin-top: 10%;
+    margin-left: 5%;
 }
-#line {
-  display: block;
-  width: 70px;
-  background-color: black;
-  height: 8px;
-  border-radius: 4px;
-  margin-bottom: 4%;
+#popup-first {
+    display: none;
 }
-#close {
-  float: right;
-  margin-top: 5%;
-  margin-right: 5%;
+#popup-round {
+    display: none;
 }
-#close span {
-  background-color: black;
+.close {
+    float: right;
+    margin-top: 5%;
+    margin-right: 5%;
+}
+.close span {
+    background-color: black;
 }
