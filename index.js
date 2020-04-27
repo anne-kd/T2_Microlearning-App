@@ -5,6 +5,8 @@ const DOMBackground = document.querySelector("#background");
 const DOMWrapper = document.querySelector("#wrapper");
 const DOMButtonRight = document.querySelector(".right");
 const DOMButtonFalse = document.querySelector(".false");
+const DOMButtonContinue = document.querySelector(".continue");
+const DOMButtonExit = document.querySelector(".exit");
 
 // POP UP
 const popupFirst = document.querySelector("#popup-first");
@@ -128,12 +130,17 @@ function createArray(){
 
 //Hier evtl für später wenn wir unterschiedliche Arrays haben
 function getCurrentArray(){
-
-  switch (round) {
-    case 1: return firstArray;
-    case round%2 == 0: return evenArray;
-    case round%2 == 1: return oddArray;
-    default: Fehler; break;
+  if (round == 1){
+    return firstArray;
+  }
+  else if (round%2 == 1){
+    return oddArray;
+  }
+  else if (round%2 == 0){
+    return evenArray;
+  }
+  else {
+    console.log("fehler");
   }
 }
 
@@ -148,10 +155,13 @@ function showImages(){
 
 //Klick-Events
 DOMButtonRight.addEventListener("click", countAndNew);
-DOMButtonFalse.addEventListener("click", countAndNew);
+DOMButtonFalse
 
 // DOMButtonRight.addEventListener("click", displayCardsingle);
 DOMButtonFalse.addEventListener("click", displayCardUp);
+
+DOMButtonContinue.addEventListener("click", continueGame);
+DOMButtonExit.addEventListener("click", exitGame);
 
 function countAndNew(){
   flipCardReverse();
@@ -224,3 +234,9 @@ function displayCardUp(){
 //     console.log(oddArray);
 //   }
 // }
+
+function continueGame(){
+
+}
+
+function exitGame(){}
