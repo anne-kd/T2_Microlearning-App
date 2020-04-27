@@ -46,9 +46,15 @@ function blurElements(){
     DOMWrapper.classList.add("blur");
 }
 
+// Ändern des Kurses 
+const courseNamePopUp = document.querySelectorAll('#ON');
 
-
-
+courseNamePopUp.forEach(element=>{
+  element.addEventListener('click', (event)=>{
+    setCourse(event.target);
+    hidePopUp();
+  })
+});
 
 
 // FLIP INDEX CARD
@@ -77,6 +83,25 @@ function flipCardReverse(){
 // Gibt Pfad des jeweiligen Kurses zurück 
 // wird später on click auf den button 0N.. aufgerufen
 const course = document.querySelector('.course');
+
+//verändert beim auswählen eines Kurses den Kursnamen
+function setCourse(courseName){
+  switch(courseName.innerHTML){  
+    case 'ON19':
+      course.innerHTML = 'ON19';
+      break;
+    case 'ON18':
+      course.innerHTML = 'ON18';
+      break;
+    case 'ON17':
+      course.innerHTML = 'ON17';
+      break;
+    default:
+        'Jemand hat einen Fehler gemacht'
+      break;
+}
+}
+
 function getSrc(){
   switch(course.innerHTML){  //innerHTML ändern und klick funktion
       case 'ON19':
