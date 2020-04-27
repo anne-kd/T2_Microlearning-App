@@ -28,7 +28,6 @@ function roundPopUp(p_round){
     let DOMH3 = popupRound.querySelector("#round");
     DOMH3.innerHTML = "";
     DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
-    
 }
 
 function hidePopUp(){
@@ -108,8 +107,9 @@ const currentCard = document.getElementById('counter');
 let count = 1;
 let inx = 0;
 let round = 1;
-let arrayRound1 = [];
-let newArray= [];
+let firstArray = [];
+let oddArray= []; //mod 2 = 1
+let evenArray= []; //mod 2 = 0
 
 
 //Funktion erstellt Array beim ersten mal, soll bei Click auf den 
@@ -119,18 +119,20 @@ function createArray(){
   let num = getStudents();
   
   for (let x = num; x > 0; x--) {
-    arrayRound1.push(x);
+    firstArray.push(x);
   }
-  arrayRound1 = shuffle(arrayRound1);
-  console.log(arrayRound1);
+  firstArray = shuffle(firstArray);
+  console.log(firstArray);
   showImages();
 }
 
 //Hier evtl für später wenn wir unterschiedliche Arrays haben
 function getCurrentArray(){
+
   switch (round) {
-    case 1: return arrayRound1;
-    case 2: return newArray;
+    case 1: return firstArray;
+    case round%2 == 0: return evenArray;
+    case round%2 == 1: return oddArray;
     default: Fehler; break;
   }
 }
@@ -148,7 +150,7 @@ function showImages(){
 DOMButtonRight.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", countAndNew);
 
-DOMButtonRight.addEventListener("click", displayCardsingle);
+// DOMButtonRight.addEventListener("click", displayCardsingle);
 DOMButtonFalse.addEventListener("click", displayCardUp);
 
 function countAndNew(){
@@ -191,17 +193,34 @@ function shuffle(p_arr) {
 function displayCardUp(){
   let arr = getCurrentArray();
   let num = arr[inx-1];
-
-    newArray.push(num, num);
-    console.log(newArray);
-  
+  if (round == 1){
+    evenArray.push(num, num);
+    console.log(evenArray);
+  }
+  else if (round%2 == 1){
+    evenArray.push(num, num);
+    console.log(evenArray);
+  }
+  else if (round%2 == 0){
+    oddArray.push(num);
+    console.log(oddArray);
+  }
+   
 }
 
-//Nummer wird einmal in ein neues Array eingefügt
-function displayCardsingle(){
-  let arr = getCurrentArray();
-  let num = arr[inx-1];
-
-    newArray.push(num);
-    console.log(newArray);
-}
+// //Nummer wird einmal in ein neues Array eingefügt
+// function displayCardsingle(){
+//   let arr = getCurrentArray();
+//   let num = arr[inx-1];
+//   if (round == 1){
+//     console.log(evenArray);
+//   }
+//   else if (round%2 == 1){
+//     evenArray.push(num, num);
+//     console.log(evenArray);
+//   }
+//   else if (round%2 == 0){
+//     oddArray.push(num);
+//     console.log(oddArray);
+//   }
+// }
