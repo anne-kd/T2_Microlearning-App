@@ -75,11 +75,10 @@ function flipCardReverse(){
 
 
 // Gibt Pfad des jeweiligen Kurses zurück 
-
-const Course = document.querySelector('.course');
-
+// wird später on click auf den button 0N.. aufgerufen
+const course = document.querySelector('.course');
 function getSrc(){
-  switch(Course.innerHTML){
+  switch(course.innerHTML){  //innerHTML ändern und klick funktion
       case 'ON19':
           return 'assets/ON19/';
       case 'ON18':
@@ -91,34 +90,61 @@ function getSrc(){
   }
 }
 
-function createArray(){
-  let path = getSrc();
-  let folder = new File (path);
-  
-  let FileArr = folder.listFiles();
-  console.log(FileArr);
+function getStudents(){
+  switch(course.innerHTML){
+      case 'ON19':
+          return 19;
+      case 'ON18':
+          return 30;
+      case 'ON17':
+          return 27;
+      default:
+          return 'Jemand hat einen Fehler gemacht'
+  }
 }
-
 
 // ROUND END
 const currentCard = document.getElementById('counter');
-//Beispiel Array zur Umsetzung
-let bspArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-let count = 0;
+let count = 1;
+let inx = 0;
 let round = 1;
+let arrayRound1 = [];
+let newArray= [];
+
+
+//Funktion erstellt Array beim ersten mal, soll bei Click auf den 
+//Kurs Button ausgelöst werden
+createArray();
+function createArray(){
+  let num = getStudents();
+  
+  for (let x = num; x > 0; x--) {
+    arrayRound1.push(x);
+  }
+  arrayRound1 = shuffle(arrayRound1);
+  console.log(arrayRound1);
+  showImages();
+}
+
+//Hier evtl für später wenn wir unterschiedliche Arrays haben
+function getCurrentArray(){
+  switch (round) {
+    case 1: return arrayRound1;
+    case 2: return newArray;
+    default: Fehler; break;
+  }
+}
 
 //Macht jeweiliges Bild sichtbar
 function showImages(){
   let arr = getCurrentArray();
-    //Vorderseite
-    CardFront.firstElementChild.src = `${getSrc()}${arr[count]}-vs.jpeg`; 
-    //Rückseite
-    CardBack.firstElementChild.src = `${getSrc()}${arr[count]}-rs.jpeg`;
+  //Vorderseite
+  CardFront.firstElementChild.src = `${getSrc()}${arr[inx]}-vs.jpeg`; 
+  //Rückseite
+  CardBack.firstElementChild.src = `${getSrc()}${arr[inx]}-rs.jpeg`;
 }
 
-shuffle();
-showImages();
-
+//Klick-Events
 DOMButtonRight.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", countAndNew);
 
@@ -128,23 +154,19 @@ DOMButtonFalse.addEventListener("click", displayCardUp);
 function countAndNew(){
   flipCardReverse();
   count ++;
+  inx++;
+
   showImages();
   let arr = getCurrentArray();
-  createArray();
 
   counterUp(count, arr);
-  if (count == arr.length){
+  if (count == arr.length+1){
     roundPopUp(round);
-    shuffle();
     console.log(arr);
     count = 1;
+    inx = 0;
     round ++;
   }
-}
-
-//Hier evtl für später wenn wir unterschiedliche Arrays haben
-function getCurrentArray(){
-  return bspArray;
 }
 
 //COUNTER FUNKTION
@@ -155,20 +177,9 @@ function counterUp(p_count, p_arr){
    currentCard.innerText = `Karte: ${count}/${ arrlength}`;
 }
 
-
-
-//ADD NEW ITEM INTO NEW ARRAY
-let newArray= [];
-
-// Hier wird mir für die Anzeige eine Random nummer aus dem Array gegeben
-function displayPic(p_arr){
-  var randomItem = p_arr[Math.floor(Math.random()*p_arr.length)];
-  return(randomItem);
-}
-
-//funktion um zu mischen
-function shuffle() {
-  let a = getCurrentArray();
+//Funktion zum mischen
+function shuffle(p_arr) {
+  let a = p_arr;
   for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [a[i], a[j]] = [a[j], a[i]];
@@ -176,20 +187,21 @@ function shuffle() {
   return a;
 }
 
-// Nummer wird zweimal in ein neues Array eingefügt (click auf false)
+//Nummer wird zweimal in ein neues Array eingefügt (click auf false)
 function displayCardUp(){
   let arr = getCurrentArray();
-  let num = displayPic(arr);
+  let num = arr[inx-1];
 
     newArray.push(num, num);
     console.log(newArray);
   
 }
-// Nummer wird einmal in ein neues Array eingefügt
+
+//Nummer wird einmal in ein neues Array eingefügt
 function displayCardsingle(){
   let arr = getCurrentArray();
-  let num = displayPic(arr);
+  let num = arr[inx-1];
 
-    newArray.push(num, num);
+    newArray.push(num);
     console.log(newArray);
 }
