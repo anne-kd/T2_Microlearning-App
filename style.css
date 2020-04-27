@@ -336,36 +336,38 @@ nav::after {
 }
 
 /* POPUP */
-.blur {
-  filter: blur(25px);
-}
+.blur{
+  filter: blur(30px);
+} 
 
 .popup {
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    background-color: white;
-    z-index: 200;
-    box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
-        -webkit-box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
-        -moz-box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: white;
+  z-index: 200;
+  box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
+      -webkit-box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
+      -moz-box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
 }
 .popup h3 {
-    color: black;
-    margin-top: 10%;
-    margin-left: 5%;
+  color: black;
+  margin-top: 10%;
+  margin-left: 5%;
 }
 #popup-first {
-    display: none;
+  display: none;
 }
 #popup-round {
-    display: none;
+  display: none;
 }
 .close {
-    float: right;
-    margin-top: 5%;
-    margin-right: 5%;
+  float: right;
+  margin-top: 5%;
+  margin-right: 5%;
 }
 .close span {
-    background-color: black;
+  background-color: black;
 }
+
+
