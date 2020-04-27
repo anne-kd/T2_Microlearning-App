@@ -1,3 +1,4 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;700&display=swap");
 
 * {
@@ -17,11 +18,11 @@ body {
   overflow: visible;
 }
 
-h2 {
+  h2 {
   font-family: "Montserrat";
   font-weight: 700;
   font-size: 1.8em;
-  color: white;
+  color:black;
 }
 
 h3 {
@@ -31,21 +32,31 @@ h3 {
   color: white;
 }
 p {
+
   font-family: "Montserrat";
   font-weight: 200;
   font-size: 1em;
-  text-transform: uppercase;
   color: grey;
+  position: absolute;
+  margin-top: 16%;
+  left: 20%;
+  
+  
+  
 }
 /* NAVIGATION */
 
 nav {
   position: absolute;
-  top: 3%;
-  left: 10%;
+  top:0;
+  padding-top: 3%;
+  left: 0;
+  padding-left: 10%;
   width: 100vw;
   height: 10%;
   display: block;
+  background-color: black;
+  
 }
 nav ul {
   list-style: none;
@@ -106,13 +117,6 @@ nav::after {
   position: absolute;
   top: 0;
   z-index: 0;
-}
-#background-st {
-  height: 50vh;
-  width: 100vw;
-  position: absolute;
-  top: 0;
-  z-index: 0;
   background-image: url("Startseite.png");
   background-size: auto;
   background-repeat: no-repeat;
@@ -125,7 +129,7 @@ nav::after {
   width: 60%;
   height: 100%;
   z-index: 100;
-  margin-top: 15%;
+  margin-top: 60%;
 }
 
 #content-top {
@@ -136,14 +140,16 @@ nav::after {
   height: 8%;
 }
 
+
 #line {
     display: block;
     width: 70px;
-    background-color: white;
+    background-color:black;
     height: 8px;
     border-radius: 4px;
     margin-bottom: 10%;
 }
+
 .course{
     margin: 0 auto;
 }
@@ -379,3 +385,10 @@ nav::after {
 .close span {
     background-color: black;
 }
+#on-logo{
+    position: absolute;
+    width: 300px;
+    right: 10%;
+    bottom: 25%;
+}
+
