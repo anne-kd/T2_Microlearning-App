@@ -43,7 +43,7 @@ p {
 nav {
   position: absolute;
   top: 3%;
-  left: 10%;
+  padding-left: 10%;
   width: 100vw;
   height: 10%;
   display: block;
@@ -76,6 +76,7 @@ nav a:hover {
 #logo {
   margin-left: 30%;
   width: 100px;
+  padding-right: 10%;
 }
 
 .active {
@@ -368,4 +369,66 @@ nav::after {
 }
 .close span {
     background-color: black;
+}
+
+
+/* Header-nav */
+#header-nav {
+  background-color: black;
+  height: 10vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+#headline-uebersicht{
+  position: absolute;
+  top: 20%;
+  padding-right: 70%;
+}
+
+#headline-uebersicht h2{
+  color: black;
+}
+
+#line-black {
+  display: block;
+  width: 70px;
+  background-color: black;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 10%;
+}
+
+.auswahl-uebersicht {
+  width: 35%;
+  height: 35%;
+  right: 3%;
+  position: absolute;
+  top: 17%;
+}
+
+#bilder-container {
+  width: 90%;
+  height: 65%;
+  background-color: white;
+  box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
+  -webkit-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.5s ease;
+  position: absolute;
+  top: 35%;
+  overflow-y: scroll;
+  text-align: center;
+}
+
+#bilder-container ul li{
+  list-style: none;
+  display: inline-block;
+  padding: 50px;
+}
+
+#bilder-container ul li img{
+  width: 150%;
 }
