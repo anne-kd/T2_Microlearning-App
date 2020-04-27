@@ -5,7 +5,7 @@ const DOMBackground = document.querySelector("#background");
 const DOMWrapper = document.querySelector("#wrapper");
 const DOMButtonRight = document.querySelector(".right");
 const DOMButtonFalse = document.querySelector(".false");
-const DOMButtonContinue = document.querySelector(".continue");
+const DOMButtonContinue = document.querySelector("#continue");
 const DOMButtonExit = document.querySelector(".exit");
 
 // POP UP
@@ -24,12 +24,20 @@ function firstPopUp(){
     blurElements();
     popupFirst.style.display = "block";   
 }
-function roundPopUp(p_round){
+function roundPopUp(p_round, p_falseCounter){
     blurElements();
     popupRound.style.display = "block";
     let DOMH3 = popupRound.querySelector("#round");
+
+    if (p_falseCounter == 0){
+      DOMH3.innerHTML = "";
+      DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
+      Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
+    }
+    else {
     DOMH3.innerHTML = "";
     DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
+    }
 }
 
 function hidePopUp(){
@@ -75,6 +83,26 @@ function flipCardReverse(){
 
 
 
+//FUNKTION FÜR DEN ABLAUF DER KARTEN
+
+const currentCard = document.getElementById('counter');
+let falseCounter = 0; //zählt wie viele Falsche der Spieler in einer Runde hat
+let inx = 0;
+let round = 1;
+let firstArray = [];
+let oddArray= []; //mod 2 = 1
+let evenArray= []; //mod 2 = 0
+
+//Klick-Events
+DOMButtonRight.addEventListener("click", countAndNew);
+DOMButtonFalse.addEventListener("click", countAndNew);
+
+DOMButtonFalse.addEventListener("click", displayCardUp);
+
+DOMButtonContinue.addEventListener("click", continueGame);
+DOMButtonExit.addEventListener("click", exitGame);
+
+
 // Gibt Pfad des jeweiligen Kurses zurück 
 // wird später on click auf den button 0N.. aufgerufen
 const course = document.querySelector('.course');
@@ -91,6 +119,7 @@ function getSrc(){
   }
 }
 
+// Hier wird die Anzahl der Studenten in einem Kurs eingegeben und abgerufen
 function getStudents(){
   switch(course.innerHTML){
       case 'ON19':
@@ -103,16 +132,6 @@ function getStudents(){
           return 'Jemand hat einen Fehler gemacht'
   }
 }
-
-// ROUND END
-const currentCard = document.getElementById('counter');
-let count = 1;
-let inx = 0;
-let round = 1;
-let firstArray = [];
-let oddArray= []; //mod 2 = 1
-let evenArray= []; //mod 2 = 0
-
 
 //Funktion erstellt Array beim ersten mal, soll bei Click auf den 
 //Kurs Button ausgelöst werden
@@ -128,7 +147,7 @@ function createArray(){
   showImages();
 }
 
-//Hier evtl für später wenn wir unterschiedliche Arrays haben
+//Hier wird das Aktuelle Array der Runde abgefragt
 function getCurrentArray(){
   if (round == 1){
     return firstArray;
@@ -144,49 +163,37 @@ function getCurrentArray(){
   }
 }
 
-//Macht jeweiliges Bild sichtbar
+//Macht jeweiliges Bild sichtbar und ruft die Funktion auf für den Mengenzähler
 function showImages(){
   let arr = getCurrentArray();
   //Vorderseite
   CardFront.firstElementChild.src = `${getSrc()}${arr[inx]}-vs.jpeg`; 
   //Rückseite
   CardBack.firstElementChild.src = `${getSrc()}${arr[inx]}-rs.jpeg`;
+
+  counterUp(inx, arr);
 }
 
-//Klick-Events
-DOMButtonRight.addEventListener("click", countAndNew);
-DOMButtonFalse
-
-// DOMButtonRight.addEventListener("click", displayCardsingle);
-DOMButtonFalse.addEventListener("click", displayCardUp);
-
-DOMButtonContinue.addEventListener("click", continueGame);
-DOMButtonExit.addEventListener("click", exitGame);
-
+// Wird bei Klick auf einen der Button ausgelöst, zeigt nächste Karte an
 function countAndNew(){
-  flipCardReverse();
-  count ++;
   inx++;
-
   showImages();
   let arr = getCurrentArray();
 
-  counterUp(count, arr);
-  if (count == arr.length+1){
-    roundPopUp(round);
-    console.log(arr);
-    count = 1;
-    inx = 0;
-    round ++;
+  if (inx == arr.length){
+    
+    roundPopUp(round, falseCounter);
   }
+
+  flipCardReverse();
 }
 
 //COUNTER FUNKTION
-function counterUp(p_count, p_arr){
+function counterUp(p_inx, p_arr){
    let arrlength = p_arr.length;
-   console.log(p_count, arrlength);
+   console.log(p_inx, arrlength);
    currentCard.innerText = "";
-   currentCard.innerText = `Karte: ${count}/${ arrlength}`;
+   currentCard.innerText = `Karte: ${p_inx+1}/${arrlength}`;
 }
 
 //Funktion zum mischen
@@ -199,44 +206,47 @@ function shuffle(p_arr) {
   return a;
 }
 
-//Nummer wird zweimal in ein neues Array eingefügt (click auf false)
+//Hier die Funktion bei Klick auf Falsch (nicht gewusst)
 function displayCardUp(){
+
+  falseCounter++;
+
   let arr = getCurrentArray();
   let num = arr[inx-1];
   if (round == 1){
     evenArray.push(num, num);
-    console.log(evenArray);
   }
   else if (round%2 == 1){
     evenArray.push(num, num);
-    console.log(evenArray);
   }
   else if (round%2 == 0){
-    oddArray.push(num);
-    console.log(oddArray);
-  }
-   
+    if(!oddArray.includes(num)){
+      oddArray.push(num);
+    }
+    else {
+      console.log(oddArray);
+    }
+  }  
 }
 
-// //Nummer wird einmal in ein neues Array eingefügt
-// function displayCardsingle(){
-//   let arr = getCurrentArray();
-//   let num = arr[inx-1];
-//   if (round == 1){
-//     console.log(evenArray);
-//   }
-//   else if (round%2 == 1){
-//     evenArray.push(num, num);
-//     console.log(evenArray);
-//   }
-//   else if (round%2 == 0){
-//     oddArray.push(num);
-//     console.log(oddArray);
-//   }
-// }
-
+// Arrays werden geändert und geshuffelt
 function continueGame(){
-
+    if (round == 1){
+      evenArray = shuffle(evenArray);
+    }
+    else if (round%2 == 0){
+      oddArray = oddArray.concat(firstArray);
+      evenArray = [];
+    }
+    else if (round%2 == 1){
+      evenArray = shuffle(evenArray);
+      oddArray = [];
+    }
+  falseCounter = 0;
+  inx = 0;
+  round ++;
+  showImages();
+  hidePopUp();
 }
 
 function exitGame(){}
