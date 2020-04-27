@@ -126,7 +126,7 @@ nav::after {
   height: 8%;
 }
 
-#line {
+.line {
     display: block;
     width: 70px;
     background-color: white;
