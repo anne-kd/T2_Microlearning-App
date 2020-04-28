@@ -14,42 +14,48 @@ const popupRound = document.querySelector("#popup-round");
 
 const PopupClose = document.querySelectorAll(".close");
 
-NAVCards.addEventListener("click", firstPopUp);
 PopupClose.forEach(element => {
   element.addEventListener("click", hidePopUp);
 });
 
 
-function firstPopUp(){
-    blurElements();
-    popupFirst.style.display = "block";   
-}
-function roundPopUp(p_round){
-    blurElements();
-    popupRound.style.display = "block";
-    let DOMH3 = popupRound.querySelector("#round");
-    DOMH3.innerHTML = "";
-    DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
-}
+// function firstPopUp() {
+//   blurElements();
+//   popupFirst.style.display = "block";
+// }
+function roundPopUp(p_round) {
+  blurElements();
+  popupRound.style.display = "block";
+  let DOMH3 = popupRound.querySelector("#round");
+  DOMH3.innerHTML = "";
+  DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
 
-function hidePopUp(){
-    DOMNav.classList.remove("blur");
-    DOMBackground.classList.remove("blur");
-    DOMWrapper.classList.remove("blur");
-
-    popupFirst.style.display = "none";
-    popupRound.style.display = "none";
 }
 
-function blurElements(){
-    DOMNav.classList.add("blur");
-    DOMBackground.classList.add("blur");
-    DOMWrapper.classList.add("blur");
+function hidePopUp() {
+  DOMNav.classList.remove("blur");
+  DOMBackground.classList.remove("blur");
+  DOMWrapper.classList.remove("blur");
+
+  popupFirst.style.display = "none";
+  popupRound.style.display = "none";
 }
 
+function blurElements() {
+  DOMNav.classList.add("blur");
+  DOMBackground.classList.add("blur");
+  DOMWrapper.classList.add("blur");
+}
 
+// Ändern des Kurses 
+const courseNamePopUp = document.querySelectorAll('#ON');
 
-
+courseNamePopUp.forEach(element=>{
+  element.addEventListener('click', (event)=>{
+    setCourse(event.target);
+    hidePopUp();
+  })
+});
 
 
 // FLIP INDEX CARD
@@ -58,7 +64,7 @@ const CardBack = document.querySelector(".card--back");
 const CardFront = document.querySelector(".card--front");
 const DOMCheckButton = document.querySelector("#check");
 
-DOMCard.addEventListener('click', function() {
+DOMCard.addEventListener('click', function () {
   DOMCard.classList.add('card_hover');
   CardBack.classList.add('display');
   CardFront.classList.remove('display');
@@ -66,7 +72,7 @@ DOMCard.addEventListener('click', function() {
 });
 
 
-function flipCardReverse(){
+function flipCardReverse() {
   DOMCard.classList.remove('card_hover');
   CardBack.classList.remove('display');
   CardFront.classList.add('display');
@@ -75,9 +81,25 @@ function flipCardReverse(){
 
 
 
-// Gibt Pfad des jeweiligen Kurses zurück 
-// wird später on click auf den button 0N.. aufgerufen
+//verändert beim auswählen eines Kurses den Kursnamen
 const course = document.querySelector('.course');
+function setCourse(courseName){
+  switch(courseName.innerHTML){  
+    case 'ON19':
+      course.innerHTML = 'ON19';
+      break;
+    case 'ON18':
+      course.innerHTML = 'ON18';
+      break;
+    case 'ON17':
+      course.innerHTML = 'ON17';
+      break;
+    default:
+        'Jemand hat einen Fehler gemacht'
+      break;
+  }
+}
+
 function getSrc(){
   switch(course.innerHTML){  //innerHTML ändern und klick funktion
       case 'ON19':
@@ -91,16 +113,16 @@ function getSrc(){
   }
 }
 
-function getStudents(){
-  switch(course.innerHTML){
-      case 'ON19':
-          return 19;
-      case 'ON18':
-          return 30;
-      case 'ON17':
-          return 27;
-      default:
-          return 'Jemand hat einen Fehler gemacht'
+function getStudents() {
+  switch (course.innerHTML) {
+    case 'ON19':
+      return 19;
+    case 'ON18':
+      return 30;
+    case 'ON17':
+      return 27;
+    default:
+      return 'Jemand hat einen Fehler gemacht'
   }
 }
 
@@ -117,9 +139,9 @@ let evenArray= []; //mod 2 = 0
 //Funktion erstellt Array beim ersten mal, soll bei Click auf den 
 //Kurs Button ausgelöst werden
 createArray();
-function createArray(){
+function createArray() {
   let num = getStudents();
-  
+
   for (let x = num; x > 0; x--) {
     firstArray.push(x);
   }
@@ -145,12 +167,12 @@ function getCurrentArray(){
 }
 
 //Macht jeweiliges Bild sichtbar
-function showImages(){
+function showImages() {
   let arr = getCurrentArray();
   //Vorderseite
-  CardFront.firstElementChild.src = `${getSrc()}${arr[inx]}-vs.jpeg`; 
+  CardFront.firstElementChild.src = `${getSrc()}${arr[inx]}-vs.png`;
   //Rückseite
-  CardBack.firstElementChild.src = `${getSrc()}${arr[inx]}-rs.jpeg`;
+  CardBack.firstElementChild.src = `${getSrc()}${arr[inx]}-rs.png`;
 }
 
 //Klick-Events
@@ -165,42 +187,42 @@ DOMButtonExit.addEventListener("click", exitGame);
 
 function countAndNew(){
   flipCardReverse();
-  count ++;
+  count++;
   inx++;
 
   showImages();
   let arr = getCurrentArray();
 
   counterUp(count, arr);
-  if (count == arr.length+1){
+  if (count == arr.length + 1) {
     roundPopUp(round);
     console.log(arr);
     count = 1;
     inx = 0;
-    round ++;
+    round++;
   }
 }
 
 //COUNTER FUNKTION
-function counterUp(p_count, p_arr){
-   let arrlength = p_arr.length;
-   console.log(p_count, arrlength);
-   currentCard.innerText = "";
-   currentCard.innerText = `Karte: ${count}/${ arrlength}`;
+function counterUp(p_count, p_arr) {
+  let arrlength = p_arr.length;
+  console.log(p_count, arrlength);
+  currentCard.innerText = "";
+  currentCard.innerText = `Karte: ${count}/${arrlength}`;
 }
 
 //Funktion zum mischen
 function shuffle(p_arr) {
   let a = p_arr;
   for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
 }
 
 //Nummer wird zweimal in ein neues Array eingefügt (click auf false)
-function displayCardUp(){
+function displayCardUp() {
   let arr = getCurrentArray();
   let num = arr[inx-1];
   if (round == 1){
@@ -214,26 +236,8 @@ function displayCardUp(){
   else if (round%2 == 0){
     oddArray.push(num);
     console.log(oddArray);
-  }
-   
+  }   
 }
-
-// //Nummer wird einmal in ein neues Array eingefügt
-// function displayCardsingle(){
-//   let arr = getCurrentArray();
-//   let num = arr[inx-1];
-//   if (round == 1){
-//     console.log(evenArray);
-//   }
-//   else if (round%2 == 1){
-//     evenArray.push(num, num);
-//     console.log(evenArray);
-//   }
-//   else if (round%2 == 0){
-//     oddArray.push(num);
-//     console.log(oddArray);
-//   }
-// }
 
 function continueGame(){
 
