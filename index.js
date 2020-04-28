@@ -170,9 +170,9 @@ function getCurrentArray(){
 function showImages() {
   let arr = getCurrentArray();
   //Vorderseite
-  CardFront.firstElementChild.src = `${getSrc()}${arr[inx]}-vs.png`;
+  CardFront.firstElementChild.src = `${getSrc()}front/${arr[inx]}-vs.png`;
   //Rückseite
-  CardBack.firstElementChild.src = `${getSrc()}${arr[inx]}-rs.png`;
+  CardBack.firstElementChild.src = `${getSrc()}back/${arr[inx]}-rs.png`;
 }
 
 //Klick-Events
