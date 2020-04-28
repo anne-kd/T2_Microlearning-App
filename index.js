@@ -160,9 +160,9 @@ function getCurrentArray() {
 function showImages() {
   let arr = getCurrentArray();
   //Vorderseite
-  CardFront.firstElementChild.src = `${getSrc()}${arr[inx]}-vs.jpeg`;
+  CardFront.firstElementChild.src = `${getSrc()}${arr[inx]}-vs.png`;
   //Rückseite
-  CardBack.firstElementChild.src = `${getSrc()}${arr[inx]}-rs.jpeg`;
+  CardBack.firstElementChild.src = `${getSrc()}${arr[inx]}-rs.png`;
 }
 
 //Klick-Events
