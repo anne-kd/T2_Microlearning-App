@@ -12,16 +12,15 @@ const popupRound = document.querySelector("#popup-round");
 
 const PopupClose = document.querySelectorAll(".close");
 
-NAVCards.addEventListener("click", firstPopUp);
 PopupClose.forEach(element => {
   element.addEventListener("click", hidePopUp);
 });
 
 
-function firstPopUp() {
-  blurElements();
-  popupFirst.style.display = "block";
-}
+// function firstPopUp() {
+//   blurElements();
+//   popupFirst.style.display = "block";
+// }
 function roundPopUp(p_round) {
   blurElements();
   popupRound.style.display = "block";

@@ -357,7 +357,7 @@ nav::after {
     margin-left: 5%;
 }
 #popup-first {
-    display: none;
+    display: block;
 }
 #popup-round {
     display: none;
