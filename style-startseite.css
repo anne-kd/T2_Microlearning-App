@@ -18,7 +18,7 @@ body {
   overflow: visible;
 }
 
-  h2 {
+h2 {
   font-family: "Montserrat";
   font-weight: 700;
   font-size: 1.8em;
@@ -40,9 +40,6 @@ p {
   position: absolute;
   margin-top: 16%;
   left: 20%;
-  
-  
-  
 }
 /* NAVIGATION */
 
@@ -120,7 +117,6 @@ nav::after {
   background-image: url("Startseite.png");
   background-size: auto;
   background-repeat: no-repeat;
-  
 }
 
 /* CONTENT */
@@ -141,7 +137,7 @@ nav::after {
 }
 
 
-#line {
+#st-line {
     display: block;
     width: 70px;
     background-color:black;

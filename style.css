@@ -16,6 +16,12 @@ body {
   align-items: center;
   overflow: visible;
 }
+h1 {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 1.8em;
+  color:black;
+}
 
 h2 {
   font-family: "Montserrat";
@@ -37,16 +43,63 @@ p {
   text-transform: uppercase;
   color: grey;
 }
+/* STARTSEITE */
+
+#textbox {
+  position: relative;
+  margin-top: 5%;
+  text-transform: none;
+  width: 100%;
+}
+
+#bg-img {
+  height: 50vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  background-image: url("Startseite.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+#container {
+  width: 40%;
+  height: 100%;
+  z-index: 100;
+  margin-top: 60%;
+}
+
+#st-line {
+  display: block;
+  width: 70px;
+  background-color:black;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 5%;
+}
+
+#onlogo{
+  position: relative;
+  width: 300px;
+  margin-top: 35%;
+  margin-left: 20%;
+}
+
 /* NAVIGATION */
 
 nav {
   position: absolute;
-  top: 3%;
-  left: 10%;
+  top:0;
+  padding-top: 3%;
+  left: 0;
+  padding-left: 10%;
   width: 100vw;
-  height: 10%;
+  height: 6%;
   display: block;
+  background-color: black;
 }
+
 nav ul {
   list-style: none;
 }
@@ -106,17 +159,6 @@ nav::after {
   position: absolute;
   top: 0;
   z-index: 0;
-}
-#background-st {
-  height: 50vh;
-  width: 100vw;
-  position: absolute;
-  top: 0;
-  z-index: 0;
-  background-image: url("Startseite.png");
-  background-size: auto;
-  background-repeat: no-repeat;
-  
 }
 
 /* CONTENT */
