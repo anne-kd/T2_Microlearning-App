@@ -37,6 +37,10 @@ p {
   text-transform: uppercase;
   color: grey;
 }
+a {
+  color: white;
+  text-decoration: none;
+}
 /* NAVIGATION */
 
 nav {
@@ -257,6 +261,7 @@ nav::after {
   flex-direction: row;
   width: 100%;
 }
+.button a,
 .button div {
   position: relative;
   width: 30%;
@@ -282,7 +287,7 @@ nav::after {
   background-color: #88bc48;
   cursor: pointer;
 }
-.exit,
+#exit,
 .false {
   background-color: salmon;
   display: flex;
@@ -353,7 +358,7 @@ nav::after {
 }
 .popup h3 {
   color: black;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-left: 5%;
 }
 #popup-first {
@@ -369,10 +374,4 @@ nav::after {
 }
 .close span {
   background-color: black;
-}
-
-div a {
-  display: block;
-  height: 100%;
-  background: #eee;
 }

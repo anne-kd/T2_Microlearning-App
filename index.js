@@ -6,8 +6,7 @@ const DOMWrapper = document.querySelector("#wrapper");
 const DOMButtonRight = document.querySelector(".right");
 const DOMButtonFalse = document.querySelector(".false");
 const DOMButtonContinue = document.querySelector("#continue");
-const DOMButtonExit = document.querySelector(".exit");
-const DomButtonReset = document.querySelector("#resetArray");
+const DOMButtonReset = document.querySelector("#exit");
 
 // POP UP
 const popupFirst = document.querySelector("#popup-first");
@@ -23,20 +22,29 @@ PopupClose.forEach((element) => {
 function firstPopUp() {
   blurElements();
   popupFirst.style.display = "block";
-}
-function roundPopUp(p_round, p_falseCounter) {
-  blurElements();
-  popupFirst.style.display = "block";
   let DOMH3 = popupFirst.querySelector("#test");
+  DOMH3.innerHTML = "";
+  DOMH3.innerHTML = `Welchen Kurs wollen Sie lernen?`;
+}
 
-  if (p_falseCounter == 0) {
-    DOMH3.innerHTML = "";
-    DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
+
+function roundPopUp(p_round, p_falseCounter) {
+
+    if (p_falseCounter == 0) {
+      blurElements();
+      popupFirst.style.display = "block";
+      let DOMH3 = popupFirst.querySelector("#test");
+      DOMH3.innerHTML = "";
+      DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
       Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
-  } else {
-    DOMH3.innerHTML = "";
-    DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
-  }
+    } 
+    else if (p_falseCounter > 0){
+      popupRound.style.display = "block";
+      blurElements();
+      let DOMH3 = popupRound.querySelector("#round");
+      DOMH3.innerHTML = "";
+      DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
+    }
 }
 
 function hidePopUp() {
@@ -78,7 +86,7 @@ function flipCardReverse() {
 
 const currentCard = document.getElementById("counter");
 let falseCounter = 0; //zählt wie viele Falsche der Spieler in einer Runde hat
-let inx = 0;
+let inx = 16;
 let round = 1;
 let firstArray = [];
 let oddArray = []; //mod 2 = 1
@@ -86,14 +94,10 @@ let evenArray = []; //mod 2 = 0
 
 //Klick-Events
 DOMButtonRight.addEventListener("click", countAndNew);
-DOMButtonFalse.addEventListener("click", countAndNew);
-
 DOMButtonFalse.addEventListener("click", displayCardUp);
 
 DOMButtonContinue.addEventListener("click", continueGame);
-DOMButtonExit.addEventListener("click", exitGame);
-
-DomButtonReset.addEventListener("click", stopGame);
+DOMButtonReset.addEventListener("click", stopGame);
 
 // Gibt Pfad des jeweiligen Kurses zurück
 // wird später on click auf den button 0N.. aufgerufen
@@ -199,6 +203,8 @@ function shuffle(p_arr) {
 //Hier die Funktion bei Klick auf Falsch (nicht gewusst)
 function displayCardUp() {
   falseCounter++;
+  
+  countAndNew();
 
   let arr = getCurrentArray();
   let num = arr[inx - 1];
@@ -214,7 +220,6 @@ function displayCardUp() {
     }
   }
 }
-
 // Arrays werden geändert und geshuffelt
 function continueGame() {
   if (round == 1) {
@@ -233,14 +238,13 @@ function continueGame() {
   hidePopUp();
 }
 
-function exitGame() {}
-
 // Arrays werden zurück gesetzt
 function stopGame() {
-  arr = firstArray;
+  let arr = firstArray;
   arr.length = [];
 
   inx = 0;
   round = 1;
   falseCounter = 0;
+  console.log(arr);
 }
