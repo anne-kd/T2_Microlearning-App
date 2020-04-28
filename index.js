@@ -8,6 +8,10 @@ const DOMButtonFalse = document.querySelector(".false");
 const DOMButtonContinue = document.querySelector("#continue");
 const DOMButtonReset = document.querySelector("#exit");
 
+const DOMButtonExit = document.querySelectorAll(".reset");
+DOMButtonExit.forEach((element) => {
+  element.addEventListener("click", stopGame);
+});
 // POP UP
 const popupFirst = document.querySelector("#popup-first");
 const popupRound = document.querySelector("#popup-round");
@@ -18,6 +22,7 @@ NAVCards.addEventListener("click", firstPopUp);
 PopupClose.forEach((element) => {
   element.addEventListener("click", hidePopUp);
 });
+
 
 function firstPopUp() {
   blurElements();
@@ -30,15 +35,16 @@ function firstPopUp() {
 
 function roundPopUp(p_round, p_falseCounter) {
 
-    if (p_falseCounter == 0) {
+    if (p_falseCounter == 0 && p_round%2 == 1) {
       blurElements();
       popupFirst.style.display = "block";
       let DOMH3 = popupFirst.querySelector("#test");
       DOMH3.innerHTML = "";
       DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
       Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
+      stopGame();
     }
-    else if (p_falseCounter > 0){
+    else {
       popupRound.style.display = "block";
       blurElements();
       let DOMH3 = popupRound.querySelector("#round");
@@ -84,10 +90,21 @@ function flipCardReverse() {
 
 
 
+// Ändern des Kurses 
+const courseNamePopUp = document.querySelectorAll('.ON');
+
+courseNamePopUp.forEach(element=>{
+  element.addEventListener('click', (event)=>{
+    setCourse(event.target);
+    createArray();
+    hidePopUp();
+  })
+});
+
 //FUNKTION FÜR DEN ABLAUF DER KARTEN
 const currentCard = document.getElementById("counter");
 let falseCounter = 0; //zählt wie viele Falsche der Spieler in einer Runde hat
-let inx = 16;
+let inx = 0;
 let round = 1;
 let firstArray = [];
 let oddArray = []; //mod 2 = 1
@@ -150,10 +167,9 @@ function getStudents() {
 
 //Funktion erstellt Array beim ersten mal, soll bei Click auf den
 //Kurs Button ausgelöst werden
-createArray();
 function createArray() {
   let num = getStudents();
-
+  console.log(num);
   for (let x = num; x > 0; x--) {
     firstArray.push(x);
   }
@@ -179,9 +195,9 @@ function getCurrentArray() {
 function showImages() {
   let arr = getCurrentArray();
   //Vorderseite
-  CardFront.firstElementChild.src = `${getSrc()}${arr[inx]}-vs.png`;
+  CardFront.firstElementChild.src = `${getSrc()}front/${arr[inx]}-vs.png`;
   //Rückseite
-  CardBack.firstElementChild.src = `${getSrc()}${arr[inx]}-rs.png`;
+  CardBack.firstElementChild.src = `${getSrc()}back/${arr[inx]}-rs.png`;
 
   counterUp(inx, arr);
 }
@@ -253,11 +269,12 @@ function continueGame() {
   hidePopUp();
 }
 
-// Arrays werden zurück gesetzt
+// Arrays und Varaiblen werden zurück gesetzt
 function stopGame() {
   let arr = firstArray;
   arr.length = [];
-
+  oddArray.length = [];
+  evenArray.length = [];
   inx = 0;
   round = 1;
   falseCounter = 0;

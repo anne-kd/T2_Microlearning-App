@@ -58,9 +58,9 @@ a {
 }
 
 #bg-img {
-  height: 50vh;
-  width: 100vw;
   position: absolute;
+  height: 50%;
+  width: 100vw;
   top: 0;
   z-index: 0;
   background-image: url("images/Startseite.png");
@@ -69,10 +69,10 @@ a {
 }
 
 #container {
+  position: relative;
   width: 40%;
-  height: 100%;
   z-index: 100;
-  margin-top: 60%;
+  margin-top: 20%;
 }
 
 #st-line {
@@ -274,7 +274,6 @@ nav::after {
 }
 
 .card--front .img {
-  background-color: rosybrown;
   object-fit: cover;
   border: solid 0px white;
   width: 100%;
@@ -341,6 +340,11 @@ nav::after {
   background-color: #88bc48;
   cursor: pointer;
 }
+
+.select {
+  background-color: black;
+}
+
 #exit,
 .false {
   background-color: salmon;
@@ -394,6 +398,7 @@ nav::after {
   color: white;
   font-weight: 700;
 }
+
 
 /* POPUP */
 .blur {

@@ -1,11 +1,17 @@
 //Wechsel der Kurse in der Übersichtsseite 
 
 const uebersichtImages = document.querySelectorAll('.student');
-const uebersichtButtons = document.querySelectorAll('#On');
+const uebersichtButtons = document.querySelectorAll('.ON');
+const button = document.querySelectorAll('.right');
 
 
 uebersichtButtons.forEach(element=>{
   element.addEventListener('click', (event)=>{
+      button.forEach(element => {
+          element.classList.remove("select");
+      });
+      
+      element.parentElement.classList.add("select");
     let courseUebersicht = event.target.innerHTML;
     for(let i =0;i<uebersichtImages.length;i++){
         if(i<getAmountOfImages(courseUebersicht)){
