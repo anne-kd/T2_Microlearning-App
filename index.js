@@ -257,6 +257,7 @@ function continueGame() {
     evenArray = shuffle(evenArray);
   } else if (round % 2 == 0) {
     oddArray = oddArray.concat(firstArray);
+    oddArray = shuffle(oddArray);
     evenArray = [];
   } else if (round % 2 == 1) {
     evenArray = shuffle(evenArray);
