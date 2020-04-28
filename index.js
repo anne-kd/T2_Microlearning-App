@@ -45,9 +45,15 @@ function blurElements() {
   DOMWrapper.classList.add("blur");
 }
 
+// Ändern des Kurses 
+const courseNamePopUp = document.querySelectorAll('#ON');
 
-
-
+courseNamePopUp.forEach(element=>{
+  element.addEventListener('click', (event)=>{
+    setCourse(event.target);
+    hidePopUp();
+  })
+});
 
 
 // FLIP INDEX CARD
@@ -73,19 +79,35 @@ function flipCardReverse() {
 
 
 
-// Gibt Pfad des jeweiligen Kurses zurück 
-// wird später on click auf den button 0N.. aufgerufen
+//verändert beim auswählen eines Kurses den Kursnamen
 const course = document.querySelector('.course');
-function getSrc() {
-  switch (course.innerHTML) {  //innerHTML ändern und klick funktion
+function setCourse(courseName){
+  switch(courseName.innerHTML){  
     case 'ON19':
-      return 'assets/ON19/';
+      course.innerHTML = 'ON19';
+      break;
     case 'ON18':
-      return 'assets/ON18/';
+      course.innerHTML = 'ON18';
+      break;
     case 'ON17':
-      return 'assets/ON17/';
+      course.innerHTML = 'ON17';
+      break;
     default:
-      return 'Jemand hat einen Fehler gemacht'
+        'Jemand hat einen Fehler gemacht'
+      break;
+  }
+}
+
+function getSrc(){
+  switch(course.innerHTML){  //innerHTML ändern und klick funktion
+      case 'ON19':
+          return 'assets/ON19/';
+      case 'ON18':
+          return 'assets/ON18/';
+      case 'ON17':
+          return 'assets/ON17/';
+      default:
+          return 'Jemand hat einen Fehler gemacht'
   }
 }
 
