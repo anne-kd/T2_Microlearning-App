@@ -43,6 +43,11 @@ p {
   text-transform: uppercase;
   color: grey;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+}
 /* STARTSEITE */
 
 #textbox {
@@ -85,7 +90,6 @@ p {
   margin-top: 35%;
   margin-left: 20%;
 }
-
 /* NAVIGATION */
 
 nav {
@@ -180,24 +184,24 @@ nav::after {
 }
 
 .line {
-    display: block;
-    width: 70px;
-    background-color: white;
-    height: 8px;
-    border-radius: 4px;
-    margin-bottom: 10%;
+  display: block;
+  width: 70px;
+  background-color: white;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 10%;
 }
-.course{
-    margin: 0 auto;
+.course {
+  margin: 0 auto;
 }
-#counter{
-    width: 15%;
-    height: 10px;
-    margin-right: 6%;
-    font-family: 'Montserrat';
-    font-weight: 200;
-    font-size: 1em;
-    color: white;
+#counter {
+  width: 15%;
+  height: 10px;
+  margin-right: 6%;
+  font-family: "Montserrat";
+  font-weight: 200;
+  font-size: 1em;
+  color: white;
 }
 
 #content-bottom {
@@ -301,46 +305,49 @@ nav::after {
 
 /* BUTTONS */
 #check {
-    display: none;
+  display: none;
 }
 
-.button{
-    position: relative;
-    margin: 5% 10%;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+.button {
+  position: relative;
+  margin: 5% 10%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
+.button a,
 .button div {
-    position: relative;
-    width: 30%;
-    height: 50px;
-    border-radius: 25px;
-    margin: 0 5%;
+  position: relative;
+  width: 30%;
+  height: 50px;
+  border-radius: 25px;
+  margin: 0 5%;
 }
 #popup-round .button {
-    margin-left: 0;
-    margin-top: 15%;
-    font-family: 'Montserrat';
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 1em;
-    color: white;
+  margin-left: 0;
+  margin-top: 15%;
+  font-family: "Montserrat";
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1em;
+  color: white;
 }
 
-.continue,
-.right{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #88BC48;
+#continue,
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #88bc48;
+  cursor: pointer;
 }
-.exit,
-.false{
-    background-color: salmon;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#exit,
+.false {
+  background-color: salmon;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 .right div,
 .false div {
@@ -389,9 +396,9 @@ nav::after {
 }
 
 /* POPUP */
-.blur{
+.blur {
   filter: blur(30px);
-} 
+}
 
 .popup {
   position: absolute;
@@ -399,13 +406,13 @@ nav::after {
   height: 50%;
   background-color: white;
   z-index: 200;
-  box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
-      -webkit-box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
-      -moz-box-shadow: 0px 0px 45px 8px rgba(0,0,0,0.33);
+  box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
+  -webkit-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
 }
 .popup h3 {
   color: black;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-left: 5%;
 }
 #popup-first {
@@ -423,7 +430,7 @@ nav::after {
   background-color: black;
 }
 
-/* Header-nav */
+/* UEBERSICHTSEITE*/
 #header-nav {
   background-color: black;
   height: 10vh;

@@ -5,8 +5,8 @@ const DOMBackground = document.querySelector("#background");
 const DOMWrapper = document.querySelector("#wrapper");
 const DOMButtonRight = document.querySelector(".right");
 const DOMButtonFalse = document.querySelector(".false");
-const DOMButtonContinue = document.querySelector(".continue");
-const DOMButtonExit = document.querySelector(".exit");
+const DOMButtonContinue = document.querySelector("#continue");
+const DOMButtonReset = document.querySelector("#exit");
 
 // POP UP
 const popupFirst = document.querySelector("#popup-first");
@@ -14,22 +14,37 @@ const popupRound = document.querySelector("#popup-round");
 
 const PopupClose = document.querySelectorAll(".close");
 
-PopupClose.forEach(element => {
+NAVCards.addEventListener("click", firstPopUp);
+PopupClose.forEach((element) => {
   element.addEventListener("click", hidePopUp);
 });
 
-
-// function firstPopUp() {
-//   blurElements();
-//   popupFirst.style.display = "block";
-// }
-function roundPopUp(p_round) {
+function firstPopUp() {
   blurElements();
-  popupRound.style.display = "block";
-  let DOMH3 = popupRound.querySelector("#round");
+  popupFirst.style.display = "block";
+  let DOMH3 = popupFirst.querySelector("#test");
   DOMH3.innerHTML = "";
-  DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
+  DOMH3.innerHTML = `Welchen Kurs wollen Sie lernen?`;
+}
 
+
+function roundPopUp(p_round, p_falseCounter) {
+
+    if (p_falseCounter == 0) {
+      blurElements();
+      popupFirst.style.display = "block";
+      let DOMH3 = popupFirst.querySelector("#test");
+      DOMH3.innerHTML = "";
+      DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
+      Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
+    }
+    else if (p_falseCounter > 0){
+      popupRound.style.display = "block";
+      blurElements();
+      let DOMH3 = popupRound.querySelector("#round");
+      DOMH3.innerHTML = "";
+      DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
+    }
 }
 
 function hidePopUp() {
@@ -47,39 +62,43 @@ function blurElements() {
   DOMWrapper.classList.add("blur");
 }
 
-// Ändern des Kurses 
-const courseNamePopUp = document.querySelectorAll('#ON');
-
-courseNamePopUp.forEach(element=>{
-  element.addEventListener('click', (event)=>{
-    setCourse(event.target);
-    hidePopUp();
-  })
-});
-
-
 // FLIP INDEX CARD
-const DOMCard = document.getElementById('card');
+const DOMCard = document.getElementById("card");
 const CardBack = document.querySelector(".card--back");
 const CardFront = document.querySelector(".card--front");
 const DOMCheckButton = document.querySelector("#check");
 
-DOMCard.addEventListener('click', function () {
-  DOMCard.classList.add('card_hover');
-  CardBack.classList.add('display');
-  CardFront.classList.remove('display');
+DOMCard.addEventListener("click", function () {
+  DOMCard.classList.add("card_hover");
+  CardBack.classList.add("display");
+  CardFront.classList.remove("display");
   DOMCheckButton.style.display = "flex";
 });
 
-
 function flipCardReverse() {
-  DOMCard.classList.remove('card_hover');
-  CardBack.classList.remove('display');
-  CardFront.classList.add('display');
+  DOMCard.classList.remove("card_hover");
+  CardBack.classList.remove("display");
+  CardFront.classList.add("display");
   DOMCheckButton.style.display = "none";
 }
 
 
+
+//FUNKTION FÜR DEN ABLAUF DER KARTEN
+const currentCard = document.getElementById("counter");
+let falseCounter = 0; //zählt wie viele Falsche der Spieler in einer Runde hat
+let inx = 16;
+let round = 1;
+let firstArray = [];
+let oddArray = []; //mod 2 = 1
+let evenArray = []; //mod 2 = 0
+
+//Klick-Events
+DOMButtonRight.addEventListener("click", countAndNew);
+DOMButtonFalse.addEventListener("click", displayCardUp);
+
+DOMButtonContinue.addEventListener("click", continueGame);
+DOMButtonReset.addEventListener("click", stopGame);
 
 //verändert beim auswählen eines Kurses den Kursnamen
 const course = document.querySelector('.course');
@@ -100,43 +119,36 @@ function setCourse(courseName){
   }
 }
 
-function getSrc(){
-  switch(course.innerHTML){  //innerHTML ändern und klick funktion
-      case 'ON19':
-          return 'assets/ON19/';
-      case 'ON18':
-          return 'assets/ON18/';
-      case 'ON17':
-          return 'assets/ON17/';
-      default:
-          return 'Jemand hat einen Fehler gemacht'
+function getSrc() {
+  switch (
+    course.innerHTML //innerHTML ändern und klick funktion
+  ) {
+    case "ON19":
+      return "assets/ON19/";
+    case "ON18":
+      return "assets/ON18/";
+    case "ON17":
+      return "assets/ON17/";
+    default:
+      return "Jemand hat einen Fehler gemacht";
   }
 }
 
+// Hier wird die Anzahl der Studenten in einem Kurs eingegeben und abgerufen
 function getStudents() {
   switch (course.innerHTML) {
-    case 'ON19':
+    case "ON19":
       return 19;
-    case 'ON18':
+    case "ON18":
       return 30;
-    case 'ON17':
+    case "ON17":
       return 27;
     default:
-      return 'Jemand hat einen Fehler gemacht'
+      return "Jemand hat einen Fehler gemacht";
   }
 }
 
-// ROUND END
-const currentCard = document.getElementById('counter');
-let count = 1;
-let inx = 0;
-let round = 1;
-let firstArray = [];
-let oddArray= []; //mod 2 = 1
-let evenArray= []; //mod 2 = 0
-
-
-//Funktion erstellt Array beim ersten mal, soll bei Click auf den 
+//Funktion erstellt Array beim ersten mal, soll bei Click auf den
 //Kurs Button ausgelöst werden
 createArray();
 function createArray() {
@@ -150,65 +162,47 @@ function createArray() {
   showImages();
 }
 
-//Hier evtl für später wenn wir unterschiedliche Arrays haben
-function getCurrentArray(){
-  if (round == 1){
+//Hier wird das Aktuelle Array der Runde abgefragt
+function getCurrentArray() {
+  if (round == 1) {
     return firstArray;
-  }
-  else if (round%2 == 1){
+  } else if (round % 2 == 1) {
     return oddArray;
-  }
-  else if (round%2 == 0){
+  } else if (round % 2 == 0) {
     return evenArray;
-  }
-  else {
+  } else {
     console.log("fehler");
   }
 }
 
-//Macht jeweiliges Bild sichtbar
+//Macht jeweiliges Bild sichtbar und ruft die Funktion auf für den Mengenzähler
 function showImages() {
   let arr = getCurrentArray();
   //Vorderseite
-  CardFront.firstElementChild.src = `${getSrc()}front/${arr[inx]}-vs.png`;
+  CardFront.firstElementChild.src = `${getSrc()}${arr[inx]}-vs.png`;
   //Rückseite
-  CardBack.firstElementChild.src = `${getSrc()}back/${arr[inx]}-rs.png`;
+  CardBack.firstElementChild.src = `${getSrc()}${arr[inx]}-rs.png`;
+
+  counterUp(inx, arr);
 }
 
-//Klick-Events
-DOMButtonRight.addEventListener("click", countAndNew);
-DOMButtonFalse
-
-// DOMButtonRight.addEventListener("click", displayCardsingle);
-DOMButtonFalse.addEventListener("click", displayCardUp);
-
-DOMButtonContinue.addEventListener("click", continueGame);
-DOMButtonExit.addEventListener("click", exitGame);
-
-function countAndNew(){
-  flipCardReverse();
-  count++;
+// Wird bei Klick auf einen der Button ausgelöst, zeigt nächste Karte an
+function countAndNew() {
   inx++;
-
   showImages();
   let arr = getCurrentArray();
-
-  counterUp(count, arr);
-  if (count == arr.length + 1) {
-    roundPopUp(round);
-    console.log(arr);
-    count = 1;
-    inx = 0;
-    round++;
-  }
+    if (inx == arr.length) {
+      roundPopUp(round, falseCounter);
+    }
+  flipCardReverse();
 }
 
 //COUNTER FUNKTION
-function counterUp(p_count, p_arr) {
+function counterUp(p_inx, p_arr) {
   let arrlength = p_arr.length;
-  console.log(p_count, arrlength);
+  console.log(p_inx, arrlength);
   currentCard.innerText = "";
-  currentCard.innerText = `Karte: ${count}/${arrlength}`;
+  currentCard.innerText = `Karte: ${p_inx + 1}/${arrlength}`;
 }
 
 //Funktion zum mischen
@@ -221,26 +215,51 @@ function shuffle(p_arr) {
   return a;
 }
 
-//Nummer wird zweimal in ein neues Array eingefügt (click auf false)
+//Hier die Funktion bei Klick auf Falsch (nicht gewusst)
 function displayCardUp() {
+  falseCounter++;
+  countAndNew();
+
   let arr = getCurrentArray();
-  let num = arr[inx-1];
-  if (round == 1){
+  let num = arr[inx - 1];
+  if (round == 1) {
     evenArray.push(num, num);
-    console.log(evenArray);
-  }
-  else if (round%2 == 1){
+  } else if (round % 2 == 1) {
     evenArray.push(num, num);
-    console.log(evenArray);
+  } else if (round % 2 == 0) {
+      if (!oddArray.includes(num)) {
+        oddArray.push(num);
+      } 
+      else {
+        console.log(oddArray);
+      }
   }
-  else if (round%2 == 0){
-    oddArray.push(num);
-    console.log(oddArray);
-  }   
+}
+// Arrays werden geändert und geshuffelt
+function continueGame() {
+  if (round == 1) {
+    evenArray = shuffle(evenArray);
+  } else if (round % 2 == 0) {
+    oddArray = oddArray.concat(firstArray);
+    evenArray = [];
+  } else if (round % 2 == 1) {
+    evenArray = shuffle(evenArray);
+    oddArray = [];
+  }
+  falseCounter = 0;
+  inx = 0;
+  round++;
+  showImages();
+  hidePopUp();
 }
 
-function continueGame(){
+// Arrays werden zurück gesetzt
+function stopGame() {
+  let arr = firstArray;
+  arr.length = [];
 
+  inx = 0;
+  round = 1;
+  falseCounter = 0;
+  console.log(arr);
 }
-
-function exitGame(){}
