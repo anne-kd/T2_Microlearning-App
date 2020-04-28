@@ -7,6 +7,7 @@ const DOMButtonRight = document.querySelector(".right");
 const DOMButtonFalse = document.querySelector(".false");
 const DOMButtonContinue = document.querySelector("#continue");
 const DOMButtonExit = document.querySelector(".exit");
+const DomButtonReset = document.querySelector("#resetArray");
 
 // POP UP
 const popupFirst = document.querySelector("#popup-first");
@@ -101,6 +102,8 @@ DOMButtonFalse.addEventListener("click", displayCardUp);
 
 DOMButtonContinue.addEventListener("click", continueGame);
 DOMButtonExit.addEventListener("click", exitGame);
+
+DomButtonReset.addEventListener("click", stopGame);
 
 
 // Gibt Pfad des jeweiligen Kurses zurück 
@@ -250,3 +253,14 @@ function continueGame(){
 }
 
 function exitGame(){}
+
+
+// Arrays werden zurück gesetzt 
+function stopGame(){
+arr = firstArray;
+arr.length = [];
+
+inx = 0;
+round = 1;
+falseCounter = 0;
+}
