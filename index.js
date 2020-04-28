@@ -155,11 +155,11 @@ function getSrc() {
 function getStudents() {
   switch (course.innerHTML) {
     case "ON19":
-      return 19;
+      return 31;
     case "ON18":
-      return 30;
+      return 7;
     case "ON17":
-      return 27;
+      return 0;
     default:
       return "Jemand hat einen Fehler gemacht";
   }
