@@ -405,7 +405,7 @@ nav::after {
   -webkit-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
   -moz-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
 }
-.popup h3 {
+#popup-first h3 {
   color: black;
   margin-top: 5%;
   margin-left: 5%;
@@ -423,6 +423,21 @@ nav::after {
 }
 .close span {
   background-color: black;
+}
+#PopUpOnboarding  {
+  height: 80%;
+  width: 90%;
+  display: block;
+}
+#PopUpOnboarding h2 {
+  margin-top: 5%;
+  margin-left: 5%;
+  color: black;
+}
+#PopUpOnboarding h3 {
+  color: #88bc48;
+  margin-top: 1%;
+  margin-left: 5%;
 }
 
 /* UEBERSICHTSEITE*/
