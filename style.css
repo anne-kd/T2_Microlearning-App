@@ -20,7 +20,7 @@ h1 {
   font-family: "Montserrat";
   font-weight: 700;
   font-size: 1.8em;
-  color:black;
+  color: black;
 }
 
 h2 {
@@ -78,13 +78,13 @@ a {
 #st-line {
   display: block;
   width: 70px;
-  background-color:black;
+  background-color: black;
   height: 8px;
   border-radius: 4px;
   margin-bottom: 5%;
 }
 
-#onlogo{
+#onlogo {
   position: relative;
   width: 300px;
   margin-top: 35%;
@@ -94,7 +94,7 @@ a {
 
 nav {
   position: absolute;
-  top:0;
+  top: 0;
   padding-top: 3%;
   left: 0;
   padding-left: 10%;
@@ -382,13 +382,36 @@ nav::after {
   cursor: pointer;
 }
 
+.btn-method {
+  text-align: center;
+}
+
 .btn-course div p {
   text-align: center;
   padding: 6%;
   color: white;
   font-weight: 700;
 }
+.btn-method div:hover {
+  background-color: black;
+  cursor: pointer;
+}
+.btn-method div p {
+  text-align: center;
+  padding: 4%;
+  color: white;
+  font-weight: 700;
+}
 
+.btn-method div {
+  width: 30%;
+  height: 35px;
+  border-radius: 25px;
+  margin: 0 5%;
+  display: inline-block;
+  margin-top: 6%;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
 
 /* POPUP */
 .blur {
@@ -411,7 +434,7 @@ nav::after {
   margin-left: 5%;
 }
 #popup-first {
-    display: block;
+  display: block;
 }
 #popup-round {
   display: none;
@@ -435,13 +458,13 @@ nav::after {
   z-index: 0;
 }
 
-#headline-uebersicht{
+#headline-uebersicht {
   position: absolute;
   top: 20%;
   padding-right: 70%;
 }
 
-#headline-uebersicht h2{
+#headline-uebersicht h2 {
   color: black;
 }
 
@@ -476,12 +499,12 @@ nav::after {
   text-align: center;
 }
 
-#bilder-container ul li{
+#bilder-container ul li {
   list-style: none;
   display: inline-block;
   padding: 50px;
 }
 
-#bilder-container ul li img{
+#bilder-container ul li img {
   width: 150%;
 }

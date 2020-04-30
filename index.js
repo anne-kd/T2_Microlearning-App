@@ -15,6 +15,7 @@ DOMButtonExit.forEach((element) => {
 // POP UP
 const popupFirst = document.querySelector("#popup-first");
 const popupRound = document.querySelector("#popup-round");
+const popupLearningMethod = document.querySelector("#popup-learningMethod");
 
 const PopupClose = document.querySelectorAll(".close");
 
@@ -23,34 +24,36 @@ PopupClose.forEach((element) => {
   element.addEventListener("click", hidePopUp);
 });
 
-
 function firstPopUp() {
   blurElements();
   popupFirst.style.display = "block";
   let DOMH3 = popupFirst.querySelector("#test");
   DOMH3.innerHTML = "";
   DOMH3.innerHTML = `Welchen Kurs wollen Sie lernen?`;
+  //popupLearningMethod.style.display = "none";
 }
 
+function learningMethodPopup() {
+  blurElements();
+  popupLearningMethod.style.display = "block";
+}
 
 function roundPopUp(p_round, p_falseCounter) {
-
-    if (p_falseCounter == 0 && p_round%2 == 1) {
-      blurElements();
-      popupFirst.style.display = "block";
-      let DOMH3 = popupFirst.querySelector("#test");
-      DOMH3.innerHTML = "";
-      DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
+  if (p_falseCounter == 0 && p_round % 2 == 1) {
+    blurElements();
+    popupFirst.style.display = "block";
+    let DOMH3 = popupFirst.querySelector("#test");
+    DOMH3.innerHTML = "";
+    DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
       Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
-      stopGame();
-    }
-    else {
-      popupRound.style.display = "block";
-      blurElements();
-      let DOMH3 = popupRound.querySelector("#round");
-      DOMH3.innerHTML = "";
-      DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
-    }
+    stopGame();
+  } else {
+    popupRound.style.display = "block";
+    blurElements();
+    let DOMH3 = popupRound.querySelector("#round");
+    DOMH3.innerHTML = "";
+    DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
+  }
 }
 
 function hidePopUp() {
@@ -60,6 +63,7 @@ function hidePopUp() {
 
   popupFirst.style.display = "none";
   popupRound.style.display = "none";
+  popupLearningMethod.style.display = "none";
 }
 
 function blurElements() {
@@ -88,17 +92,16 @@ function flipCardReverse() {
   DOMCheckButton.style.display = "none";
 }
 
+// Ändern des Kurses
+const courseNamePopUp = document.querySelectorAll(".ON");
 
-
-// Ändern des Kurses 
-const courseNamePopUp = document.querySelectorAll('.ON');
-
-courseNamePopUp.forEach(element=>{
-  element.addEventListener('click', (event)=>{
+courseNamePopUp.forEach((element) => {
+  element.addEventListener("click", (event) => {
     setCourse(event.target);
     createArray();
     hidePopUp();
-  })
+    learningMethodPopup();
+  });
 });
 
 //FUNKTION FÜR DEN ABLAUF DER KARTEN
@@ -118,20 +121,20 @@ DOMButtonContinue.addEventListener("click", continueGame);
 DOMButtonReset.addEventListener("click", stopGame);
 
 //verändert beim auswählen eines Kurses den Kursnamen
-const course = document.querySelector('.course');
-function setCourse(courseName){
-  switch(courseName.innerHTML){  
-    case 'ON19':
-      course.innerHTML = 'ON19';
+const course = document.querySelector(".course");
+function setCourse(courseName) {
+  switch (courseName.innerHTML) {
+    case "ON19":
+      course.innerHTML = "ON19";
       break;
-    case 'ON18':
-      course.innerHTML = 'ON18';
+    case "ON18":
+      course.innerHTML = "ON18";
       break;
-    case 'ON17':
-      course.innerHTML = 'ON17';
+    case "ON17":
+      course.innerHTML = "ON17";
       break;
     default:
-        'Jemand hat einen Fehler gemacht'
+      "Jemand hat einen Fehler gemacht";
       break;
   }
 }
@@ -207,9 +210,9 @@ function countAndNew() {
   inx++;
   showImages();
   let arr = getCurrentArray();
-    if (inx == arr.length) {
-      roundPopUp(round, falseCounter);
-    }
+  if (inx == arr.length) {
+    roundPopUp(round, falseCounter);
+  }
   flipCardReverse();
 }
 
@@ -243,12 +246,11 @@ function displayCardUp() {
   } else if (round % 2 == 1) {
     evenArray.push(num, num);
   } else if (round % 2 == 0) {
-      if (!oddArray.includes(num)) {
-        oddArray.push(num);
-      } 
-      else {
-        console.log(oddArray);
-      }
+    if (!oddArray.includes(num)) {
+      oddArray.push(num);
+    } else {
+      console.log(oddArray);
+    }
   }
 }
 // Arrays werden geändert und geshuffelt
