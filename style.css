@@ -266,10 +266,13 @@ nav::after {
   transform: rotateY(180deg);
 }
 .card_hover .card--back {
-  width: 100%;
-  height: 100%;
+ width: 100%;
+ height: 100%;
  border-style: solid;
  color: red;
+}
+.richtigFalsch h2 {
+  color: red;
 }
 
 .card--front {

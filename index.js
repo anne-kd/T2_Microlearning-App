@@ -73,12 +73,14 @@ const DOMCard = document.getElementById("card");
 const CardBack = document.querySelector(".card--back");
 const CardFront = document.querySelector(".card--front");
 const DOMCheckButton = document.querySelector("#check");
+const DomRichtigFalsch = document.querySelector("#showRightorRong")
 
 DOMCard.addEventListener("click", function () {
   DOMCard.classList.add("card_hover");
   CardBack.classList.add("display");
   CardFront.classList.remove("display");
   DOMCheckButton.style.display = "flex";
+  DomRichtigFalsch.style.display = "block";
 });
 
 function flipCardReverse() {
@@ -86,6 +88,7 @@ function flipCardReverse() {
   CardBack.classList.remove("display");
   CardFront.classList.add("display");
   DOMCheckButton.style.display = "none";
+  DomRichtigFalsch.style.display = "none";
 }
 
 
