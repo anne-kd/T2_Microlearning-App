@@ -41,7 +41,7 @@ p {
   font-weight: 200;
   font-size: 1em;
   text-transform: uppercase;
-  color: grey;
+  color: white;
 }
 
 a {
@@ -296,6 +296,30 @@ nav::after {
 #check {
   display: none;
 }
+.multiple{
+  position: relative;
+  margin: 5% 10%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  right: 10%;
+
+}
+.multiple a,
+.multiple div{
+  position: relative;
+  width: 30%;
+  height: 50px;
+  border-radius: 25px;
+  margin: 0 5%;
+}
+.answer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  cursor: pointer;
+}
 
 .button {
   position: relative;
@@ -327,7 +351,7 @@ nav::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #88bc48;
+  background-color: #88BC48;
   cursor: pointer;
 }
 
@@ -335,15 +359,28 @@ nav::after {
   background-color: black;
 }
 
+
+.multbutton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  cursor: pointer;
+}
+
+
+
 #exit,
 .false {
-  background-color: salmon;
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
-.right div,
+
+.multbutton div,
+.answer div,
 .false div {
   margin: 0;
   height: auto;

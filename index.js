@@ -7,6 +7,8 @@ const DOMButtonRight = document.querySelector(".right");
 const DOMButtonFalse = document.querySelector(".false");
 const DOMButtonContinue = document.querySelector("#continue");
 const DOMButtonReset = document.querySelector("#exit");
+const DOMButtonmultbutton = document.querySelector(".multbutton");
+const DOMButtonanswer = document.querySelector(".answer")
 
 const DOMButtonExit = document.querySelectorAll(".reset");
 DOMButtonExit.forEach((element) => {
@@ -111,6 +113,9 @@ let oddArray = []; //mod 2 = 1
 let evenArray = []; //mod 2 = 0
 
 //Klick-Events
+
+
+
 DOMButtonRight.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", displayCardUp);
 
@@ -281,3 +286,6 @@ function stopGame() {
   falseCounter = 0;
   console.log(arr);
 }
+
+DOMButtonmultbutton.addEventListener("click", displayCardUp, flipCardReverse);
+DOMButtonanswer.addEventListener("click", flipCardReverse);
