@@ -15,7 +15,6 @@ DOMButtonExit.forEach((element) => {
 // POP UP
 const popupFirst = document.querySelector("#popup-first");
 const popupRound = document.querySelector("#popup-round");
-const popuponboard = document.querySelector("#PopUpOnboarding")
 
 const PopupClose = document.querySelectorAll(".close");
 
