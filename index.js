@@ -76,12 +76,15 @@ const CardBack = document.querySelector(".card--back");
 const CardFront = document.querySelector(".card--front");
 const DOMCheckButton = document.querySelector("#check");
 
-DOMCard.addEventListener("click", function () {
+DOMCard.addEventListener("click", flipCard);
+
+function flipCard() {
   DOMCard.classList.add("card_hover");
   CardBack.classList.add("display");
   CardFront.classList.remove("display");
-  DOMCheckButton.style.display = "flex";
-});
+  //DOMCheckButton.style.display = "flex";
+  document.querySelector(".multiple").style.display ="none";
+}
 
 function flipCardReverse() {
   DOMCard.classList.remove("card_hover");
@@ -287,5 +290,5 @@ function stopGame() {
   console.log(arr);
 }
 
-DOMButtonmultbutton.addEventListener("click", displayCardUp, flipCardReverse);
+DOMButtonmultbutton.addEventListener("click", flipCard);
 DOMButtonanswer.addEventListener("click", flipCardReverse);
