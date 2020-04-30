@@ -18,11 +18,11 @@ const popupRound = document.querySelector("#popup-round");
 const popupLearningMethod = document.querySelector("#popup-learningMethod");
 
 const PopupClose = document.querySelectorAll(".close");
+const method1 = document.querySelector("#rightnwrong");
+const multiple = document.querySelector("#multiple");
 
-NAVCards.addEventListener("click", firstPopUp);
-PopupClose.forEach((element) => {
-  element.addEventListener("click", hidePopUp);
-});
+method1.addEventListener("click", methodRW);
+multiple.addEventListener("click", methodMC);
 
 function firstPopUp() {
   blurElements();
@@ -33,9 +33,12 @@ function firstPopUp() {
   //popupLearningMethod.style.display = "none";
 }
 
-function learningMethodPopup() {
+function methodPopUp(){
   blurElements();
   popupLearningMethod.style.display = "block";
+
+  method1.addEventListener("click", methodRW);
+  multiple.addEventListener("click", methodMC);
 }
 
 function roundPopUp(p_round, p_falseCounter) {
@@ -56,6 +59,19 @@ function roundPopUp(p_round, p_falseCounter) {
   }
 }
 
+//hier zur initial definition aller variablen und arrays die erstellt werden müssen
+function methodRW(){
+  hidePopUp();
+  createArrayRW();
+}
+
+function methodMC() {
+  hidePopUp();
+  createArrayMC();
+  console.log("diplay buttons now!");
+}
+
+//Funktion um Popups auszublenden
 function hidePopUp() {
   DOMNav.classList.remove("blur");
   DOMBackground.classList.remove("blur");
@@ -66,11 +82,14 @@ function hidePopUp() {
   popupLearningMethod.style.display = "none";
 }
 
+//Funktion bei Popup Einblendung 
 function blurElements() {
   DOMNav.classList.add("blur");
   DOMBackground.classList.add("blur");
   DOMWrapper.classList.add("blur");
 }
+
+
 
 // FLIP INDEX CARD
 const DOMCard = document.getElementById("card");
@@ -98,9 +117,8 @@ const courseNamePopUp = document.querySelectorAll(".ON");
 courseNamePopUp.forEach((element) => {
   element.addEventListener("click", (event) => {
     setCourse(event.target);
-    createArray();
     hidePopUp();
-    learningMethodPopup();
+    methodPopUp();
   });
 });
 
@@ -122,6 +140,7 @@ DOMButtonReset.addEventListener("click", stopGame);
 
 //verändert beim auswählen eines Kurses den Kursnamen
 const course = document.querySelector(".course");
+
 function setCourse(courseName) {
   switch (courseName.innerHTML) {
     case "ON19":
@@ -170,7 +189,7 @@ function getStudents() {
 
 //Funktion erstellt Array beim ersten mal, soll bei Click auf den
 //Kurs Button ausgelöst werden
-function createArray() {
+function createArrayRW() {
   let num = getStudents();
   console.log(num);
   for (let x = num; x > 0; x--) {

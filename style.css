@@ -364,54 +364,40 @@ nav::after {
 .ok span:nth-child(2) {
   transform: translateY(-4px) translateX(5px) rotate(135deg);
 }
+
+.btn-method,
 .btn-course {
   text-align: center;
 }
-
+.btn-method div,
 .btn-course div {
   width: 20%;
-  height: 35px;
+  height: 10%;
   border-radius: 25px;
   margin: 0 5%;
   display: inline-block;
   margin-top: 11%;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
+
+.btn-method div {
+  width: 30%;
+}
+
+.btn-method div:hover,
 .btn-course div:hover {
   background-color: black;
   cursor: pointer;
 }
 
-.btn-method {
-  text-align: center;
-}
-
+.btn-method div p,
 .btn-course div p {
   text-align: center;
   padding: 6%;
   color: white;
   font-weight: 700;
 }
-.btn-method div:hover {
-  background-color: black;
-  cursor: pointer;
-}
-.btn-method div p {
-  text-align: center;
-  padding: 4%;
-  color: white;
-  font-weight: 700;
-}
 
-.btn-method div {
-  width: 30%;
-  height: 35px;
-  border-radius: 25px;
-  margin: 0 5%;
-  display: inline-block;
-  margin-top: 6%;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-}
 
 /* POPUP */
 .blur {
@@ -431,7 +417,7 @@ nav::after {
 .popup h3 {
   color: black;
   margin-top: 5%;
-  margin-left: 5%;
+  margin-left: 10%;
 }
 #popup-first {
   display: block;
@@ -439,6 +425,10 @@ nav::after {
 #popup-round {
   display: none;
 }
+#popup-learningMethod {
+  display: none;
+}
+
 .close {
   float: right;
   margin-top: 5%;
