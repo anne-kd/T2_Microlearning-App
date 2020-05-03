@@ -41,7 +41,7 @@ p {
   font-weight: 200;
   font-size: 1em;
   text-transform: uppercase;
-  color: white;
+  color: black;
 }
 
 a {
@@ -75,14 +75,6 @@ a {
   margin-top: 20%;
 }
 
-#st-line {
-  display: block;
-  width: 70px;
-  background-color: black;
-  height: 8px;
-  border-radius: 4px;
-  margin-bottom: 5%;
-}
 
 #onlogo {
   position: relative;
@@ -155,7 +147,7 @@ nav::after {
   clear: both;
 }
 
-/* BALCK BOX */
+/* BLACK BOX */
 
 #background {
   background-color: black;
@@ -191,6 +183,16 @@ nav::after {
   border-radius: 4px;
   margin-bottom: 10%;
 }
+#st-line,
+.popup .line {
+  display: block;
+  width: 70px;
+  background-color: black;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 2%;
+}
+
 .course {
   margin: 0 auto;
 }
@@ -295,47 +297,48 @@ nav::after {
 /* BUTTONS */
 #check {
   display: none;
+  margin: 5% 5%;
 }
-.multiple{
-  position: relative;
-  margin: 5% 10%;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  right: 10%;
+#multi {
+  display: none;
+}
 
-}
-.multiple a,
-.multiple div{
-  position: relative;
-  width: 30%;
-  height: 50px;
-  border-radius: 25px;
-  margin: 0 5%;
-}
-.answer{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: black;
-  cursor: pointer;
-}
 
 .button {
   position: relative;
-  margin: 5% 10%;
+  margin: 5% auto;
   display: flex;
   flex-direction: row;
   width: 100%;
+}
+.button.-next {
+  display: none;
+  margin-right: 0;
+  width: 50%;
+  align-items: right;
+  justify-content: right;
 }
 .button a,
 .button div {
   position: relative;
-  width: 30%;
+  width: 40%;
   height: 50px;
   border-radius: 25px;
-  margin: 0 5%;
+  margin: 0 2%;
 }
+
+.right div,
+.false div {
+  margin: 0;
+  height: auto;
+  width: auto;
+}
+
+.select {
+  background-color: black;
+}
+
+
 #popup-round .button {
   margin-left: 0;
   margin-top: 15%;
@@ -346,6 +349,32 @@ nav::after {
   color: white;
 }
 
+#multi div:first-child{
+  margin-left: 0;
+}
+#multi div:last-child{
+  margin-right: 0;
+}
+#next,
+.multbutton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  font-family: "Montserrat";
+  font-weight: 200;
+  font-size: 1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.multbutton:hover{
+  background-color: white;
+  border: solid 1px black;
+  color: black;
+}
+
+
 #continue,
 .right {
   display: flex;
@@ -355,37 +384,16 @@ nav::after {
   cursor: pointer;
 }
 
-.select {
-  background-color: black;
-}
-
-
-.multbutton{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: black;
-  cursor: pointer;
-}
-
-
-
 #exit,
 .false {
-  background-color: black;
+  background-color: salmon;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
 
-.multbutton div,
-.answer div,
-.false div {
-  margin: 0;
-  height: auto;
-  width: auto;
-}
+
 .ok span {
   display: block;
   width: 20px;
@@ -453,7 +461,7 @@ nav::after {
 }
 .popup h3 {
   color: black;
-  margin-top: 5%;
+  margin-top: 15%;
   margin-left: 10%;
 }
 #popup-first {
@@ -495,14 +503,6 @@ nav::after {
   color: black;
 }
 
-#line-black {
-  display: block;
-  width: 70px;
-  background-color: black;
-  height: 8px;
-  border-radius: 4px;
-  margin-bottom: 10%;
-}
 
 .auswahl-uebersicht {
   width: 35%;

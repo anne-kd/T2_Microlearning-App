@@ -7,8 +7,10 @@ const DOMButtonRight = document.querySelector(".right");
 const DOMButtonFalse = document.querySelector(".false");
 const DOMButtonContinue = document.querySelector("#continue");
 const DOMButtonReset = document.querySelector("#exit");
-const DOMButtonmultbutton = document.querySelector(".multbutton");
-const DOMButtonanswer = document.querySelector(".answer")
+const DOMButtonMulti = document.querySelector("#multi");
+const DOMButtonMultbutton = document.querySelectorAll(".multbutton");
+const DOMButtonNext = document.querySelector(".-next");
+const DOMIntro = document.querySelector("#intro");
 
 const DOMButtonExit = document.querySelectorAll(".reset");
 DOMButtonExit.forEach((element) => {
@@ -20,11 +22,10 @@ const popupRound = document.querySelector("#popup-round");
 const popupLearningMethod = document.querySelector("#popup-learningMethod");
 
 const PopupClose = document.querySelectorAll(".close");
+
 const method1 = document.querySelector("#rightnwrong");
 const multiple = document.querySelector("#multiple");
 
-method1.addEventListener("click", methodRW);
-multiple.addEventListener("click", methodMC);
 
 function firstPopUp() {
   blurElements();
@@ -32,7 +33,6 @@ function firstPopUp() {
   let DOMH3 = popupFirst.querySelector("#test");
   DOMH3.innerHTML = "";
   DOMH3.innerHTML = `Welchen Kurs wollen Sie lernen?`;
-  //popupLearningMethod.style.display = "none";
 }
 
 function methodPopUp(){
@@ -60,17 +60,28 @@ function roundPopUp(p_round, p_falseCounter) {
     DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
   }
 }
-
+let methode;
 //hier zur initial definition aller variablen und arrays die erstellt werden müssen
 function methodRW(){
+  methode = "rightwrong";
   hidePopUp();
   createArrayRW();
+  DOMCard.addEventListener("click", flipCard);
+  DOMIntro.style.display = "inline";
 }
 
 function methodMC() {
+  methode = "multiplechoice";
   hidePopUp();
-  createArrayMC();
-  console.log("diplay buttons now!");
+
+  DOMIntro.style.display = "none";
+  //createArrayMC();
+  DOMButtonMulti.style.display = "flex";
+
+  DOMButtonMultbutton.forEach(element => {
+    element.addEventListener("click", flipCard);
+  });
+  DOMButtonNext.addEventListener("click", flipCardReverse);
 }
 
 //Funktion um Popups auszublenden
@@ -92,28 +103,40 @@ function blurElements() {
 }
 
 
-
 // FLIP INDEX CARD
 const DOMCard = document.getElementById("card");
 const CardBack = document.querySelector(".card--back");
 const CardFront = document.querySelector(".card--front");
 const DOMCheckButton = document.querySelector("#check");
 
-DOMCard.addEventListener("click", flipCard);
 
 function flipCard() {
   DOMCard.classList.add("card_hover");
   CardBack.classList.add("display");
   CardFront.classList.remove("display");
-  //DOMCheckButton.style.display = "flex";
-  document.querySelector(".multiple").style.display ="none";
+  if (methode == "rightwrong"){
+    DOMCheckButton.style.display = "flex";
+    DOMIntro.style.display = "none";
+  }
+  else if (methode =="multiplechoice"){
+    DOMButtonMulti.style.display = "none";
+    DOMButtonNext.style.display = "flex";
+  }
+  
 }
 
 function flipCardReverse() {
   DOMCard.classList.remove("card_hover");
   CardBack.classList.remove("display");
   CardFront.classList.add("display");
-  DOMCheckButton.style.display = "none";
+  if (methode == "rightwrong"){
+    DOMCheckButton.style.display = "none";
+    DOMIntro.style.display = "inline";
+  }
+  else if (methode =="multiplechoice"){
+    DOMButtonMulti.style.display = "flex";
+    DOMButtonNext.style.display = "none";
+  }
 }
 
 // Ändern des Kurses
@@ -310,6 +333,3 @@ function stopGame() {
   falseCounter = 0;
   console.log(arr);
 }
-
-DOMButtonmultbutton.addEventListener("click", flipCard);
-DOMButtonanswer.addEventListener("click", flipCardReverse);
