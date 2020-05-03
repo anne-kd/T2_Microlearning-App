@@ -7,6 +7,8 @@ const DOMButtonRight = document.querySelector(".right");
 const DOMButtonFalse = document.querySelector(".false");
 const DOMButtonContinue = document.querySelector("#continue");
 const DOMButtonReset = document.querySelector("#exit");
+const DOMButtonmultbutton = document.querySelector(".multbutton");
+const DOMButtonanswer = document.querySelector(".answer")
 
 const DOMButtonExit = document.querySelectorAll(".reset");
 DOMButtonExit.forEach((element) => {
@@ -97,12 +99,15 @@ const CardBack = document.querySelector(".card--back");
 const CardFront = document.querySelector(".card--front");
 const DOMCheckButton = document.querySelector("#check");
 
-DOMCard.addEventListener("click", function () {
+DOMCard.addEventListener("click", flipCard);
+
+function flipCard() {
   DOMCard.classList.add("card_hover");
   CardBack.classList.add("display");
   CardFront.classList.remove("display");
-  DOMCheckButton.style.display = "flex";
-});
+  //DOMCheckButton.style.display = "flex";
+  document.querySelector(".multiple").style.display ="none";
+}
 
 function flipCardReverse() {
   DOMCard.classList.remove("card_hover");
@@ -132,6 +137,9 @@ let oddArray = []; //mod 2 = 1
 let evenArray = []; //mod 2 = 0
 
 //Klick-Events
+
+
+
 DOMButtonRight.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", displayCardUp);
 
@@ -302,3 +310,6 @@ function stopGame() {
   falseCounter = 0;
   console.log(arr);
 }
+
+DOMButtonmultbutton.addEventListener("click", flipCard);
+DOMButtonanswer.addEventListener("click", flipCardReverse);
