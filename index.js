@@ -121,6 +121,7 @@ function methodMC() {
   DOMButtonMultbutton.forEach(element => {
     element.addEventListener("click", flipCard);
   });
+
   DOMButtonNext.addEventListener("click", flipCardReverse);
 }
 
@@ -143,6 +144,8 @@ function flipCard() {
   else if (methode =="multiplechoice"){
     DOMButtonMulti.style.display = "none";
     DOMButtonNext.style.display = "flex";
+
+    multipleKarte(event.target);
   }
   
 }
@@ -158,6 +161,7 @@ function flipCardReverse() {
   else if (methode =="multiplechoice"){
     DOMButtonMulti.style.display = "flex";
     DOMButtonNext.style.display = "none";
+    DOMAnzeige.style.display = "none";
   }
 }
 
@@ -373,30 +377,26 @@ function stopGame() {
   falseCounter = 0;
 }
 
-const mult = document.querySelector(".richtigFalsch");
-
-const rand = document.querySelector(".card_hover .card--back");
 
 
-function multipleKarte() {
+const anzeige = document.querySelector(".anzeige");
+const rand = document.querySelector(".card--back");
+const DOMAnzeige = document.querySelector(".richtigFalsch");
 
-if (DOMButtonMultbutton = "Steffen Brendle") {
-
-  mult.innerHTML = "falsch";
-
-  mult.style.color = 'red';
-
-  rand.style.color = 'red';
+function multipleKarte(target) {
+  let name = target.innerHTML;
+  console.log(name);
+if (name == "Steffen Brendle") {
+  DOMAnzeige.style.display = "block";
+  anzeige.innerHTML = "richtig";
+  anzeige.style.color = 'green';
+  rand.style.border = 'solid 3px green';
 } 
 else {
-
-  mult.innerHTML = "richtig";
-
-  mult.style.color = 'green';
-
-  rand.style.color = 'green';
-
-  DOMButtonMultbutton.addEventListener("click", multipleKarte);
+  DOMAnzeige.style.display = "block";
+  anzeige.innerHTML = "falsch";
+  anzeige.style.color = 'red';
+  rand.style.border = 'solid 3px red';
 }
 }
 

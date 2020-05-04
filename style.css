@@ -268,11 +268,10 @@ nav::after {
 .card_hover .card--back {
  width: 100%;
  height: 100%;
- border-style: solid;
-color: "";
+ border: solid 3px white;
 }
-.richtigFalsch h2 {
-  color: "";
+.anzeige {
+  color: white;
 }
 
 .card--front {
