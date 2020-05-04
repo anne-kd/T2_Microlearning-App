@@ -41,7 +41,7 @@ p {
   font-weight: 200;
   font-size: 1em;
   text-transform: uppercase;
-  color: grey;
+  color: black;
 }
 
 a {
@@ -75,14 +75,6 @@ a {
   margin-top: 20%;
 }
 
-#st-line {
-  display: block;
-  width: 70px;
-  background-color: black;
-  height: 8px;
-  border-radius: 4px;
-  margin-bottom: 5%;
-}
 
 #onlogo {
   position: relative;
@@ -155,7 +147,7 @@ nav::after {
   clear: both;
 }
 
-/* BALCK BOX */
+/* BLACK BOX */
 
 #background {
   background-color: black;
@@ -191,6 +183,16 @@ nav::after {
   border-radius: 4px;
   margin-bottom: 10%;
 }
+#st-line,
+.popup .line {
+  display: block;
+  width: 70px;
+  background-color: black;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 2%;
+}
+
 .course {
   margin: 0 auto;
 }
@@ -295,23 +297,48 @@ nav::after {
 /* BUTTONS */
 #check {
   display: none;
+  margin: 5% 5%;
 }
+#multi {
+  display: none;
+}
+
 
 .button {
   position: relative;
-  margin: 5% 10%;
+  margin: 5% auto;
   display: flex;
   flex-direction: row;
   width: 100%;
 }
+.button.-next {
+  display: none;
+  margin-right: 0;
+  width: 50%;
+  align-items: right;
+  justify-content: right;
+}
 .button a,
 .button div {
   position: relative;
-  width: 30%;
+  width: 40%;
   height: 50px;
   border-radius: 25px;
-  margin: 0 5%;
+  margin: 0 2%;
 }
+
+.right div,
+.false div {
+  margin: 0;
+  height: auto;
+  width: auto;
+}
+
+.select {
+  background-color: black;
+}
+
+
 #popup-round .button {
   margin-left: 0;
   margin-top: 15%;
@@ -322,17 +349,39 @@ nav::after {
   color: white;
 }
 
+#multi div:first-child{
+  margin-left: 0;
+}
+#multi div:last-child{
+  margin-right: 0;
+}
+#next,
+.multbutton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  font-family: "Montserrat";
+  font-weight: 200;
+  font-size: 1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.multbutton:hover{
+  background-color: white;
+  border: solid 1px black;
+  color: black;
+}
+
+
 #continue,
 .right {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #88bc48;
+  background-color: #88BC48;
   cursor: pointer;
-}
-
-.select {
-  background-color: black;
 }
 
 #exit,
@@ -343,12 +392,8 @@ nav::after {
   justify-content: center;
   cursor: pointer;
 }
-.right div,
-.false div {
-  margin: 0;
-  height: auto;
-  width: auto;
-}
+
+
 .ok span {
   display: block;
   width: 20px;
@@ -364,54 +409,40 @@ nav::after {
 .ok span:nth-child(2) {
   transform: translateY(-4px) translateX(5px) rotate(135deg);
 }
+
+.btn-method,
 .btn-course {
   text-align: center;
 }
-
+.btn-method div,
 .btn-course div {
   width: 20%;
-  height: 35px;
+  height: 10%;
   border-radius: 25px;
   margin: 0 5%;
   display: inline-block;
   margin-top: 11%;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
+
+.btn-method div {
+  width: 30%;
+}
+
+.btn-method div:hover,
 .btn-course div:hover {
   background-color: black;
   cursor: pointer;
 }
 
-.btn-method {
-  text-align: center;
-}
-
+.btn-method div p,
 .btn-course div p {
   text-align: center;
   padding: 6%;
   color: white;
   font-weight: 700;
 }
-.btn-method div:hover {
-  background-color: black;
-  cursor: pointer;
-}
-.btn-method div p {
-  text-align: center;
-  padding: 4%;
-  color: white;
-  font-weight: 700;
-}
 
-.btn-method div {
-  width: 30%;
-  height: 35px;
-  border-radius: 25px;
-  margin: 0 5%;
-  display: inline-block;
-  margin-top: 6%;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-}
 
 /* POPUP */
 .blur {
@@ -430,8 +461,8 @@ nav::after {
 }
 .popup h3 {
   color: black;
-  margin-top: 5%;
-  margin-left: 5%;
+  margin-top: 15%;
+  margin-left: 10%;
 }
 #popup-first {
   display: block;
@@ -439,6 +470,10 @@ nav::after {
 #popup-round {
   display: none;
 }
+#popup-learningMethod {
+  display: none;
+}
+
 .close {
   float: right;
   margin-top: 5%;
@@ -468,14 +503,6 @@ nav::after {
   color: black;
 }
 
-#line-black {
-  display: block;
-  width: 70px;
-  background-color: black;
-  height: 8px;
-  border-radius: 4px;
-  margin-bottom: 10%;
-}
 
 .auswahl-uebersicht {
   width: 35%;
