@@ -29,6 +29,7 @@ let oddArrayMale = [];
 let oddArrayFemale = [];
 let evenArrayMale = [];
 let evenArrayFemale = [];
+let shuffleArrayButtons = [1, 2, 3];
 
 // Methode
 const method1 = document.querySelector("#rightwrong");
@@ -255,7 +256,24 @@ function createArrayMC(){
   firstArray = firstArrayFemale.concat(firstArrayMale);
   console.log(firstArray);
   showImages();
+  randomButtons();
 }
+
+// Shuffle Funktion, um den Namen random auf die Buttons auszugeben
+function randomButtons() {
+shuffleArrayButtons = shuffle(shuffleArrayButtons);
+console.log(shuffleArrayButtons);
+
+let post1 = document.getElementById(shuffleArrayButtons[0]);
+post1.innerHTML="hi";
+
+let post2 = document.getElementById(shuffleArrayButtons[1]);
+post2.innerHTML="ho";
+
+let post3 = document.getElementById(shuffleArrayButtons[2]);
+post3.innerHTML="he";
+}
+
 
 //Hier wird das Aktuelle Array der Runde abgefragt
 function getCurrentArray() {
