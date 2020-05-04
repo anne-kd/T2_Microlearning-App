@@ -373,4 +373,30 @@ function stopGame() {
   falseCounter = 0;
 }
 
+const mult = document.querySelector(".richtigFalsch");
+
+const rand = document.querySelector(".card_hover .card--back");
+
+
+function multipleKarte() {
+
+if (DOMButtonMultbutton = "Steffen Brendle") {
+
+  mult.innerHTML = "falsch";
+
+  mult.style.color = 'red';
+
+  rand.style.color = 'red';
+} 
+else {
+
+  mult.innerHTML = "richtig";
+
+  mult.style.color = 'green';
+
+  rand.style.color = 'green';
+
+  DOMButtonMultbutton.addEventListener("click", multipleKarte);
+}
+}
 
