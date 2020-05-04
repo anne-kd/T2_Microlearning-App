@@ -12,7 +12,6 @@ const DOMButtonExit = document.querySelectorAll(".reset");
 DOMButtonExit.forEach((element) => {
   element.addEventListener("click", ()=>{
     saveInstancesLocal();
-    stopGame;
   });
 });
 
@@ -132,7 +131,6 @@ DOMButtonFalse.addEventListener("click", displayCardUp);
 DOMButtonContinue.addEventListener("click", continueGame);
 DOMButtonReset.addEventListener("click", ()=>{
   saveInstancesLocal();
-  stopGame;
 });
 
 //Storage
@@ -175,6 +173,8 @@ function saveInstancesLocal(){
 
   let sEvenArray = `evenArray${courseName}`;
   localStorage.setObj(sEvenArray, evenArray);
+
+  stopGame();
 }
 
 function clearStorage(){
