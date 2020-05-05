@@ -70,31 +70,6 @@ function onboardingPopUp(){
   DOMPopupClose.addEventListener("click", hidePopUp);
 }
 
-// remove popup permanently
-
-
-
-//document.getElementById("PopUpOnboarding").onclick = function () {
- // this.remove ();
-//}
-//const checkHide = document.getElementById('remove')
-//checkHide.addEventListener('click', () => {
- // Popuponboarding.remove();
-//});
-
-
-document.getElementById('removeBirds').onclick = function remove() {
-  if (document.getElementById('PopUpOnboarding')) {
-      var PopUpOnboarding = document.getElementById('PopUpOnboarding');
-      PopUpOnboarding.parentNode.removeChild(PopUpOnboarding);
-  }
-}
-remove() 
-
-
-
-
-
 function roundPopUp(p_round, p_falseCounter) {
   if (p_falseCounter == 0 && p_round % 2 == 1) {
     blurElements();
@@ -113,8 +88,6 @@ function roundPopUp(p_round, p_falseCounter) {
     DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
   }
 }
-
-
 //Funktion um Popups auszublenden
 function hidePopUp() {
   DOMNav.classList.remove("blur");
