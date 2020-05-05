@@ -232,99 +232,107 @@ function createArrayRW() {
   showImages();
 }
 
+function getStudentMap(KursGender) {
+  let map;
+  switch (KursGender) {
+    // case "ON19Female":
+    //   return map = new Map()
+    //   .set("1", "Lisa Albers")
+    //   .set("3", "Nina Eberle")
+    //   .set("6", "Larissa Eirich")
+    //   .set("7", "Dalma Balogh")
+    //   .set("10", "Katharina Barth")
+    //   .set("11", "Anne-Kathrin Dortleff")
+    //   .set("12", "Milena Fiorino")
+    //   .set("14", "Julia Henschel")
+    //   .set("15", "Nicole Höfler")
+    //   .set("16", "Lina Käfer")
+    //   .set("17", "Alicia Kilian")
+    //   .set("20", "Kristin Zänger")
+    //   .set("21", "Laura Krumm")
+    //   .set("22", "Lara Neumaier")
+    //   .set("23", "Jessica Noe")
+    //   .set("24", "Livia Maxhaku")
+    //   .set("26", "Katharina Schmitt")
+    //   .set("28", "Leonie Müller")
+    //   .set("30", "Alischa Thomas")
+    //   .set("31", "Juliane Speck");;
+    case "ON18Female":
+      map = new Map()
+      .set("1", "Jana Ballweg")
+      .set("3", "Theresa Brenner")
+      .set("5", "Fabienne Burgert")
+      .set("6", "Christina Bünnagel");
+      return map;
+    case "ON19Male":
+      return map = new Map()
+      .set("2", "Steffen Brendle")
+      .set("4", "Jonas Althoff")
+      .set("5", "Christian Dänzer")
+      .set("8", "Laurin Dörre")
+      .set("9", "Pascal Feinauer")
+      .set("13", "Fabian Geitner")
+      .set("18", "Patrick Mäder")
+      .set("19", "Marco Scotarello")
+      .set("25", "Martin Panaget")
+      .set("27", "Niklas Schikora")
+      .set("29", "Calvin Reibeisenspiess");;
+    case "ON18Male":
+      return map = new Map()
+      .set("2", "Moritz Banhardt")
+      .set("4", "Nils Eisenhauer")
+      .set("7", "Frederik Hellbauer");
+    case "ON17":
+      return 0;
+    default:
+      return "Jemand hat einen Fehler gemacht";
+  }
+}
+let mapFemale
+let mapMale
 //Methode multiple choice
 function createArrayMC() {
-  let ON19Female = new Map()
-    .set("1", "Lisa Albers")
-    .set("3", "Nina Eberle")
-    .set("6", "Larissa Eirich")
-    .set("7", "Dalma Balogh")
-    .set("10", "Katharina Barth")
-    .set("11", "Anne-Kathrin Dortleff")
-    .set("12", "Milena Fiorino")
-    .set("14", "Julia Henschel")
-    .set("15", "Nicole Höfler")
-    .set("16", "Lina Käfer")
-    .set("17", "Alicia Kilian")
-    .set("20", "Kristin Zänger")
-    .set("21", "Laura Krumm")
-    .set("22", "Lara Neumaier")
-    .set("23", "Jessica Noe")
-    .set("24", "Livia Maxhaku")
-    .set("26", "Katharina Schmitt")
-    .set("28", "Leonie Müller")
-    .set("30", "Alischa Thomas")
-    .set("31", "Juliane Speck");
 
-  let ON19Male = new Map()
-    .set("2", "Steffen Brendle")
-    .set("4", "Jonas Althoff")
-    .set("5", "Christian Dänzer")
-    .set("8", "Laurin Dörre")
-    .set("9", "Pascal Feinauer")
-    .set("13", "Fabian Geitner")
-    .set("18", "Patrick Mäder")
-    .set("19", "Marco Scotarello")
-    .set("25", "Martin Panaget")
-    .set("27", "Niklas Schikora")
-    .set("29", "Calvin Reibeisenspiess");
+  mapFemale = getStudentMap("ON18Female");
+  mapMale = getStudentMap("ON18Male");
 
-  let ON18Female = new Map()
-    .set("1", "Jana Ballweg")
-    .set("3", "Theresa Brenner")
-    .set("5", "Fabienne Burgert")
-    .set("6", "Christina Bünnagel");
 
-  let ON18Male = new Map()
-    .set("2", "Moritz Banhardt")
-    .set("4", "Nils Eisenhauer")
-    .set("7", "Frederik Hellbauer");
-
-  let ON19FStringArray = Array.from(ON19Female.keys());
-  ON19FStringArray.forEach((element) => {
+  let stringArrayF = Array.from(mapFemale.keys());
+  stringArrayF.forEach((element) => {
     firstArrayFemale.push(parseInt(element));
   });
 
-  let ON19MStringArray = Array.from(ON19Male.keys());
-  ON19MStringArray.forEach((element) => {
+  let stringArrayM = Array.from(mapMale.keys());
+  stringArrayM.forEach((element) => {
     firstArrayMale.push(parseInt(element));
   });
 
   firstArray = firstArrayFemale.concat(firstArrayMale);
   console.log(firstArray);
 
-  // console.log(ON18Female.get(keys));
-  /*const btnName1 = document.getElementById("1");
-  const btnName2 = document.getElementById("2");
-  const btnName3 = document.getElementById("3");*/
+  getName();
+}
 
+function getName(){
   let x = "1";
-  console.log(ON19Female.get(x));
-  let nameRichtig = ON19Female.get(x);
 
-  // Picking a random Array value
+  let nameRichtig = mapFemale.get(x);
+  let randomName1;
+  let randomName2;  
 
-  let randomNumber1 =
-    firstArrayFemale[Math.floor(Math.random() * firstArrayFemale.length)];
-  let randomName1 = ON19Female.get(`${randomNumber1}`);
-
-  let randomNumber2 =
-    firstArrayFemale[Math.floor(Math.random() * firstArrayFemale.length)];
-  let randomName2 = ON19Female.get(`${randomNumber2}`);
-
-  if (x === randomName1 || randomName2) {
-    let randomNumber1 =
-      firstArrayFemale[Math.floor(Math.random() * firstArrayFemale.length)];
-    let randomName1 = ON19Female.get(`${randomNumber1}`);
-
-    let randomNumber2 =
-      firstArrayFemale[Math.floor(Math.random() * firstArrayFemale.length)];
-    let randomName2 = ON19Female.get(`${randomNumber2}`);
-    console.log(randomName1, randomName2);
-  }
+  do {
+    randomName1 = mapFemale.get(`${randomNumber()}`);
+    randomName2 = mapFemale.get(`${randomNumber()}`);
+  } while (nameRichtig === randomName2 || nameRichtig === randomName1 || randomName1 === randomName2);
 
   showImages();
   randomButtons(nameRichtig, randomName1, randomName2);
+}
+
+function randomNumber(){
+  let num = firstArrayFemale[Math.floor(Math.random() * firstArrayFemale.length)];
+  console.log(num);
+  return num;
 }
 
 // Shuffle Funktion, um den Namen random auf die Buttons auszugeben
