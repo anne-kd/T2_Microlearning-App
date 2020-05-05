@@ -231,15 +231,16 @@ function createArrayRW() {
   firstArray = shuffle(firstArray);
   showImages();
 }
+
 //Methode multiple choice
 function createArrayMC() {
   let ON19Female = new Map()
-    .set(1, "Lisa Albers")
-    .set(3, "Nina Eberle")
-    .set(6, "Larissa Eirich")
-    .set(7, "Dalma Balogh")
-    .set(10, "Katharina Barth")
-    .set(11, "Anne-Kathrin Dortleff")
+    .set("1", "Lisa Albers")
+    .set("3", "Nina Eberle")
+    .set("6", "Larissa Eirich")
+    .set("7", "Dalma Balogh")
+    .set("10", "Katharina Barth")
+    .set("11", "Anne-Kathrin Dortleff")
     .set(12, "Milena Fiorino")
     .set(14, "Julia Henschel")
     .set(15, "Nicole Höfler")
@@ -279,26 +280,31 @@ function createArrayMC() {
     .set(4, "Nils Eisenhauer")
     .set(7, "Frederik Hellbauer");
 
-  firstArrayFemale = Array.from(ON19Female.keys());
+  let ON19FStringArray = Array.from(ON19Female.keys());
+  ON19FStringArray.forEach(element => {
+    firstArrayFemale.push(parseInt(element));
+  });
+  
+  let ON19MStringArray = Array.from(ON19Male.keys());
+  ON19MStringArray.forEach(element => {
+    firstArrayMale.push(parseInt(element));
+  });
+
+  firstArray = firstArrayFemale.concat(firstArrayMale);
+
+
 
   // console.log(ON18Female.get(keys));
-
   const btnName1 = document.getElementById("1");
   const btnName2 = document.getElementById("2");
   const btnName3 = document.getElementById("3");
-  console.log(ON19Female.get("Lisa Albers"));
+  console.log(ON19Female.get("1"));
   btnName1.innerHTML = ON19Female.get("keys");
 
   // Picking a random Array value
   let randomName = ON19Female[Math.floor(Math.random() * ON19Female.length)];
   console.log(randomName);
 
-  firstArrayMale = Array.from(ON19Male.keys());
-  firstArrayMaleValues = Array.from(ON19Male.values());
-  console.log(firstArrayFemale);
-  console.log(firstArrayMale);
-  firstArray = firstArrayFemale.concat(firstArrayMale);
-  console.log(firstArray);
   showImages();
   randomButtons();
 }
