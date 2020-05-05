@@ -281,48 +281,65 @@ function createArrayMC() {
     .set("7", "Frederik Hellbauer");
 
   let ON19FStringArray = Array.from(ON19Female.keys());
-  ON19FStringArray.forEach(element => {
+  ON19FStringArray.forEach((element) => {
     firstArrayFemale.push(parseInt(element));
   });
-  
+
   let ON19MStringArray = Array.from(ON19Male.keys());
-  ON19MStringArray.forEach(element => {
+  ON19MStringArray.forEach((element) => {
     firstArrayMale.push(parseInt(element));
   });
 
   firstArray = firstArrayFemale.concat(firstArrayMale);
   console.log(firstArray);
 
-
   // console.log(ON18Female.get(keys));
-  const btnName1 = document.getElementById("1");
+  /*const btnName1 = document.getElementById("1");
   const btnName2 = document.getElementById("2");
-  const btnName3 = document.getElementById("3");
-  console.log(ON19Female.get("1"));
-  btnName1.innerHTML = ON19Female.get("1");
+  const btnName3 = document.getElementById("3");*/
+
+  let x = "1";
+  console.log(ON19Female.get(x));
+  let nameRichtig = ON19Female.get(x);
 
   // Picking a random Array value
-  let randomNumber1=firstArrayFemale[Math.floor(Math.random() * firstArrayFemale.length)];
+
+  let randomNumber1 =
+    firstArrayFemale[Math.floor(Math.random() * firstArrayFemale.length)];
   let randomName1 = ON19Female.get(`${randomNumber1}`);
-  console.log(randomName1);
+
+  let randomNumber2 =
+    firstArrayFemale[Math.floor(Math.random() * firstArrayFemale.length)];
+  let randomName2 = ON19Female.get(`${randomNumber2}`);
+
+  if (x === randomName1 || randomName2) {
+    let randomNumber1 =
+      firstArrayFemale[Math.floor(Math.random() * firstArrayFemale.length)];
+    let randomName1 = ON19Female.get(`${randomNumber1}`);
+
+    let randomNumber2 =
+      firstArrayFemale[Math.floor(Math.random() * firstArrayFemale.length)];
+    let randomName2 = ON19Female.get(`${randomNumber2}`);
+    console.log(randomName1, randomName2);
+  }
 
   showImages();
-  randomButtons();
+  randomButtons(nameRichtig, randomName1, randomName2);
 }
 
 // Shuffle Funktion, um den Namen random auf die Buttons auszugeben
-function randomButtons() {
+function randomButtons(nameRichtig, randomName1, randomName2) {
   shuffleArrayButtons = shuffle(shuffleArrayButtons);
   console.log(shuffleArrayButtons);
 
-  // let post1 = document.getElementById(shuffleArrayButtons[0]);
-  // post1.innerHTML = "hi";
+  let post1 = document.getElementById(shuffleArrayButtons[0]);
+  post1.innerHTML = nameRichtig;
 
-  // let post2 = document.getElementById(shuffleArrayButtons[1]);
-  // post2.innerHTML = "ho";
+  let post2 = document.getElementById(shuffleArrayButtons[1]);
+  post2.innerHTML = randomName1;
 
-  // let post3 = document.getElementById(shuffleArrayButtons[2]);
-  // post3.innerHTML = "he";
+  let post3 = document.getElementById(shuffleArrayButtons[2]);
+  post3.innerHTML = randomName2;
 }
 
 //Hier wird das Aktuelle Array der Runde abgefragt
