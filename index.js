@@ -42,6 +42,10 @@ function roundPopUp(p_round, p_falseCounter) {
     DOMH3.innerHTML = "";
     DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
       Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
+
+    charIt();
+    chart();
+
     stopGame();
   }
   else {
@@ -50,6 +54,10 @@ function roundPopUp(p_round, p_falseCounter) {
     let DOMH3 = popupRound.querySelector("#round");
     DOMH3.innerHTML = "";
     DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
+
+    charIt();
+    chart();
+
   }
 }
 
@@ -167,8 +175,11 @@ function getStudents() {
 
 //Funktion erstellt Array beim ersten mal, soll bei Click auf den
 //Kurs Button ausgelöst werden
+
+let num = 0;
+
 function createArray() {
-  let num = getStudents();
+  num = getStudents();
   console.log(num);
   for (let x = num; x > 0; x--) {
     firstArray.push(x);
@@ -287,25 +298,44 @@ function stopGame() {
 /* Trefferquote - Chart */
 
 var donutChart = document.getElementById('myChart');
+let fail = 0;
+let right = 0;
 
-var chart = new Chart(donutChart, {
-  type: 'doughnut',
-  data: {
-    labels: ['Richtig', 'Falsch'],
-    datasets: [{
-      label: 'Trefferquote',
-      backgroundColor: ['#88bc48', 'salmon'],
-      data: [70, 30]
-    }]
-  },
 
-  options: {
-    cutoutPercentage: 65,
-    animation: {
-      animateScale: true
+function charIt() {
+
+  fail = falseCounter;
+  console.log("Falsche Antworten Sackl Zement " + fail);
+
+  right = num - fail;
+  console.log("Richtige Antworten Fix Hehner " + right);
+
+
+  const chartTest = new Chart(donutChart, {
+    type: 'doughnut',
+    data: {
+      labels: ['Richtig', 'Falsch'],
+      datasets: [{
+        label: 'Trefferquote',
+        backgroundColor: ['#88bc48', 'salmon'],
+        data: [50, 50],
+      }]
     },
-    legend: {
-      display: false
-    },
-  }
-});
+
+    options: {
+      cutoutPercentage: 65,
+      animation: {
+        animateScale: true
+      },
+      legend: {
+        display: false
+      },
+    }
+  })
+};
+
+
+function chart() {
+  console.log("Donut - Chart Drecks Zeug");
+  charIt();
+};
