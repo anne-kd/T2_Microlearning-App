@@ -482,6 +482,21 @@ nav::after {
 .close span {
   background-color: black;
 }
+#PopUpOnboarding  {
+  height: 80%;
+  width: 90%;
+  display: block;
+}
+#PopUpOnboarding h2 {
+  margin-top: 3%;
+  margin-left: 5%;
+  color: black;
+}
+#PopUpOnboarding h3 {
+  color: #88bc48;
+  margin-top: 1%;
+  margin-left: 5%;
+}
 
 /* UEBERSICHTSEITE*/
 #header-nav {
@@ -534,4 +549,18 @@ nav::after {
 
 #bilder-container ul li img {
   width: 150%;
+}
+/*Video*/
+.videoextern {
+  position: absolute;
+  margin-left: 20%;
+  margin-top: 1%;
+  width: 60%;
+  height: 60%;
+}
+
+/*Checkbox*/
+.checkbox{
+  padding-left: 5%;
+  margin-top: 29%;
 }
