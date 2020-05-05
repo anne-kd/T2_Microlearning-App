@@ -46,6 +46,7 @@ DOMButtonExit.forEach((element) => {
 const popupFirst = document.querySelector("#popup-first");
 const popupRound = document.querySelector("#popup-round");
 const popupLearningMethod = document.querySelector("#popup-learningMethod");
+const Popuponboarding = document.querySelector("#PopUpOnboarding");
 
 function firstPopUp() {
   blurElements();
@@ -62,6 +63,26 @@ function methodPopUp(){
   method1.addEventListener("click", methodRW);
   multiple.addEventListener("click", methodMC);
 }
+
+function onboardingPopUp(){
+  blurElements();
+  Popuponboarding.style.display = "block";
+  DOMPopupClose.addEventListener("click", hidePopUp);
+}
+
+document.getElementById('remove').onclick = function () {
+  if (document.getElementById('PopUpOnboarding')) {
+      var PopUpOnboarding = document.getElementById('PopUpOnboarding');
+      PopUpOnboarding.parentNode.removeChild(PopUpOnboarding);
+  }
+}
+//document.getElementById("PopUpOnboarding").onclick = function () {
+ // this.remove ();
+//}
+//const checkHide = document.getElementById('remove')
+//checkHide.addEventListener('click', () => {
+ // Popuponboarding.remove();
+//});
 
 function roundPopUp(p_round, p_falseCounter) {
   if (p_falseCounter == 0 && p_round % 2 == 1) {
@@ -92,6 +113,7 @@ function hidePopUp() {
   popupFirst.style.display = "none";
   popupRound.style.display = "none";
   popupLearningMethod.style.display = "none";
+  Popuponboarding.style.display="none";
 }
 
 //Funktion bei Popup Einblendung 

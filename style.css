@@ -483,7 +483,7 @@ nav::after {
   background-color: black;
 }
 #PopUpOnboarding  {
-  height: 80%;
+  height: 90%;
   width: 90%;
   display: block;
 }
@@ -562,5 +562,5 @@ nav::after {
 /*Checkbox*/
 .checkbox{
   padding-left: 5%;
-  margin-top: 29%;
+  margin-top: 30%;
 }
