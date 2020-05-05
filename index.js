@@ -56,6 +56,7 @@ function roundPopUp(p_round, p_falseCounter) {
       DOMH3.innerHTML = "";
       DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
       Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
+      //clearStorageCourse();
       stopGame();
     }
     else {
@@ -176,6 +177,31 @@ function saveInstancesLocal(){
 
   stopGame();
 }
+
+/*function clearStorageCourse(){
+  let courseName = course.innerHTML;
+  let session = 'session' + courseName;
+  localStorage.removeItem(session);
+  
+  let sFalseCounter = `falseCounter${courseName}`;
+  localStorage.removeItem(sFalseCounter);
+  
+  let sInx = `inx${courseName}`;
+  localStorage.removeItem(sInx);
+  
+  let sRound = `round${courseName}`;
+  localStorage.removeItem(sRound);
+  
+  let sFirstArray = `firstArray${courseName}`;
+  localStorage.removeObj(sFirstArray);
+  
+  let sOddArray = `oddArray${courseName}`;
+  localStorage.removeObj(sOddArray);
+  
+  let sEvenArray = `evenArray${courseName}`;
+  localStorage.removeObj(sEvenArray);
+  console.log('removed items')
+}*/
 
 function clearStorage(){
   localStorage.clear();
@@ -369,3 +395,5 @@ function stopGame() {
   falseCounter = 0;
   console.log(arr);
 }
+
+//clearStorage();
