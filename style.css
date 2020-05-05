@@ -485,7 +485,7 @@ nav::after {
 #PopUpOnboarding  {
   height: 90%;
   width: 90%;
-  display: block;
+  display: none;
 }
 #PopUpOnboarding h2 {
   margin-top: 3%;
