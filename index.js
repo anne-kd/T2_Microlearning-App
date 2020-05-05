@@ -234,59 +234,57 @@ function createArrayRW() {
 //Methode multiple choice
 function createArrayMC() {
   let ON19Female = new Map()
-    .set(1, "Lisa Albers")
-    .set(3, "Nina Eberle")
-    .set(6, "Larissa Eirich")
-    .set(7, "Dalma Balogh")
-    .set(10, "Katharina Barth")
-    .set(11, "Anne-Kathrin Dortleff")
-    .set(12, "Milena Fiorino")
-    .set(14, "Julia Henschel")
-    .set(15, "Nicole Höfler")
-    .set(16, "Lina Käfer")
-    .set(17, "Alicia Kilian")
-    .set(20, "Kristin Zänger")
-    .set(21, "Laura Krumm")
-    .set(22, "Lara Neumaier")
-    .set(23, "Jessica Noe")
-    .set(24, "Livia Maxhaku")
-    .set(26, "Katharina Schmitt")
-    .set(28, "Leonie Müller")
-    .set(30, "Alischa Thomas")
-    .set(31, "Juliane Speck");
+    .set("1", "Lisa Albers")
+    .set("3", "Nina Eberle")
+    .set("6", "Larissa Eirich")
+    .set("7", "Dalma Balogh")
+    .set("10", "Katharina Barth")
+    .set("11", "Anne-Kathrin Dortleff")
+    .set("12", "Milena Fiorino")
+    .set("14", "Julia Henschel")
+    .set("15", "Nicole Höfler")
+    .set("16", "Lina Käfer")
+    .set("17", "Alicia Kilian")
+    .set("20", "Kristin Zänger")
+    .set("21", "Laura Krumm")
+    .set("22", "Lara Neumaier")
+    .set("23", "Jessica Noe")
+    .set("24", "Livia Maxhaku")
+    .set("26", "Katharina Schmitt")
+    .set("28", "Leonie Müller")
+    .set("30", "Alischa Thomas")
+    .set("31", "Juliane Speck");
 
   let ON19Male = new Map()
-    .set(2, "Steffen Brendle")
-    .set(4, "Jonas Althoff")
-    .set(5, "Christian Dänzer")
-    .set(8, "Laurin Dörre")
-    .set(9, "Pascal Feinauer")
-    .set(13, "Fabian Geitner")
-    .set(18, "Patrick Mäder")
-    .set(19, "Marco Scotarello")
-    .set(25, "Martin Panaget")
-    .set(27, "Niklas Schikora")
-    .set(29, "Calvin Reibeisenspiess");
+    .set("2", "Steffen Brendle")
+    .set("4", "Jonas Althoff")
+    .set("5", "Christian Dänzer")
+    .set("8", "Laurin Dörre")
+    .set("9", "Pascal Feinauer")
+    .set("13", "Fabian Geitner")
+    .set("18", "Patrick Mäder")
+    .set("19", "Marco Scotarello")
+    .set("25", "Martin Panaget")
+    .set("27", "Niklas Schikora")
+    .set("29", "Calvin Reibeisenspiess");
 
   let ON18Female = new Map()
-    .set(1, "Jana Ballweg")
-    .set(3, "Theresa Brenner")
-    .set(5, "Fabienne Burgert")
-    .set(6, "Christina Bünnagel");
+    .set("1", "Jana Ballweg")
+    .set("3", "Theresa Brenner")
+    .set("5", "Fabienne Burgert")
+    .set("6", "Christina Bünnagel");
 
   let ON18Male = new Map()
-    .set(2, "Moritz Banhardt")
-    .set(4, "Nils Eisenhauer")
-    .set(7, "Frederik Hellbauer");
+    .set("2", "Moritz Banhardt")
+    .set("4", "Nils Eisenhauer")
+    .set("7", "Frederik Hellbauer");
 
   firstArrayFemale = Array.from(ON19Female.keys());
-
-  // console.log(ON18Female.get(keys));
 
   const btnName1 = document.getElementById("1");
   const btnName2 = document.getElementById("2");
   const btnName3 = document.getElementById("3");
-  console.log(ON19Female.get("Lisa Albers"));
+
   btnName1.innerHTML = ON19Female.get("keys");
 
   // Picking a random Array value
