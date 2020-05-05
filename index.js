@@ -291,7 +291,7 @@ function createArrayMC() {
   });
 
   firstArray = firstArrayFemale.concat(firstArrayMale);
-
+  console.log(firstArray);
 
 
   // console.log(ON18Female.get(keys));
@@ -299,11 +299,12 @@ function createArrayMC() {
   const btnName2 = document.getElementById("2");
   const btnName3 = document.getElementById("3");
   console.log(ON19Female.get("1"));
-  btnName1.innerHTML = ON19Female.get("keys");
+  btnName1.innerHTML = ON19Female.get("1");
 
   // Picking a random Array value
-  let randomName = ON19Female[Math.floor(Math.random() * ON19Female.length)];
-  console.log(randomName);
+  let randomNumber1=firstArrayFemale[Math.floor(Math.random() * firstArrayFemale.length)];
+  let randomName1 = ON19Female.get(`${randomNumber1}`);
+  console.log(randomName1);
 
   showImages();
   randomButtons();
@@ -314,14 +315,14 @@ function randomButtons() {
   shuffleArrayButtons = shuffle(shuffleArrayButtons);
   console.log(shuffleArrayButtons);
 
-  let post1 = document.getElementById(shuffleArrayButtons[0]);
-  post1.innerHTML = "hi";
+  // let post1 = document.getElementById(shuffleArrayButtons[0]);
+  // post1.innerHTML = "hi";
 
-  let post2 = document.getElementById(shuffleArrayButtons[1]);
-  post2.innerHTML = "ho";
+  // let post2 = document.getElementById(shuffleArrayButtons[1]);
+  // post2.innerHTML = "ho";
 
-  let post3 = document.getElementById(shuffleArrayButtons[2]);
-  post3.innerHTML = "he";
+  // let post3 = document.getElementById(shuffleArrayButtons[2]);
+  // post3.innerHTML = "he";
 }
 
 //Hier wird das Aktuelle Array der Runde abgefragt
