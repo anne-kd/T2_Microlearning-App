@@ -28,7 +28,7 @@
     <section id="wrapper" class="blur">
       <div id="content-top">
         <h2>
-          <span id="line"></span>
+          <span class="line"></span>
           Wer bin ich?
         </h2>
         <h3 class="course"></h3>
@@ -56,7 +56,7 @@
       </div>
 
       <div id="content-bottom">
-        <p>Klicken Sie auf die Karte zur Überprüfung</p>
+        <p id="intro">Klicken Sie auf die Karte zur Überprüfung</p>
         <div class="button" id="check">
           <div class="right">
             <div class="ok">
@@ -71,9 +71,36 @@
             </div>
           </div>
         </div>
-      </section>
+
+        <div class="button" id="multi">
+          <div class="multbutton" id="1"></div>
+          <div class="multbutton" id="2"></div>
+          <div class="multbutton" id="3"></div>
+      </div>
+
+      <div class="button -next">
+        <div id="next">OK</div>
+      </div>
+
+    </section>
       
   <!-- POPUP -->
+      <div class="popup" id="popup-learningMethod">
+        <a href="index.html" class="cancel close reset"><span></span><span></span></a>
+        
+        <h3>  <span class="line"></span> Sie haben die Wahl!<br> Wählen Sie eine Lernmethode aus.
+        </h3>
+        
+        <div class="btn-method">
+          <div class="right">
+            <p class="method" id="rightwrong">richtig/falsch</p>
+          </div>
+          <div class="right">
+            <p class="method" id="multiple">Multiple-Choice</p>
+          </div>
+        </div>
+      </div>
+
       <div class="popup" id="popup-first">
           <a href="index.html" class="cancel close reset"><span></span><span></span></a>
           
@@ -92,10 +119,11 @@
           </div>
       </div>
 
+      
+
       <div class="popup" id="popup-round">
           <a href="#" class="cancel close reset"><span></span><span></span></a>
-          <h3 id="round">Sie haben Runde 1 geschafft!</h3>
-          <h3>Wollen Sie eine weitere Runde spielen?</h3>
+          <h3 id="round">Sie haben Runde 1 geschafft! Wollen Sie eine weitere Runde spielen?</h3>
 
         <div class="button">
             <div id="continue">
@@ -109,4 +137,4 @@
       
   <script src="index.js"></script>
   </body>
-</html>
+  </html>
