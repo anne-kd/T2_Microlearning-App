@@ -508,3 +508,9 @@ nav::after {
   width: 60%;
   height: 60%;
 }
+
+/*Checkbox*/
+.checkbox{
+  padding-left: 5%;
+  margin-top: 29%;
+}
