@@ -29,6 +29,7 @@ let oddArrayMale = [];
 let oddArrayFemale = [];
 let evenArrayMale = [];
 let evenArrayFemale = [];
+let shuffleArrayButtons = [1, 2, 3];
 
 // Methode
 const method1 = document.querySelector("#rightwrong");
@@ -68,7 +69,7 @@ function roundPopUp(p_round, p_falseCounter) {
     let DOMH3 = popupFirst.querySelector("#test");
     DOMH3.innerHTML = "";
     DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
-      Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
+    <br />  Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
     stopGame();
   } else {
     popupRound.style.display = "block";
@@ -116,7 +117,7 @@ function methodMC() {
   DOMButtonMultbutton.forEach((element) => {
     element.addEventListener("click", flipCard);
   });
-  DOMButtonNext.addEventListener("click", flipCardReverse);
+  DOMButtonNext.addEventListener("click", countAndNew);
 }
 
 // FLIP INDEX CARD
@@ -220,8 +221,6 @@ DOMButtonFalse.addEventListener("click", displayCardUp);
 DOMButtonContinue.addEventListener("click", continueGame);
 DOMButtonReset.addEventListener("click", stopGame);
 
-DOMButtonNext.addEventListener("click", countAndNew);
-
 //Funktion erstellt Array beim ersten mal
 //Methode richtig falsch
 function createArrayRW() {
@@ -301,30 +300,34 @@ function createArrayMC() {
   firstArray = firstArrayFemale.concat(firstArrayMale);
   console.log(firstArray);
   showImages();
+  randomButtons();
+}
+
+// Shuffle Funktion, um den Namen random auf die Buttons auszugeben
+function randomButtons() {
+  shuffleArrayButtons = shuffle(shuffleArrayButtons);
+  console.log(shuffleArrayButtons);
+
+  let post1 = document.getElementById(shuffleArrayButtons[0]);
+  post1.innerHTML = "hi";
+
+  let post2 = document.getElementById(shuffleArrayButtons[1]);
+  post2.innerHTML = "ho";
+
+  let post3 = document.getElementById(shuffleArrayButtons[2]);
+  post3.innerHTML = "he";
 }
 
 //Hier wird das Aktuelle Array der Runde abgefragt
 function getCurrentArray() {
-  if (methode == "rightwrong") {
-    if (round == 1) {
-      return firstArray;
-    } else if (round % 2 == 1) {
-      return oddArray;
-    } else if (round % 2 == 0) {
-      return evenArray;
-    } else {
-      console.log("fehler");
-    }
-  } else if (methode == "multiplechoice") {
-    if (round == 1) {
-      return firstArray;
-    } else if (round % 2 == 1) {
-      return oddArray;
-    } else if (round % 2 == 0) {
-      return evenArray;
-    } else {
-      console.log("fehler");
-    }
+  if (round == 1) {
+    return firstArray;
+  } else if (round % 2 == 1) {
+    return oddArray;
+  } else if (round % 2 == 0) {
+    return evenArray;
+  } else {
+    console.log("fehler");
   }
 }
 
@@ -375,6 +378,7 @@ function displayCardUp() {
 
   let arr = getCurrentArray();
   let num = arr[inx - 1];
+
   if (round == 1) {
     evenArray.push(num, num);
   } else if (round % 2 == 1) {
@@ -382,8 +386,6 @@ function displayCardUp() {
   } else if (round % 2 == 0) {
     if (!oddArray.includes(num)) {
       oddArray.push(num);
-    } else {
-      console.log(oddArray);
     }
   }
 }
