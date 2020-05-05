@@ -57,6 +57,13 @@ a {
   width: 100%;
 }
 
+#onboard{
+  position: relative;
+  margin-top: 5%;
+  font-weight: bold;
+  color: #88bc48;
+}
+
 #bg-img {
   position: absolute;
   height: 50%;
@@ -554,7 +561,7 @@ nav::after {
 .videoextern {
   position: absolute;
   margin-left: 20%;
-  margin-top: 1%;
+  margin-top: 5%;
   width: 60%;
   height: 60%;
 }
