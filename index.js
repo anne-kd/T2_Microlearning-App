@@ -70,12 +70,10 @@ function onboardingPopUp(){
   DOMPopupClose.addEventListener("click", hidePopUp);
 }
 
-document.getElementById('remove').onclick = function () {
-  if (document.getElementById('PopUpOnboarding')) {
-      var PopUpOnboarding = document.getElementById('PopUpOnboarding');
-      PopUpOnboarding.parentNode.removeChild(PopUpOnboarding);
-  }
-}
+// remove popup permanently
+
+
+
 //document.getElementById("PopUpOnboarding").onclick = function () {
  // this.remove ();
 //}
@@ -83,6 +81,19 @@ document.getElementById('remove').onclick = function () {
 //checkHide.addEventListener('click', () => {
  // Popuponboarding.remove();
 //});
+
+
+document.getElementById('removeBirds').onclick = function remove() {
+  if (document.getElementById('PopUpOnboarding')) {
+      var PopUpOnboarding = document.getElementById('PopUpOnboarding');
+      PopUpOnboarding.parentNode.removeChild(PopUpOnboarding);
+  }
+}
+remove() 
+
+
+
+
 
 function roundPopUp(p_round, p_falseCounter) {
   if (p_falseCounter == 0 && p_round % 2 == 1) {

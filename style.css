@@ -185,7 +185,7 @@ nav::after {
 }
 #st-line,
 .popup .line {
-  display: block;
+ /* display: block; */
   width: 70px;
   background-color: black;
   height: 8px;
