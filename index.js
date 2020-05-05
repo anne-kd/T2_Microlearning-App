@@ -10,13 +10,14 @@ const Popuponboarding = document.querySelector("#PopUpOnboarding");
 const DOMNav = document.querySelector("nav");
 const DOMBackground = document.querySelector("#bg-img");
 const DOMWrapper = document.querySelector("#container");
+const DOMOnboardButton = document.querySelector("#onboardButton")
 
 function onboardingPopUp(){
   blurElements();
   Popuponboarding.style.display = "block";
 }
 
-window.addEventListener("load", onboardingPopUp);
+DOMOnboardButton.addEventListener("click", onboardingPopUp);
 
 //Funktion um Popups auszublenden
 function hidePopUp() {
@@ -32,4 +33,3 @@ function blurElements() {
   DOMBackground.classList.add("blur");
   DOMWrapper.classList.add("blur");
 }
-

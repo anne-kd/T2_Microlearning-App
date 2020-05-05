@@ -57,11 +57,16 @@ a {
   width: 100%;
 }
 
-#onboard{
+#onboardButton{
   position: relative;
   margin-top: 5%;
   font-weight: bold;
   color: #88bc48;
+  cursor: pointer;
+
+}
+#onboardButton:hover {
+  color: black;
 }
 
 #bg-img {
@@ -147,6 +152,10 @@ nav a:hover {
 }
 
 .fa-address-card-o:before {
+  padding: 10px;
+}
+
+.fa-arrow-right:before {
   padding: 10px;
 }
 
