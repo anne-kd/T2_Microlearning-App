@@ -25,8 +25,8 @@ let methode;
 
 let arrayMale = [];
 let arrayFemale = [];
-let mapFemale
-let mapMale
+let mapFemale;
+let mapMale;
 let shuffleArrayButtons = [1, 2, 3];
 
 // Methode
@@ -294,6 +294,7 @@ function createArrayMC() {
 
   mapFemale = getStudentMap(`${course.innerHTML}Female`);
   mapMale = getStudentMap(`${course.innerHTML}Male`);
+  console.log(mapMale);
 
   let stringArrayF = Array.from(mapFemale.keys());
   stringArrayF.forEach((element) => {
@@ -305,30 +306,36 @@ function createArrayMC() {
     arrayMale.push(parseInt(element));
   });
 
-  firstArray = firstArrayFemale.concat(firstArrayMale);
+  firstArray = arrayFemale.concat(arrayMale);
+  firstArray = shuffle(firstArray);
 
   showImages();
 }
+let nameRichtig; 
+let randomName1;
+let randomName2; 
 
-function getName(){
-  let x = "1";
+function getName(p_inx){
 
-  let nameRichtig = mapFemale.get(x);
-  let randomName1;
-  let randomName2;  
-
-  do {
-    randomName1 = mapFemale.get(`${randomNumber()}`);
-    randomName2 = mapFemale.get(`${randomNumber()}`);
-  } while (nameRichtig === randomName2 || nameRichtig === randomName1 || randomName1 === randomName2);
-
-  showImages();
+  if (mapFemale.has(`${p_inx}`)){
+    nameRichtig = mapFemale.get(`${p_inx}`);
+    do {
+      randomName1 = mapFemale.get(`${randomNumber()}`);
+      randomName2 = mapFemale.get(`${randomNumber()}`);
+    } while (nameRichtig === randomName2 || nameRichtig === randomName1 || randomName1 === randomName2);
+  }
+  else if (mapMale.has(`${p_inx}`)){
+    nameRichtig = mapMale.get(`${p_inx}`);
+    do {
+      randomName1 = mapMale.get(`${randomNumber()}`);
+      randomName2 = mapMale.get(`${randomNumber()}`);
+    } while (nameRichtig === randomName2 || nameRichtig === randomName1 || randomName1 === randomName2);
+  }
   randomButtons(nameRichtig, randomName1, randomName2);
 }
 
 function randomNumber(){
-  let num = firstArrayFemale[Math.floor(Math.random() * firstArrayFemale.length)];
-  console.log(num);
+  let num = arrayFemale[Math.floor(Math.random() * arrayFemale.length)];
   return num;
 }
 
@@ -368,7 +375,7 @@ function showImages() {
   //Rückseite
   CardBack.firstElementChild.src = `${getSrc()}back/${arr[inx]}-rs.png`;
   if(methode=="multiplechoice"){
-
+    getName(arr[inx]);
   }
   counterUp(inx, arr);
 }
