@@ -285,7 +285,7 @@ nav::after {
   display: none;
   flex-direction: column;
   height: 90%;
-  width: 50%;
+  width: 60%;
 }
 
 .card--back.display {

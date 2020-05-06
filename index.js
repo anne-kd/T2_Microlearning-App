@@ -10,14 +10,11 @@ const DOMButtonReset = document.querySelector("#exit");
 
 const DOMButtonExit = document.querySelectorAll(".reset");
 DOMButtonExit.forEach((element) => {
-  element.addEventListener("click", ()=>{
-    saveInstancesLocal();
-  });
+  element.addEventListener("click", saveInstancesLocal);
 });
 
 // Local Storage 
 const localStorage = window.localStorage;
-let newUser = true;
 //Local Storage Objekt Funktinonen
 Storage.prototype.setObj = function(key, obj) {
   return this.setItem(key, JSON.stringify(obj));
@@ -46,6 +43,7 @@ function firstPopUp() {
   DOMH3.innerHTML = `Welchen Kurs wollen Sie lernen?`;
 }
 
+
 function roundPopUp(p_round, p_falseCounter) {
 
     if (p_falseCounter == 0 && p_round%2 == 1) {
@@ -55,6 +53,7 @@ function roundPopUp(p_round, p_falseCounter) {
       DOMH3.innerHTML = "";
       DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
       Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
+      clearStorageCourse();
       stopGame();
     }
     else {
@@ -109,7 +108,8 @@ const courseNamePopUp = document.querySelectorAll('.ON');
 courseNamePopUp.forEach(element=>{
   element.addEventListener('click', (event)=>{
     setCourse(event.target);
-    checkIfNewUser(event.target);
+    checkIfNewUser(event.target)
+    //createArray();
     hidePopUp();
   })
 });
@@ -122,6 +122,9 @@ let round = 1;
 let firstArray = [];
 let oddArray = []; //mod 2 = 1
 let evenArray = []; //mod 2 = 0
+console.log(falseCounter);
+console.log(inx);
+console.log(firstArray);
 
 //Klick-Events
 DOMButtonRight.addEventListener("click", countAndNew);
@@ -137,21 +140,25 @@ DOMButtonReset.addEventListener("click", ()=>{
 function checkIfNewUser(courseName){
   let session = 'session' + courseName.innerHTML;
   let number = localStorage.getItem(session);
-  localStorage.removeItem(session);
-  console.log(number);
+  let storageValue = parseInt(number);
+  console.log(storageValue);
 
-  if(number==='1'){
-    localStorage.setItem(session, '1')
+  if(storageValue==0){
+    createArray();
+    localStorage.setItem(session, '1');
+    console.log('erstes mal');
+  }else if(storageValue==1){
+    console.log( JSON.stringify(localStorage, null, 2) );
     getInstancesLocal(courseName);
+    console.log(firstArray);
     showImages();
-    console.log('wuhu du bist nocheinmal hier')
-  }else if(number==null){
+    console.log('erneutes mal');
+  }else if(!storageValue){
     localStorage.setItem(session, '1');
     createArray();
-    console.log('wuhu deine erste session')
   }
 }
-
+//Instanzen des jeweiligen Kurses speichern
 function saveInstancesLocal(){
   let courseName = course.innerHTML;
 
@@ -173,13 +180,42 @@ function saveInstancesLocal(){
   let sEvenArray = `evenArray${courseName}`;
   localStorage.setObj(sEvenArray, evenArray);
 
+  let sSession = `session${courseName}`;
+  let number = localStorage.getItem(sSession);
+  localStorage.setItem(sSession, number);
+
   stopGame();
+}
+//Fortschritt löschen
+function clearStorageCourse(){
+  let courseName = course.innerHTML;
+  let session = 'session' + courseName;
+  localStorage.removeItem(session);
+  
+  let sFalseCounter = `falseCounter${courseName}`;
+  localStorage.removeItem(sFalseCounter);
+  
+  let sInx = `inx${courseName}`;
+  localStorage.removeItem(sInx);
+  
+  let sRound = `round${courseName}`;
+  localStorage.removeItem(sRound);
+  
+  let sFirstArray = `firstArray${courseName}`;
+  localStorage.removeItem(sFirstArray);
+  
+  let sOddArray = `oddArray${courseName}`;
+  localStorage.removeItem(sOddArray);
+  
+  let sEvenArray = `evenArray${courseName}`;
+  localStorage.removeItem(sEvenArray);
+  console.log('removed items')
 }
 
 function clearStorage(){
   localStorage.clear();
 }
-
+//Instanzen des jeweiligen Kurses
 function getInstancesLocal(courseName){
   courseName = courseName.innerHTML;
 
