@@ -24,7 +24,7 @@
       </ul>
       <img id="logo" src="images/cropped-ONLINEMEDIEN_Logo_neu.png" />
     </nav>
-
+    
     <section id="wrapper" class="blur">
       <div id="content-top">
         <h2>
@@ -52,73 +52,60 @@
           <img class="img" src="" alt="backside">
         </div>
       </div>
-    </div>
-    </div>
-
-    <div id="content-bottom">
-      <p>Klicken Sie auf die Karte zur Überprüfung</p>
-      <div class="button" id="check">
-        <div class="right">
-          <div class="ok">
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-        <div class="false">
-          <div class="cancel">
-            <span></span>
-            <span></span>
-          </div>
-        </div>
       </div>
-  </section>
 
+      <div id="content-bottom">
+        <p>Klicken Sie auf die Karte zur Überprüfung</p>
+        <div class="button" id="check">
+          <div class="right">
+            <div class="ok">
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div class="false">
+            <div class="cancel">
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+      
   <!-- POPUP -->
-  <div class="popup" id="popup-first">
-    <a href="index.html" class="cancel close reset"><span></span><span></span></a>
-
-    <h3 id="test"> <span class="line"></span> Welchen Kurs wollen Sie lernen?</h3>
-
-    <div class="btn-course">
-      <div class="right">
-        <p class="ON">ON17</p>
+      <div class="popup" id="popup-first">
+          <a href="index.html" class="cancel close reset"><span></span><span></span></a>
+          
+          <h3 id="test">  <span class="line"></span> Welchen Kurs wollen Sie lernen?</h3>
+          
+          <div class="btn-course">
+            <div class="right">
+              <p class="ON">ON17</p>
+            </div>
+            <div class="right">
+              <p class="ON">ON18</p>
+            </div>
+            <div class="right">
+              <p class="ON">ON19</p>
+            </div>
+          </div>
       </div>
-      <div class="right">
-        <p class="ON">ON18</p>
+
+      <div class="popup" id="popup-round">
+          <a href="#" class="cancel close reset"><span></span><span></span></a>
+          <h3 id="round">Sie haben Runde 1 geschafft!</h3>
+          <h3>Wollen Sie eine weitere Runde spielen?</h3>
+
+        <div class="button">
+            <div id="continue">
+                WEITER
+            </div>
+            <a id="exit" class="reset" href="index.html">
+                ABBRECHEN 
+            </a>
+        </div>
       </div>
-      <div class="right">
-        <p class="ON">ON19</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="popup" id="popup-round">
-    <a href="#" class="cancel close reset"><span></span><span></span></a>
-    <h3 id="round">Sie haben Runde 1 geschafft!</h3>
-    <h3>Wollen Sie eine weitere Runde spielen?</h3>
-    <h4 id="prozent"></h4>
-    <div style="width: 25%; align-items: center;" class="chart">
-
-      <canvas id="myChart" width="400" height="400">
-
-      </canvas>
-    </div>
-
-
-
-    <div class="button">
-      <div id="continue">
-        WEITER
-      </div>
-      <a id="exit" class="reset" href="index.html">
-        ABBRECHEN
-      </a>
-    </div>
-  </div>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+      
   <script src="index.js"></script>
-</body>
-
+  </body>
 </html>
