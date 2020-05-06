@@ -49,30 +49,22 @@ function firstPopUp() {
 
 function roundPopUp(p_round, p_falseCounter) {
 
-  if (p_falseCounter == 0 && p_round % 2 == 1) {
-    blurElements();
-    popupFirst.style.display = "block";
-    let DOMH3 = popupFirst.querySelector("#test");
-    DOMH3.innerHTML = "";
-    DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
+    if (p_falseCounter == 0 && p_round%2 == 1) {
+      blurElements();
+      popupFirst.style.display = "block";
+      let DOMH3 = popupFirst.querySelector("#test");
+      DOMH3.innerHTML = "";
+      DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
       Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
-
-    charIt();
-    chart();
-    percent();
-    stopGame();
-  }
-  else {
-    popupRound.style.display = "block";
-    blurElements();
-    let DOMH3 = popupRound.querySelector("#round");
-    DOMH3.innerHTML = "";
-    DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
-
-    charIt();
-    chart();
-    percent();
-  }
+      stopGame();
+    }
+    else {
+      popupRound.style.display = "block";
+      blurElements();
+      let DOMH3 = popupRound.querySelector("#round");
+      DOMH3.innerHTML = "";
+      DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
+    }
 }
 
 function hidePopUp() {
@@ -115,8 +107,8 @@ function flipCardReverse() {
 // Ändern des Kurses 
 const courseNamePopUp = document.querySelectorAll('.ON');
 
-courseNamePopUp.forEach(element => {
-  element.addEventListener('click', (event) => {
+courseNamePopUp.forEach(element=>{
+  element.addEventListener('click', (event)=>{
     setCourse(event.target);
     checkIfNewUser(event.target);
     hidePopUp();
@@ -215,8 +207,8 @@ function getInstancesLocal(courseName){
 
 //verändert beim auswählen eines Kurses den Kursnamen
 const course = document.querySelector('.course');
-function setCourse(courseName) {
-  switch (courseName.innerHTML) {
+function setCourse(courseName){
+  switch(courseName.innerHTML){  
     case 'ON19':
       course.innerHTML = 'ON19';
       break;
@@ -227,14 +219,14 @@ function setCourse(courseName) {
       course.innerHTML = 'ON17';
       break;
     default:
-      'Jemand hat einen Fehler gemacht'
+        'Jemand hat einen Fehler gemacht'
       break;
   }
 }
 
 function getSrc() {
   switch (
-  course.innerHTML //innerHTML ändern und klick funktion
+    course.innerHTML //innerHTML ändern und klick funktion
   ) {
     case "ON19":
       return "assets/ON19/";
@@ -251,7 +243,7 @@ function getSrc() {
 function getStudents() {
   switch (course.innerHTML) {
     case "ON19":
-      return 6;
+      return 31;
     case "ON18":
       return 7;
     case "ON17":
@@ -263,11 +255,8 @@ function getStudents() {
 
 //Funktion erstellt Array beim ersten mal, soll bei Click auf den
 //Kurs Button ausgelöst werden
-
-let num = 0;
-
 function createArray() {
-  num = getStudents();
+  let num = getStudents();
   console.log(num);
   for (let x = num; x > 0; x--) {
     firstArray.push(x);
@@ -306,9 +295,9 @@ function countAndNew() {
   inx++;
   showImages();
   let arr = getCurrentArray();
-  if (inx == arr.length) {
-    roundPopUp(round, falseCounter);
-  }
+    if (inx == arr.length) {
+      roundPopUp(round, falseCounter);
+    }
   flipCardReverse();
 }
 
@@ -342,12 +331,12 @@ function displayCardUp() {
   } else if (round % 2 == 1) {
     evenArray.push(num, num);
   } else if (round % 2 == 0) {
-    if (!oddArray.includes(num)) {
-      oddArray.push(num);
-    }
-    else {
-      console.log(oddArray);
-    }
+      if (!oddArray.includes(num)) {
+        oddArray.push(num);
+      } 
+      else {
+        console.log(oddArray);
+      }
   }
 }
 // Arrays werden geändert und geshuffelt
@@ -379,64 +368,4 @@ function stopGame() {
   round = 1;
   falseCounter = 0;
   console.log(arr);
-}
-
-
-
-/* Trefferquote - Chart */
-
-var donutChart = document.getElementById('myChart');
-let fail = 0;
-let right = 0;
-
-
-function charIt() {
-
-  fail = falseCounter;
-  console.log("Falsche Antworten Sackl Zement " + fail);
-
-  right = num - fail;
-  console.log("Richtige Antworten Fix Hehner " + right);
-
-
-  const chartTest = new Chart(donutChart, {
-    type: 'doughnut',
-    data: {
-      labels: ['Richtig', 'Falsch'],
-      datasets: [{
-        label: 'Trefferquote',
-        backgroundColor: ['#88bc48', 'salmon'],
-        data: [[right], [fail]]
-      }]
-    },
-
-    options: {
-      cutoutPercentage: 65,
-      animation: {
-        animateScale: true
-      },
-      legend: {
-        display: false
-      },
-    }
-  })
-};
-
-
-function chart() {
-  console.log("Donut - Chart Drecks Zeug");
-  charIt();
-};
-
-
-function percent () {
-
-  fail = falseCounter;
-  right = inx - fail;
-
-  let rechnung = Math.round (right/inx*100);
-
-  const perc = document.getElementById("prozent");
-
-  perc.innerHTML = rechnung + "%";
 }
