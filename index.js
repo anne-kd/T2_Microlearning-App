@@ -71,6 +71,9 @@ function roundPopUp(p_round, p_falseCounter) {
     DOMH3.innerHTML = "";
     DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
     <br />  Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
+    charIt();
+    chart();
+    percent();
     stopGame();
   } else {
     popupRound.style.display = "block";
@@ -78,6 +81,9 @@ function roundPopUp(p_round, p_falseCounter) {
     let DOMH3 = popupRound.querySelector("#round");
     DOMH3.innerHTML = "";
     DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
+    charIt();
+    chart();
+    percent();
   }
 }
 
@@ -207,7 +213,7 @@ function getSrc() {
 function getStudents() {
   switch (course.innerHTML) {
     case "ON19":
-      return 31;
+      return 6;
     case "ON18":
       return 7;
     case "ON17":
@@ -478,7 +484,6 @@ function stopGame() {
   falseCounter = 0;
 }
 
-
 const anzeige = document.querySelector(".anzeige");
 const rand = document.querySelector(".card--back");
 const DOMAnzeige = document.querySelector(".richtigFalsch");
@@ -498,3 +503,61 @@ function multipleKarte(target) {
   }
 }
 
+
+/* Trefferquote - Chart */
+
+var donutChart = document.getElementById('myChart');
+let fail = 0;
+let right = 0;
+
+
+function charIt() {
+
+  fail = falseCounter;
+  console.log("Falsche Antworten Sackl Zement " + fail);
+
+  right = num - fail;
+  console.log("Richtige Antworten Fix Hehner " + right);
+
+
+  const chartTest = new Chart(donutChart, {
+    type: 'doughnut',
+    data: {
+      labels: ['Richtig', 'Falsch'],
+      datasets: [{
+        label: 'Trefferquote',
+        backgroundColor: ['#88bc48', 'salmon'],
+        data: [[right], [fail]]
+      }]
+    },
+
+    options: {
+      cutoutPercentage: 65,
+      animation: {
+        animateScale: true
+      },
+      legend: {
+        display: false
+      },
+    }
+  })
+};
+
+
+function chart() {
+  console.log("Donut - Chart Drecks Zeug");
+  charIt();
+};
+
+
+function percent () {
+
+  fail = falseCounter;
+  right = inx - fail;
+
+  let rechnung = Math.round (right/inx*100);
+
+  const perc = document.getElementById("prozent");
+
+  perc.innerHTML = rechnung + "%";
+}

@@ -366,8 +366,7 @@ nav::after {
 
 
 #popup-round .button {
-  margin-left: 0;
-  margin-top: 15%;
+  margin-top: 2%;
   font-family: "Montserrat";
   font-weight: 700;
   text-transform: uppercase;
@@ -417,6 +416,7 @@ nav::after {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
 }
 
 
@@ -490,13 +490,11 @@ nav::after {
   margin-top: 15%;
   margin-left: 10%;
 }
+
 #popup-first {
   display: block;
 }
 #popup-round {
-  display: none;
-}
-#popup-learningMethod {
   display: none;
 }
 
@@ -554,4 +552,22 @@ nav::after {
 
 #bilder-container ul li img {
   width: 150%;
+}
+
+.chart{
+  padding-top: 5%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup h4 {
+  position: absolute;
+  color: black;
+  font-size: 1.5em;
+  font-family: 'Montserrat', sans-serif;
+  z-index: 100;
 }
