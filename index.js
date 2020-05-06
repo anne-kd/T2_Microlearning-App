@@ -21,10 +21,10 @@ const localStorage = window.localStorage;
 let newUser = true;
 //Local Storage Objekt Funktinonen
 Storage.prototype.setObj = function(key, obj) {
-  return this.setItem(key, JSON.stringify(obj));
+  return this.setItem(key, JSON.stringify(obj))
 }
 Storage.prototype.getObj = function(key) {
-  return JSON.parse(this.getItem(key));
+  return JSON.parse(this.getItem(key))
 }
 
 // POP UP
@@ -144,7 +144,6 @@ function checkIfNewUser(courseName){
   console.log(number);
 
   if(number==='1'){
-    localStorage.setItem(session, '1')
     getInstancesLocal(courseName);
     showImages();
     console.log('wuhu du bist nocheinmal hier')
@@ -159,6 +158,7 @@ function saveInstancesLocal(){
   let courseName = course.innerHTML;
 
   let sFalseCounter = `falseCounter${courseName}`;
+  console.log(sFalseCounter);
   localStorage.setItem(sFalseCounter, falseCounter);
 
   let sInx = `inx${courseName}`;
