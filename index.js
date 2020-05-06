@@ -399,7 +399,7 @@ function charIt() {
   console.log("Richtige Antworten Fix Hehner " + right);
 
 
-  const chartTest = new Chart(donutChart, {
+const chartTest = new Chart(donutChart, {
     type: 'doughnut',
     data: {
       labels: ['Richtig', 'Falsch'],
