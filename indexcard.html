@@ -8,21 +8,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   </head>
 
-  <body>
+  <body id="body">
     <div id="background" class="blur"></div>
     <nav class="blur">
       <ul>
-        <li>
-          <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i>Startseite</a>
-        </li>
-        <li>
-          <a href="overview.html"><i class="fa fa-th-large" aria-hidden="true"></i>Übersicht</a>
-        </li>
-        <li id="nav-index-card">
-          <a href="indexcard.html"><i class="fa fa-address-card-o" aria-hidden="true"></i>Karteikarten</a>
-        </li>
+        <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i>Startseite</a></li>
+        <li><a href="overview.html" ><i class="fa fa-th-large" aria-hidden="true"></i>Übersicht</a></li>
+        <li><a href="indexcard.html" class="active activeMethode"><i class="fa fa-address-card-o" aria-hidden="true"></i>Karteikarten</a></li>
+        <li><a href="indexcard-multiplechoice.html"><i class="fa fa-id-card" aria-hidden="true"></i>Multiplechoice</a> </li>
       </ul>
-      <img id="logo" src="images/cropped-ONLINEMEDIEN_Logo_neu.png" />
+      <img id="logo" src="images/logo.jpg" />
     </nav>
     
     <section id="wrapper" class="blur">
@@ -71,36 +66,10 @@
             </div>
           </div>
         </div>
-
-        <div class="button" id="multi">
-          <div class="multbutton" id="1"></div>
-          <div class="multbutton" id="2"></div>
-          <div class="multbutton" id="3"></div>
-      </div>
-
-      <div class="button -next">
-        <div id="next">OK</div>
-      </div>
-
     </section>
       
   <!-- POPUP -->
-      <div class="popup" id="popup-learningMethod">
-        <a href="index.html" class="cancel close reset"><span></span><span></span></a>
-        
-        <h3>  <span class="line"></span> Sie haben die Wahl!<br> Wählen Sie eine Lernmethode aus.
-        </h3>
-        
-        <div class="btn-method">
-          <div class="right">
-            <p class="method" id="rightwrong">richtig/falsch</p>
-          </div>
-          <div class="right">
-            <p class="method" id="multiple">Multiple-Choice</p>
-          </div>
-        </div>
-      </div>
-
+  
       <div class="popup" id="popup-first">
           <a href="index.html" class="cancel close reset"><span></span><span></span></a>
           
@@ -119,10 +88,8 @@
           </div>
       </div>
 
-      
-
       <div class="popup" id="popup-round">
-          <a href="#" class="cancel close reset"><span></span><span></span></a>
+          <a href="index.html" class="cancel close reset"><span></span><span></span></a>
           <h3 id="round">Sie haben Runde 1 geschafft! Wollen Sie eine weitere Runde spielen?</h3>
 
         <div class="button">

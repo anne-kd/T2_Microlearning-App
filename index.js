@@ -1,20 +1,33 @@
 // HTML DOM ELEMENTE
-const NAVCards = document.querySelector("#nav-index-card");
-const DOMNav = document.querySelector("nav");
-const DOMBackground = document.querySelector("#background");
-const DOMWrapper = document.querySelector("#wrapper");
+//Button
 const DOMButtonRight = document.querySelector(".right");
 const DOMButtonFalse = document.querySelector(".false");
 const DOMButtonContinue = document.querySelector("#continue");
-const DOMButtonReset = document.querySelector("#exit");
 const DOMButtonMulti = document.querySelector("#multi");
 const DOMButtonMultbutton = document.querySelectorAll(".multbutton");
 const DOMButtonNext = document.querySelector(".-next");
+const DOMCheckButton = document.querySelector("#check");
+const DOMButtonExit = document.querySelectorAll(".reset");
+//"Klicken Sie auf die Karte"
 const DOMIntro = document.querySelector("#intro");
+// Pop up
+const popupFirst = document.querySelector("#popup-first");
+const popupRound = document.querySelector("#popup-round");
 const PopupClose = document.querySelectorAll(".close");
+// Blur HTML Elemente
+const DOMNav = document.querySelector("nav");
+const DOMBackground = document.querySelector("#background");
+const DOMWrapper = document.querySelector("#wrapper");
+//Karte (zum drehen)
+const DOMCard = document.getElementById("card");
+const CardBack = document.querySelector(".card--back");
+const CardFront = document.querySelector(".card--front");
 
-//Variablen und Konstanten
+//VARIABLEN UND KONSTANTEN
+const curentMethode = document.querySelector(".activeMethode").innerText;
+const choosedCourse = document.querySelectorAll(".ON");
 const currentCard = document.getElementById("counter");
+const course = document.querySelector(".course");
 let falseCounter = 0; //zählt wie viele Falsche der Spieler in einer Runde hat
 let inx = 0;
 let round = 1;
@@ -22,42 +35,32 @@ let firstArray = [];
 let oddArray = []; //mod 2 = 1
 let evenArray = []; //mod 2 = 0
 let methode;
-
+//nur für Methode 2 gebraucht
 let arrayMale = [];
 let arrayFemale = [];
 let mapFemale;
 let mapMale;
-let shuffleArrayButtons = [1, 2, 3];
+let showButtons = [1, 2, 3];
+let nameRichtig; 
+let randomName1;
+let randomName2; 
+let arrayGender;
+let mapGender;
 
-// Methode
-const method1 = document.querySelector("#rightwrong");
-const multiple = document.querySelector("#multiple");
-
+//ALLGEMEINE ON KLICK EVENTS
 // x-Button, navigiert zur Startseite
-const DOMButtonExit = document.querySelectorAll(".reset");
 DOMButtonExit.forEach((element) => {
   element.addEventListener("click", stopGame);
 });
+DOMButtonContinue.addEventListener("click", continueGame);
 
-// POP UP
-const popupFirst = document.querySelector("#popup-first");
-const popupRound = document.querySelector("#popup-round");
-const popupLearningMethod = document.querySelector("#popup-learningMethod");
-
+// POPUP
 function firstPopUp() {
   blurElements();
   popupFirst.style.display = "block";
   let DOMH3 = popupFirst.querySelector("#test");
   DOMH3.innerHTML = "";
   DOMH3.innerHTML = `Welchen Kurs wollen Sie lernen?`;
-}
-
-function methodPopUp() {
-  blurElements();
-  popupLearningMethod.style.display = "block";
-
-  method1.addEventListener("click", methodRW);
-  multiple.addEventListener("click", methodMC);
 }
 
 function roundPopUp(p_round, p_falseCounter) {
@@ -86,22 +89,59 @@ function hidePopUp() {
 
   popupFirst.style.display = "none";
   popupRound.style.display = "none";
-  popupLearningMethod.style.display = "none";
 }
 
-//Funktion bei Popup Einblendung
+//Blur Effekt wenn das Popup aktiv ist
 function blurElements() {
   DOMNav.classList.add("blur");
   DOMBackground.classList.add("blur");
   DOMWrapper.classList.add("blur");
 }
 
+
+// FLIP INDEX CARD
+function flipCard() {
+  DOMCard.classList.add("card_hover");
+  CardBack.classList.add("display");
+  CardFront.classList.remove("display");
+
+  if (methode == "rightwrong") {
+    DOMCheckButton.style.display = "flex";
+    DOMIntro.style.display = "none";
+  } 
+  else if (methode == "multiplechoice") {
+    DOMButtonMulti.style.display = "none";
+    DOMButtonNext.style.display = "flex";
+    multipleKarte(event.target);
+  }
+}
+
+function flipCardReverse() {
+  DOMCard.classList.remove("card_hover");
+  CardBack.classList.remove("display");
+  CardFront.classList.add("display");
+
+  if (methode == "rightwrong") {
+    DOMCheckButton.style.display = "none";
+    DOMIntro.style.display = "inline";
+  } 
+  else if (methode == "multiplechoice") {
+    DOMButtonMulti.style.display = "flex";
+    DOMButtonNext.style.display = "none";
+  }
+}
+
+
 //hier zur initial definition aller variablen und arrays die erstellt werden müssen
 function methodRW() {
   methode = "rightwrong";
   hidePopUp();
   createArrayRW();
+
   DOMCard.addEventListener("click", flipCard);
+  DOMButtonRight.addEventListener("click", countAndNew);
+  DOMButtonFalse.addEventListener("click", displayCardUp);
+
   DOMIntro.style.display = "inline";
 }
 
@@ -109,7 +149,6 @@ function methodMC() {
   methode = "multiplechoice";
   hidePopUp();
   createArrayMC();
-  DOMIntro.style.display = "none";
   DOMButtonMulti.style.display = "flex";
 
   DOMButtonMultbutton.forEach((element) => {
@@ -118,54 +157,22 @@ function methodMC() {
   DOMButtonNext.addEventListener("click", countAndNew);
 }
 
-// FLIP INDEX CARD
-const DOMCard = document.getElementById("card");
-const CardBack = document.querySelector(".card--back");
-const CardFront = document.querySelector(".card--front");
-const DOMCheckButton = document.querySelector("#check");
-
-function flipCard() {
-  DOMCard.classList.add("card_hover");
-  CardBack.classList.add("display");
-  CardFront.classList.remove("display");
-  if (methode == "rightwrong") {
-    DOMCheckButton.style.display = "flex";
-    DOMIntro.style.display = "none";
-  } else if (methode == "multiplechoice") {
-    DOMButtonMulti.style.display = "none";
-    DOMButtonNext.style.display = "flex";
-  }
-}
-
-function flipCardReverse() {
-  DOMCard.classList.remove("card_hover");
-  CardBack.classList.remove("display");
-  CardFront.classList.add("display");
-  if (methode == "rightwrong") {
-    DOMCheckButton.style.display = "none";
-    DOMIntro.style.display = "inline";
-  } else if (methode == "multiplechoice") {
-    DOMButtonMulti.style.display = "flex";
-    DOMButtonNext.style.display = "none";
-  }
-}
-
 //FUNKTION FÜR DEN ABLAUF DER KARTEN
 
-// Ändern des Kurses
-const courseNamePopUp = document.querySelectorAll(".ON");
-
-courseNamePopUp.forEach((element) => {
+// Auswahl des Kurses und aufrufen der richtigen Methode(je nach HTML-Seite)
+choosedCourse.forEach((element) => {
   element.addEventListener("click", (event) => {
     setCourse(event.target);
-    hidePopUp();
-    methodPopUp();
+    if(curentMethode == "KARTEIKARTEN"){
+      methodRW();
+    }
+    else if(curentMethode == "MULTIPLECHOICE"){
+      methodMC();
+    }
   });
 });
 
 //verändert beim auswählen eines Kurses den Kursnamen
-const course = document.querySelector(".course");
-
 function setCourse(courseName) {
   switch (courseName.innerHTML) {
     case "ON19":
@@ -184,9 +191,7 @@ function setCourse(courseName) {
 }
 
 function getSrc() {
-  switch (
-    course.innerHTML //innerHTML ändern und klick funktion
-  ) {
+  switch (course.innerHTML) {
     case "ON19":
       return "assets/ON19/";
     case "ON18":
@@ -212,6 +217,7 @@ function getStudents() {
   }
 }
 
+//Maps für Multiplechoice Methode
 function getStudentMap(KursGender) {
   let map;
   switch (KursGender) {
@@ -228,7 +234,7 @@ function getStudentMap(KursGender) {
       .set("15", "Nicole Höfler")
       .set("16", "Lina Käfer")
       .set("17", "Alicia Kilian")
-      .set("20", "Kristin Zänger")
+      .set("20", "Kristin Zenger")
       .set("21", "Laura Krumm")
       .set("22", "Lara Neumaier")
       .set("23", "Jessica Noe")
@@ -246,7 +252,7 @@ function getStudentMap(KursGender) {
       .set("6", "Christina Bünnagel");
       return map;
     case "ON19Male":
-      return map = new Map()
+      map = new Map()
       .set("2", "Steffen Brendle")
       .set("4", "Jonas Althoff")
       .set("5", "Christian Dänzer")
@@ -257,25 +263,20 @@ function getStudentMap(KursGender) {
       .set("19", "Marco Scotarello")
       .set("25", "Martin Panaget")
       .set("27", "Niklas Schikora")
-      .set("29", "Calvin Reibeisenspiess");;
+      .set("29", "Calvin Reibenspieß");
+      return map;
     case "ON18Male":
-      return map = new Map()
+      map = new Map()
       .set("2", "Moritz Banhardt")
       .set("4", "Nils Eisenhauer")
       .set("7", "Frederik Hellbauer");
+      return map;
     case "ON17":
       return 0;
     default:
       return "Jemand hat einen Fehler gemacht";
   }
 }
-
-//Klick-Events
-DOMButtonRight.addEventListener("click", countAndNew);
-DOMButtonFalse.addEventListener("click", displayCardUp);
-
-DOMButtonContinue.addEventListener("click", continueGame);
-DOMButtonReset.addEventListener("click", stopGame);
 
 //Funktion erstellt Array beim ersten mal
 //Methode richtig falsch
@@ -288,13 +289,10 @@ function createArrayRW() {
   showImages();
 }
 
-
-//Methode multiple choice
 function createArrayMC() {
 
   mapFemale = getStudentMap(`${course.innerHTML}Female`);
   mapMale = getStudentMap(`${course.innerHTML}Male`);
-  console.log(mapMale);
 
   let stringArrayF = Array.from(mapFemale.keys());
   stringArrayF.forEach((element) => {
@@ -311,48 +309,63 @@ function createArrayMC() {
 
   showImages();
 }
-let nameRichtig; 
-let randomName1;
-let randomName2; 
 
-function getName(p_inx){
+function getName(stringNumber){
 
-  if (mapFemale.has(`${p_inx}`)){
-    nameRichtig = mapFemale.get(`${p_inx}`);
-    do {
-      randomName1 = mapFemale.get(`${randomNumber()}`);
-      randomName2 = mapFemale.get(`${randomNumber()}`);
-    } while (nameRichtig === randomName2 || nameRichtig === randomName1 || randomName1 === randomName2);
+  if (mapFemale.has(`${stringNumber}`)){
+    arrayGender = arrayFemale;
+    mapGender = mapFemale;
+    nameRichtig = mapFemale.get(`${stringNumber}`);
+
+    randomName1 = getRandomName(arrayGender, mapGender);
+    randomName2 = getRandomName2(arrayGender, mapGender, randomName1);
+  
   }
-  else if (mapMale.has(`${p_inx}`)){
-    nameRichtig = mapMale.get(`${p_inx}`);
-    do {
-      randomName1 = mapMale.get(`${randomNumber()}`);
-      randomName2 = mapMale.get(`${randomNumber()}`);
-    } while (nameRichtig === randomName2 || nameRichtig === randomName1 || randomName1 === randomName2);
+  else if (mapMale.has(`${stringNumber}`)){
+    arrayGender = arrayMale;
+    mapGender = mapMale;
+    nameRichtig = mapMale.get(`${stringNumber}`);
+    
+    randomName1 = getRandomName(arrayGender, mapGender);
+    randomName2 = getRandomName2(arrayGender, mapGender, randomName1);
   }
-  randomButtons(nameRichtig, randomName1, randomName2);
+
+  randomButton(nameRichtig, randomName1, randomName2);
 }
 
-function randomNumber(){
-  let num = arrayFemale[Math.floor(Math.random() * arrayFemale.length)];
-  return num;
+function getRandomName(p_arr, p_map){
+  let number = p_arr[Math.floor(Math.random() * p_arr.length)];
+  let randomName = p_map.get(`${number}`);
+  
+  if(randomName == nameRichtig){
+    randomName = getRandomName(p_arr, p_map);
+  }
+  return randomName;
+}
+
+function getRandomName2(p_arr, p_map, p_name1){
+  let randomNameNew = getRandomName(p_arr, p_map); 
+  
+  if(randomNameNew == p_name1){
+    randomNameNew = getRandomName2(p_arr, p_map, p_name1);
+  }
+  return randomNameNew;
 }
 
 // Shuffle Funktion, um den Namen random auf die Buttons auszugeben
-function randomButtons(nameRichtig, randomName1, randomName2) {
-  shuffleArrayButtons = shuffle(shuffleArrayButtons);
-  console.log(shuffleArrayButtons);
+function randomButton(nameRichtig, randomName1, randomName2) {
+  showButtons = shuffle(showButtons);
 
-  let post1 = document.getElementById(shuffleArrayButtons[0]);
+  let post1 = document.getElementById(showButtons[0]);
   post1.innerHTML = nameRichtig;
 
-  let post2 = document.getElementById(shuffleArrayButtons[1]);
+  let post2 = document.getElementById(showButtons[1]);
   post2.innerHTML = randomName1;
 
-  let post3 = document.getElementById(shuffleArrayButtons[2]);
+  let post3 = document.getElementById(showButtons[2]);
   post3.innerHTML = randomName2;
 }
+
 
 //Hier wird das Aktuelle Array der Runde abgefragt
 function getCurrentArray() {
@@ -394,7 +407,6 @@ function countAndNew() {
 //Counter Funktion (Mengenzaehler)
 function counterUp(p_inx, p_arr) {
   let arrlength = p_arr.length;
-  console.log(p_inx, arrlength);
   currentCard.innerText = "";
   currentCard.innerText = `Karte: ${p_inx + 1}/${arrlength}`;
 }
@@ -412,11 +424,17 @@ function shuffle(p_arr) {
 //Hier die Funktion bei Klick auf Falsch (nicht gewusst)
 function displayCardUp() {
   falseCounter++;
-  countAndNew();
-
+  let num;
   let arr = getCurrentArray();
-  let num = arr[inx - 1];
 
+  if (methode == "rightwrong"){
+    countAndNew();
+    num = arr[inx - 1];
+  }
+  else if (methode == "multiplechoice"){
+    num = arr[inx];
+  }
+    
   if (round == 1) {
     evenArray.push(num, num);
   } else if (round % 2 == 1) {
@@ -426,6 +444,7 @@ function displayCardUp() {
       oddArray.push(num);
     }
   }
+  console.log(evenArray);
 }
 
 // Arrays werden geändert und geshuffelt
@@ -445,6 +464,7 @@ function continueGame() {
   round++;
   showImages();
   hidePopUp();
+  console.log(evenArray);
 }
 
 // Arrays und Varaiblen werden zurück gesetzt
@@ -457,3 +477,24 @@ function stopGame() {
   round = 1;
   falseCounter = 0;
 }
+
+
+const anzeige = document.querySelector(".anzeige");
+const rand = document.querySelector(".card--back");
+const DOMAnzeige = document.querySelector(".richtigFalsch");
+
+function multipleKarte(target) {
+  let name = target.innerHTML;
+  if (name == nameRichtig) {
+    anzeige.innerHTML = "Super, richtig!";
+    anzeige.style.color = 'green';
+    rand.style.border = 'solid 3px green';
+  } 
+  else {
+    anzeige.innerHTML = "Das war leider falsch.";
+    anzeige.style.color = 'red';
+    rand.style.border = 'solid 3px red';
+    displayCardUp();
+  }
+}
+

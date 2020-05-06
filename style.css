@@ -5,7 +5,7 @@
   padding: 0;
 }
 
-body {
+#body {
   position: fixed;
   top: 0;
   left: 0;
@@ -59,28 +59,43 @@ a {
 
 #bg-img {
   position: absolute;
-  height: 50%;
+  height: 40%;
   width: 100vw;
   top: 0;
   z-index: 0;
-  background-image: url("images/Startseite.png");
+  background-image: url("images/header.jpg");
   background-size: auto;
   background-repeat: no-repeat;
+  z-index: 0;
 }
 
 #container {
   position: relative;
-  width: 40%;
+  width: 40vw;
   z-index: 100;
-  margin-top: 20%;
+  margin-left: 10%;
+  margin-top: 50vh;
+  padding: 15px;
+}
+#logobox{
+  width: 300px;
+  height: auto;
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  display: flex;
+  flex-direction: column;
+}
+#dhbwlogo{
+  width: 200px;
+  height: 70px;
+  object-fit: cover;
 }
 
-
 #onlogo {
-  position: relative;
   width: 300px;
-  margin-top: 35%;
-  margin-left: 20%;
+  height: 70px;
+  object-fit: cover;
 }
 /* NAVIGATION */
 
@@ -90,14 +105,16 @@ nav {
   padding-top: 3%;
   left: 0;
   padding-left: 10%;
-  width: 100vw;
+  width: 90vw;
   height: 6%;
   display: block;
   background-color: black;
+  z-index: 100;
 }
 
 nav ul {
   list-style: none;
+  width: 80%;
 }
 
 nav ul li {
@@ -122,23 +139,22 @@ nav a:hover {
 }
 
 #logo {
-  margin-left: 30%;
-  width: 100px;
-  padding-right: 10%;
+  float: right;
+  padding-right: 5%;
+  margin-top: -20px;
+  width: 150px;
+  height: 50px;
+  object-fit: cover;
+  background-position: center;
 }
 
 .active {
-  background-color: #88bc48;
+  color: #88bc48;
 }
 
-.fa-home:before {
-  padding: 10px;
-}
-
-.fa-th-large:before {
-  padding: 10px;
-}
-
+.fa-id-card::before,
+.fa-home:before,
+.fa-th-large:before,
 .fa-address-card-o:before {
   padding: 10px;
 }
@@ -494,19 +510,12 @@ nav::after {
 }
 
 /* UEBERSICHTSEITE*/
-#header-nav {
-  background-color: black;
-  height: 10vh;
-  width: 100vw;
-  position: absolute;
-  top: 0;
-  z-index: 0;
-}
+
 
 #headline-uebersicht {
   position: absolute;
   top: 20%;
-  padding-right: 70%;
+  left: 12%;
 }
 
 #headline-uebersicht h2 {
@@ -517,21 +526,22 @@ nav::after {
 .auswahl-uebersicht {
   width: 35%;
   height: 35%;
-  right: 3%;
+  right: 9%;
   position: absolute;
-  top: 17%;
+  top: 15%;
 }
 
 #bilder-container {
-  width: 90%;
+  width: 76%;
   height: 65%;
   background-color: white;
-  box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
-  -webkit-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
-  -moz-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
+  box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.16);
   transition: all 0.5s ease;
   position: absolute;
-  top: 35%;
+  left: 12%;
+  top: 30%;
   overflow-y: scroll;
   text-align: center;
 }
