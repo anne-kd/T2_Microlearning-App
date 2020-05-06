@@ -212,7 +212,7 @@ function getStudentMap(KursGender) {
       .set("6", "Christina Bünnagel");
       return map;
     case "ON19Male":
-      return map = new Map()
+      map = new Map()
       .set("2", "Steffen Brendle")
       .set("4", "Jonas Althoff")
       .set("5", "Christian Dänzer")
@@ -223,12 +223,14 @@ function getStudentMap(KursGender) {
       .set("19", "Marco Scotarello")
       .set("25", "Martin Panaget")
       .set("27", "Niklas Schikora")
-      .set("29", "Calvin Reibeisenspiess");;
+      .set("29", "Calvin Reibeisenspiess");
+      return map;
     case "ON18Male":
-      return map = new Map()
+      map = new Map()
       .set("2", "Moritz Banhardt")
       .set("4", "Nils Eisenhauer")
       .set("7", "Frederik Hellbauer");
+      return map;
     case "ON17":
       return 0;
     default:
@@ -244,7 +246,7 @@ function createArrayMC() {
 
   mapFemale = getStudentMap(`${course.innerHTML}Female`);
   mapMale = getStudentMap(`${course.innerHTML}Male`);
-  console.log(mapMale);
+
 
   let stringArrayF = Array.from(mapFemale.keys());
   stringArrayF.forEach((element) => {
@@ -264,30 +266,55 @@ function createArrayMC() {
 let nameRichtig; 
 let randomName1;
 let randomName2; 
+let gender;
+let maps;
 
 function getName(p_inx){
 
   if (mapFemale.has(`${p_inx}`)){
+    gender = arrayFemale;
+    maps = mapFemale;
     nameRichtig = mapFemale.get(`${p_inx}`);
-    do {
-      randomName1 = mapFemale.get(`${randomNumber()}`);
-      randomName2 = mapFemale.get(`${randomNumber()}`);
-    } while (nameRichtig === randomName2 || nameRichtig === randomName1 || randomName1 === randomName2);
+
+    randomName1 = randomNumber(gender, maps);
+    randomName2 = randomNumber2(gender, maps, randomName1);
+  
   }
   else if (mapMale.has(`${p_inx}`)){
+    gender = arrayMale;
+    maps = mapMale;
     nameRichtig = mapMale.get(`${p_inx}`);
-    do {
-      randomName1 = mapMale.get(`${randomNumber()}`);
-      randomName2 = mapMale.get(`${randomNumber()}`);
-    } while (nameRichtig === randomName2 || nameRichtig === randomName1 || randomName1 === randomName2);
+    
+    randomName1 = randomNumber(gender, maps);
+    randomName2 = randomNumber2(gender, maps, randomName1);
   }
+
   randomButtons(nameRichtig, randomName1, randomName2);
 }
 
-function randomNumber(){
-  let num = arrayFemale[Math.floor(Math.random() * arrayFemale.length)];
-  return num;
+function randomNumber(p_arr, p_map){
+  let number = p_arr[Math.floor(Math.random() * p_arr.length)];
+  let randomName = p_map.get(`${number}`);
+  
+  if(randomName == nameRichtig){
+    randomName = randomNumber(p_arr, p_map);
+  }
+  return randomName;
 }
+
+function randomNumber2(p_arr, p_map, p_name1){
+  let number = p_arr[Math.floor(Math.random() * p_arr.length)];
+  let randomName = p_map.get(`${number}`);
+  
+  if(randomName == nameRichtig){
+    randomName = randomNumber2(p_arr, p_map, p_name1);
+  }
+  if(randomName == p_name1){
+    randomName = randomNumber2(p_arr, p_map, p_name1);
+  }
+  return randomName;
+}
+
 
 // Shuffle Funktion, um den Namen random auf die Buttons auszugeben
 function randomButtons(nameRichtig, randomName1, randomName2) {
