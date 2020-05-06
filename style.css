@@ -410,15 +410,7 @@ nav::after {
   margin-top: 5%;
   margin-left: 5%;
 }
-.popup h4 {
-  color: black;
-  position: absolute;
-  right: 47%;
-  top: 57%;
-  font-size: 1.5em;
 
- 
-}
 #popup-first {
     display: block;
 }
@@ -502,5 +494,14 @@ nav::after {
   padding-right: 0;
   margin-left: auto;
   margin-right: auto;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup h4 {
+  position: absolute;
+  color: black;
+  font-size: 1.5em;
+  font-family: 'Montserrat', sans-serif;
+  z-index: 100;
 }
