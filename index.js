@@ -318,7 +318,7 @@ function charIt() {
       datasets: [{
         label: 'Trefferquote',
         backgroundColor: ['#88bc48', 'salmon'],
-        data: [50, 50],
+        data: [[right], [fail]]
       }]
     },
 
