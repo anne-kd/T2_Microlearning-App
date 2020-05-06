@@ -45,7 +45,7 @@ function roundPopUp(p_round, p_falseCounter) {
 
     charIt();
     chart();
-
+    percent();
     stopGame();
   }
   else {
@@ -57,7 +57,7 @@ function roundPopUp(p_round, p_falseCounter) {
 
     charIt();
     chart();
-
+    percent();
   }
 }
 
@@ -163,7 +163,7 @@ function getSrc() {
 function getStudents() {
   switch (course.innerHTML) {
     case "ON19":
-      return 31;
+      return 6;
     case "ON18":
       return 7;
     case "ON17":
@@ -339,3 +339,16 @@ function chart() {
   console.log("Donut - Chart Drecks Zeug");
   charIt();
 };
+
+
+function percent () {
+
+  fail = falseCounter;
+  right = inx - fail;
+
+  let rechnung = Math.round (right/inx*100);
+
+  const perc = document.getElementById("prozent");
+
+  perc.innerHTML = rechnung + "%";
+}

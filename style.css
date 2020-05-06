@@ -410,12 +410,21 @@ nav::after {
   margin-top: 5%;
   margin-left: 5%;
 }
+.popup h4 {
+  color: black;
+  position: absolute;
+  right: 48%;
+  top: 58%;
+
+ 
+}
 #popup-first {
     display: block;
 }
 #popup-round {
   display: none;
 }
+
 .close {
   float: right;
   margin-top: 5%;
