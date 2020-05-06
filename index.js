@@ -10,7 +10,7 @@ const DOMButtonReset = document.querySelector("#exit");
 
 const DOMButtonExit = document.querySelectorAll(".reset");
 DOMButtonExit.forEach((element) => {
-  element.addEventListener("click", stopGame);
+  element.addEventListener("click", saveInstancesLocal);
 });
 
 // Local Storage 
@@ -108,7 +108,8 @@ const courseNamePopUp = document.querySelectorAll('.ON');
 courseNamePopUp.forEach(element=>{
   element.addEventListener('click', (event)=>{
     setCourse(event.target);
-    createArray();
+    checkIfNewUser(event.target)
+    //createArray();
     hidePopUp();
   })
 });
