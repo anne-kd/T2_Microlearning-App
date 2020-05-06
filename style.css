@@ -366,12 +366,13 @@ nav::after {
 
 
 #popup-round .button {
-  margin-top: 2%;
+  margin-left: 10%;
   font-family: "Montserrat";
   font-weight: 700;
   text-transform: uppercase;
   font-size: 1em;
   color: white;
+  width: 90%;
 }
 
 #multi div:first-child{
@@ -380,6 +381,7 @@ nav::after {
 #multi div:last-child{
   margin-right: 0;
 }
+#newCourse,
 #next,
 .multbutton{
   display: flex;
@@ -388,7 +390,7 @@ nav::after {
   background-color: black;
   color: white;
   font-family: "Montserrat";
-  font-weight: 200;
+  font-weight: 700;
   font-size: 1em;
   text-transform: uppercase;
   cursor: pointer;
@@ -409,7 +411,7 @@ nav::after {
   cursor: pointer;
 }
 
-#exit,
+
 .false {
   background-color: salmon;
   display: flex;
@@ -487,7 +489,7 @@ nav::after {
 }
 .popup h3 {
   color: black;
-  margin-top: 15%;
+  margin-top: 10%;
   margin-left: 10%;
 }
 
@@ -496,6 +498,9 @@ nav::after {
 }
 #popup-round {
   display: none;
+  align-items: center;
+  height: 70%;
+  width: 60%;
 }
 
 .close {

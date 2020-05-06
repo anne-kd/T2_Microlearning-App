@@ -7,12 +7,13 @@ const DOMButtonMulti = document.querySelector("#multi");
 const DOMButtonMultbutton = document.querySelectorAll(".multbutton");
 const DOMButtonNext = document.querySelector(".-next");
 const DOMCheckButton = document.querySelector("#check");
-const DOMButtonExit = document.querySelectorAll(".reset");
+const DOMButtonReset = document.querySelectorAll(".reset");
+const DOMButtonCourse = document.querySelector("#newCourse");
 //"Klicken Sie auf die Karte"
 const DOMIntro = document.querySelector("#intro");
 // Pop up
 const popupFirst = document.querySelector("#popup-first");
-const popupRound = document.querySelector("#popup-round");
+const popupEnd = document.querySelector("#popup-round");
 const PopupClose = document.querySelectorAll(".close");
 // Blur HTML Elemente
 const DOMNav = document.querySelector("nav");
@@ -22,6 +23,10 @@ const DOMWrapper = document.querySelector("#wrapper");
 const DOMCard = document.getElementById("card");
 const CardBack = document.querySelector(".card--back");
 const CardFront = document.querySelector(".card--front");
+//nur für Methode Multiplechoice (Rückseite der Karte färben)
+const anzeige = document.querySelector(".anzeige");
+const rand = document.querySelector(".card--back");
+const DOMAnzeige = document.querySelector(".richtigFalsch");
 
 //VARIABLEN UND KONSTANTEN
 const curentMethode = document.querySelector(".activeMethode").innerText;
@@ -46,44 +51,44 @@ let randomName1;
 let randomName2; 
 let arrayGender;
 let mapGender;
+//Chart
+const donutChart = document.getElementById('myChart');
+let fail = 0;
+let right = 0;
+
+
 
 //ALLGEMEINE ON KLICK EVENTS
 // x-Button, navigiert zur Startseite
-DOMButtonExit.forEach((element) => {
-  element.addEventListener("click", stopGame);
+DOMButtonReset.forEach((element) => {
+   element.addEventListener("click", stopGame);
 });
 DOMButtonContinue.addEventListener("click", continueGame);
+DOMButtonCourse.addEventListener("click", firstPopUp);
 
 // POPUP
 function firstPopUp() {
+  stopGame();
   blurElements();
   popupFirst.style.display = "block";
   let DOMH3 = popupFirst.querySelector("#test");
-  DOMH3.innerHTML = "";
   DOMH3.innerHTML = `Welchen Kurs wollen Sie lernen?`;
 }
 
-function roundPopUp(p_round, p_falseCounter) {
-  if (p_falseCounter == 0 && p_round % 2 == 1) {
+function endPopUp(p_round, p_falseCounter) {
+    popupEnd.style.display = "block";
     blurElements();
-    popupFirst.style.display = "block";
-    let DOMH3 = popupFirst.querySelector("#test");
-    DOMH3.innerHTML = "";
-    DOMH3.innerHTML = `Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!
-    <br />  Wählen Sie einen neuen Kurs, den Sie lernen möchten`;
+    let DOMH3 = popupEnd.querySelector("#round");
     charIt();
     chart();
     percent();
+
+  if (p_falseCounter == 0 && p_round % 2 == 1) {
+    
+    DOMH3.innerText = `<span class="line"></span> Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!`;
     stopGame();
   } else {
-    popupRound.style.display = "block";
-    blurElements();
-    let DOMH3 = popupRound.querySelector("#round");
-    DOMH3.innerHTML = "";
-    DOMH3.innerHTML = `Sie haben Runde ${p_round} geschafft!`;
-    charIt();
-    chart();
-    percent();
+    DOMH3.innerHTML = `<span class="line"></span> Sie haben Runde ${p_round} geschafft!`;
   }
 }
 
@@ -94,7 +99,7 @@ function hidePopUp() {
   DOMWrapper.classList.remove("blur");
 
   popupFirst.style.display = "none";
-  popupRound.style.display = "none";
+  popupEnd.style.display = "none";
 }
 
 //Blur Effekt wenn das Popup aktiv ist
@@ -213,7 +218,7 @@ function getSrc() {
 function getStudents() {
   switch (course.innerHTML) {
     case "ON19":
-      return 6;
+      return 31;
     case "ON18":
       return 7;
     case "ON17":
@@ -316,63 +321,6 @@ function createArrayMC() {
   showImages();
 }
 
-function getName(stringNumber){
-
-  if (mapFemale.has(`${stringNumber}`)){
-    arrayGender = arrayFemale;
-    mapGender = mapFemale;
-    nameRichtig = mapFemale.get(`${stringNumber}`);
-
-    randomName1 = getRandomName(arrayGender, mapGender);
-    randomName2 = getRandomName2(arrayGender, mapGender, randomName1);
-  
-  }
-  else if (mapMale.has(`${stringNumber}`)){
-    arrayGender = arrayMale;
-    mapGender = mapMale;
-    nameRichtig = mapMale.get(`${stringNumber}`);
-    
-    randomName1 = getRandomName(arrayGender, mapGender);
-    randomName2 = getRandomName2(arrayGender, mapGender, randomName1);
-  }
-
-  randomButton(nameRichtig, randomName1, randomName2);
-}
-
-function getRandomName(p_arr, p_map){
-  let number = p_arr[Math.floor(Math.random() * p_arr.length)];
-  let randomName = p_map.get(`${number}`);
-  
-  if(randomName == nameRichtig){
-    randomName = getRandomName(p_arr, p_map);
-  }
-  return randomName;
-}
-
-function getRandomName2(p_arr, p_map, p_name1){
-  let randomNameNew = getRandomName(p_arr, p_map); 
-  
-  if(randomNameNew == p_name1){
-    randomNameNew = getRandomName2(p_arr, p_map, p_name1);
-  }
-  return randomNameNew;
-}
-
-// Shuffle Funktion, um den Namen random auf die Buttons auszugeben
-function randomButton(nameRichtig, randomName1, randomName2) {
-  showButtons = shuffle(showButtons);
-
-  let post1 = document.getElementById(showButtons[0]);
-  post1.innerHTML = nameRichtig;
-
-  let post2 = document.getElementById(showButtons[1]);
-  post2.innerHTML = randomName1;
-
-  let post3 = document.getElementById(showButtons[2]);
-  post3.innerHTML = randomName2;
-}
-
-
 //Hier wird das Aktuelle Array der Runde abgefragt
 function getCurrentArray() {
   if (round == 1) {
@@ -405,7 +353,7 @@ function countAndNew() {
   showImages();
   let arr = getCurrentArray();
   if (inx == arr.length) {
-    roundPopUp(round, falseCounter);
+    endPopUp(round, falseCounter);
   }
   flipCardReverse();
 }
@@ -484,10 +432,64 @@ function stopGame() {
   falseCounter = 0;
 }
 
-const anzeige = document.querySelector(".anzeige");
-const rand = document.querySelector(".card--back");
-const DOMAnzeige = document.querySelector(".richtigFalsch");
+//MULTIPLECHOICE RANDOM NAMEN
+function getName(stringNumber){
 
+  if (mapFemale.has(`${stringNumber}`)){
+    arrayGender = arrayFemale;
+    mapGender = mapFemale;
+    nameRichtig = mapFemale.get(`${stringNumber}`);
+
+    randomName1 = getRandomName(arrayGender, mapGender);
+    randomName2 = getRandomName2(arrayGender, mapGender, randomName1);
+  
+  }
+  else if (mapMale.has(`${stringNumber}`)){
+    arrayGender = arrayMale;
+    mapGender = mapMale;
+    nameRichtig = mapMale.get(`${stringNumber}`);
+    
+    randomName1 = getRandomName(arrayGender, mapGender);
+    randomName2 = getRandomName2(arrayGender, mapGender, randomName1);
+  }
+
+  randomButton(nameRichtig, randomName1, randomName2);
+}
+
+function getRandomName(p_arr, p_map){
+  let number = p_arr[Math.floor(Math.random() * p_arr.length)];
+  let randomName = p_map.get(`${number}`);
+  
+  if(randomName == nameRichtig){
+    randomName = getRandomName(p_arr, p_map);
+  }
+  return randomName;
+}
+
+function getRandomName2(p_arr, p_map, p_name1){
+  let randomNameNew = getRandomName(p_arr, p_map); 
+  
+  if(randomNameNew == p_name1){
+    randomNameNew = getRandomName2(p_arr, p_map, p_name1);
+  }
+  return randomNameNew;
+}
+
+// Shuffle Funktion, um den Namen random auf die Buttons auszugeben
+function randomButton(nameRichtig, randomName1, randomName2) {
+  showButtons = shuffle(showButtons);
+
+  let post1 = document.getElementById(showButtons[0]);
+  post1.innerHTML = nameRichtig;
+
+  let post2 = document.getElementById(showButtons[1]);
+  post2.innerHTML = randomName1;
+
+  let post3 = document.getElementById(showButtons[2]);
+  post3.innerHTML = randomName2;
+}
+
+//KARTE DREHT SICH:
 function multipleKarte(target) {
   let name = target.innerHTML;
   if (name == nameRichtig) {
@@ -506,17 +508,12 @@ function multipleKarte(target) {
 
 /* Trefferquote - Chart */
 
-var donutChart = document.getElementById('myChart');
-let fail = 0;
-let right = 0;
-
-
 function charIt() {
 
   fail = falseCounter;
   console.log("Falsche Antworten Sackl Zement " + fail);
 
-  right = num - fail;
+  right = getStudents() - fail;
   console.log("Richtige Antworten Fix Hehner " + right);
 
 
