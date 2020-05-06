@@ -61,12 +61,12 @@ a {
   position: relative;
   margin-top: 5%;
   font-weight: bold;
-  color: #88bc48;
+  color: black;
   cursor: pointer;
 
 }
 #onboardButton:hover {
-  color: black;
+  color: #88bc48;
 }
 
 #bg-img {
