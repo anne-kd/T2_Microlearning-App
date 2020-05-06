@@ -23,12 +23,10 @@ let oddArray = []; //mod 2 = 1
 let evenArray = []; //mod 2 = 0
 let methode;
 
-let firstArrayMale = [];
-let firstArrayFemale = [];
-let oddArrayMale = [];
-let oddArrayFemale = [];
-let evenArrayMale = [];
-let evenArrayFemale = [];
+let arrayMale = [];
+let arrayFemale = [];
+let mapFemale
+let mapMale
 let shuffleArrayButtons = [1, 2, 3];
 
 // Methode
@@ -214,49 +212,32 @@ function getStudents() {
   }
 }
 
-//Klick-Events
-DOMButtonRight.addEventListener("click", countAndNew);
-DOMButtonFalse.addEventListener("click", displayCardUp);
-
-DOMButtonContinue.addEventListener("click", continueGame);
-DOMButtonReset.addEventListener("click", stopGame);
-
-//Funktion erstellt Array beim ersten mal
-//Methode richtig falsch
-function createArrayRW() {
-  let num = getStudents();
-  for (let x = num; x > 0; x--) {
-    firstArray.push(x);
-  }
-  firstArray = shuffle(firstArray);
-  showImages();
-}
-
 function getStudentMap(KursGender) {
   let map;
   switch (KursGender) {
-    // case "ON19Female":
-    //   return map = new Map()
-    //   .set("1", "Lisa Albers")
-    //   .set("3", "Nina Eberle")
-    //   .set("6", "Larissa Eirich")
-    //   .set("7", "Dalma Balogh")
-    //   .set("10", "Katharina Barth")
-    //   .set("11", "Anne-Kathrin Dortleff")
-    //   .set("12", "Milena Fiorino")
-    //   .set("14", "Julia Henschel")
-    //   .set("15", "Nicole Höfler")
-    //   .set("16", "Lina Käfer")
-    //   .set("17", "Alicia Kilian")
-    //   .set("20", "Kristin Zänger")
-    //   .set("21", "Laura Krumm")
-    //   .set("22", "Lara Neumaier")
-    //   .set("23", "Jessica Noe")
-    //   .set("24", "Livia Maxhaku")
-    //   .set("26", "Katharina Schmitt")
-    //   .set("28", "Leonie Müller")
-    //   .set("30", "Alischa Thomas")
-    //   .set("31", "Juliane Speck");;
+    case "ON19Female":
+      map = new Map()
+      .set("1", "Lisa Albers")
+      .set("3", "Nina Eberle")
+      .set("6", "Larissa Eirich")
+      .set("7", "Dalma Balogh")
+      .set("10", "Katharina Barth")
+      .set("11", "Anne-Kathrin Dortleff")
+      .set("12", "Milena Fiorino")
+      .set("14", "Julia Henschel")
+      .set("15", "Nicole Höfler")
+      .set("16", "Lina Käfer")
+      .set("17", "Alicia Kilian")
+      .set("20", "Kristin Zänger")
+      .set("21", "Laura Krumm")
+      .set("22", "Lara Neumaier")
+      .set("23", "Jessica Noe")
+      .set("24", "Livia Maxhaku")
+      .set("26", "Katharina Schmitt")
+      .set("28", "Leonie Müller")
+      .set("30", "Alischa Thomas")
+      .set("31", "Juliane Speck");
+      return map;
     case "ON18Female":
       map = new Map()
       .set("1", "Jana Ballweg")
@@ -288,23 +269,40 @@ function getStudentMap(KursGender) {
       return "Jemand hat einen Fehler gemacht";
   }
 }
-let mapFemale
-let mapMale
+
+//Klick-Events
+DOMButtonRight.addEventListener("click", countAndNew);
+DOMButtonFalse.addEventListener("click", displayCardUp);
+
+DOMButtonContinue.addEventListener("click", continueGame);
+DOMButtonReset.addEventListener("click", stopGame);
+
+//Funktion erstellt Array beim ersten mal
+//Methode richtig falsch
+function createArrayRW() {
+  let num = getStudents();
+  for (let x = num; x > 0; x--) {
+    firstArray.push(x);
+  }
+  firstArray = shuffle(firstArray);
+  showImages();
+}
+
+
 //Methode multiple choice
 function createArrayMC() {
 
-  mapFemale = getStudentMap("ON18Female");
-  mapMale = getStudentMap("ON18Male");
-
+  mapFemale = getStudentMap(`${course.innerHTML}Female`);
+  mapMale = getStudentMap(`${course.innerHTML}Male`);
 
   let stringArrayF = Array.from(mapFemale.keys());
   stringArrayF.forEach((element) => {
-    firstArrayFemale.push(parseInt(element));
+    arrayFemale.push(parseInt(element));
   });
 
   let stringArrayM = Array.from(mapMale.keys());
   stringArrayM.forEach((element) => {
-    firstArrayMale.push(parseInt(element));
+    arrayMale.push(parseInt(element));
   });
 
   firstArray = firstArrayFemale.concat(firstArrayMale);
