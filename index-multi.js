@@ -23,7 +23,7 @@ let arrayMale = [];
 let arrayFemale = [];
 let mapFemale;
 let mapMale;
-let shuffleArrayButtons = [1, 2, 3];
+let showButtons = [1, 2, 3];
 
 // x-Button, navigiert zur Startseite
 const DOMButtonExit = document.querySelectorAll(".reset");
@@ -246,7 +246,6 @@ function createArrayMC() {
   mapFemale = getStudentMap(`${course.innerHTML}Female`);
   mapMale = getStudentMap(`${course.innerHTML}Male`);
 
-
   let stringArrayF = Array.from(mapFemale.keys());
   stringArrayF.forEach((element) => {
     arrayFemale.push(parseInt(element));
@@ -317,16 +316,15 @@ function randomNumber2(p_arr, p_map, p_name1){
 
 // Shuffle Funktion, um den Namen random auf die Buttons auszugeben
 function randomButtons(nameRichtig, randomName1, randomName2) {
-  shuffleArrayButtons = shuffle(shuffleArrayButtons);
-  console.log(shuffleArrayButtons);
+  showButtons = shuffle(showButtons);
 
-  let post1 = document.getElementById(shuffleArrayButtons[0]);
+  let post1 = document.getElementById(showButtons[0]);
   post1.innerHTML = nameRichtig;
 
-  let post2 = document.getElementById(shuffleArrayButtons[1]);
+  let post2 = document.getElementById(showButtons[1]);
   post2.innerHTML = randomName1;
 
-  let post3 = document.getElementById(shuffleArrayButtons[2]);
+  let post3 = document.getElementById(showButtons[2]);
   post3.innerHTML = randomName2;
 }
 
@@ -368,7 +366,6 @@ function countAndNew() {
 //Counter Funktion (Mengenzaehler)
 function counterUp(p_inx, p_arr) {
   let arrlength = p_arr.length;
-  console.log(p_inx, arrlength);
   currentCard.innerText = "";
   currentCard.innerText = `Karte: ${p_inx + 1}/${arrlength}`;
 }
@@ -386,10 +383,8 @@ function shuffle(p_arr) {
 //Hier die Funktion bei Klick auf Falsch (nicht gewusst)
 function displayCardUp() {
   falseCounter++;
-  countAndNew();
-
   let arr = getCurrentArray();
-  let num = arr[inx - 1];
+  let num = arr[inx];
 
   if (round == 1) {
     evenArray.push(num, num);
@@ -440,18 +435,16 @@ const DOMAnzeige = document.querySelector(".richtigFalsch");
 
 function multipleKarte(target) {
   let name = target.innerHTML;
-  console.log(name);
-if (name == "Steffen Brendle") {
-  DOMAnzeige.style.display = "block";
-  anzeige.innerHTML = "richtig";
-  anzeige.style.color = 'green';
-  rand.style.border = 'solid 3px green';
-} 
-else {
-  DOMAnzeige.style.display = "block";
-  anzeige.innerHTML = "falsch";
-  anzeige.style.color = 'red';
-  rand.style.border = 'solid 3px red';
-}
+  if (name == nameRichtig) {
+    anzeige.innerHTML = "richtig";
+    anzeige.style.color = 'green';
+    rand.style.border = 'solid 3px green';
+  } 
+  else {
+    anzeige.innerHTML = "falsch";
+    anzeige.style.color = 'red';
+    rand.style.border = 'solid 3px red';
+    displayCardUp();
+  }
 }
 
