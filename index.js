@@ -10,23 +10,8 @@ const DOMButtonReset = document.querySelector("#exit");
 
 const DOMButtonExit = document.querySelectorAll(".reset");
 DOMButtonExit.forEach((element) => {
-  element.addEventListener("click", ()=>{
-    saveInstancesLocal();
-    stopGame;
-  });
+  element.addEventListener("click", stopGame);
 });
-
-// Local Storage 
-const localStorage = window.localStorage;
-let newUser = true;
-//Local Storage Objekt Funktinonen
-Storage.prototype.setObj = function(key, obj) {
-  return this.setItem(key, JSON.stringify(obj))
-}
-Storage.prototype.getObj = function(key) {
-  return JSON.parse(this.getItem(key))
-}
-
 // POP UP
 const popupFirst = document.querySelector("#popup-first");
 const popupRound = document.querySelector("#popup-round");
@@ -111,7 +96,7 @@ const courseNamePopUp = document.querySelectorAll('.ON');
 courseNamePopUp.forEach(element=>{
   element.addEventListener('click', (event)=>{
     setCourse(event.target);
-    checkIfNewUser(event.target);
+    createArray();
     hidePopUp();
   })
 });
@@ -130,80 +115,7 @@ DOMButtonRight.addEventListener("click", countAndNew);
 DOMButtonFalse.addEventListener("click", displayCardUp);
 
 DOMButtonContinue.addEventListener("click", continueGame);
-DOMButtonReset.addEventListener("click", ()=>{
-  saveInstancesLocal();
-  stopGame;
-});
-
-//Storage
-
-function checkIfNewUser(courseName){
-  let session = 'session' + courseName.innerHTML;
-  let number = localStorage.getItem(session);
-  localStorage.removeItem(session);
-  console.log(number);
-
-  if(number==='1'){
-    getInstancesLocal(courseName);
-    showImages();
-    console.log('wuhu du bist nocheinmal hier')
-  }else if(number==null){
-    localStorage.setItem(session, '1');
-    createArray();
-    console.log('wuhu deine erste session')
-  }
-}
-
-function saveInstancesLocal(){
-  let courseName = course.innerHTML;
-
-  let sFalseCounter = `falseCounter${courseName}`;
-  console.log(sFalseCounter);
-  localStorage.setItem(sFalseCounter, falseCounter);
-
-  let sInx = `inx${courseName}`;
-  localStorage.setItem(sInx, inx);
-
-  let sRound = `round${courseName}`;
-  localStorage.setItem(sRound, round);
-
-  let sFirstArray = `firstArray${courseName}`;
-  localStorage.setObj(sFirstArray, firstArray);
-
-  let sOddArray = `oddArray${courseName}`;
-  localStorage.setObj(sOddArray, oddArray);
-
-  let sEvenArray = `evenArray${courseName}`;
-  localStorage.setObj(sEvenArray, evenArray);
-}
-
-function clearStorage(){
-  localStorage.clear();
-}
-
-function getInstancesLocal(courseName){
-  courseName = courseName.innerHTML;
-
-  let sFalseCounter = `falseCounter${courseName}`;
-  console.log(sFalseCounter);
-  falseCounter = Number(localStorage.getItem(sFalseCounter));
-
-  let sInx = `inx${courseName}`;
-  inx = Number(localStorage.getItem(sInx));
-
-  let sRound = `round${courseName}`;
-  round = Number(localStorage.getItem(sRound));
-
-  let sFirstArray = `firstArray${courseName}`;
-  firstArray = localStorage.getObj(sFirstArray);
-
-  let sOddArray = `oddArray${courseName}`;
-  oddArray = localStorage.getObj(sOddArray);
-
-  let sEvenArray = `evenArray${courseName}`;
-  evenArray = localStorage.getObj(sEvenArray);
-  //clearStorage();
-}
+DOMButtonReset.addEventListener("click", stopGame);
 
 //verändert beim auswählen eines Kurses den Kursnamen
 const course = document.querySelector('.course');
