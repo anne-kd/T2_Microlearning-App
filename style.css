@@ -413,8 +413,9 @@ nav::after {
 .popup h4 {
   color: black;
   position: absolute;
-  right: 48%;
-  top: 58%;
+  right: 47%;
+  top: 57%;
+  font-size: 1.5em;
 
  
 }
