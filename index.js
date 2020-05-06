@@ -46,6 +46,7 @@ function firstPopUp() {
   DOMH3.innerHTML = `Welchen Kurs wollen Sie lernen?`;
 }
 
+
 function roundPopUp(p_round, p_falseCounter) {
 
   if (p_falseCounter == 0 && p_round % 2 == 1) {
