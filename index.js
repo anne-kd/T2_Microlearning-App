@@ -306,9 +306,8 @@ function createArrayMC() {
   });
 
   firstArray = firstArrayFemale.concat(firstArrayMale);
-  console.log(firstArray);
 
-  getName();
+  showImages();
 }
 
 function getName(){
@@ -368,7 +367,9 @@ function showImages() {
   CardFront.firstElementChild.src = `${getSrc()}front/${arr[inx]}-vs.png`;
   //Rückseite
   CardBack.firstElementChild.src = `${getSrc()}back/${arr[inx]}-rs.png`;
+  if(methode=="multiplechoice"){
 
+  }
   counterUp(inx, arr);
 }
 
