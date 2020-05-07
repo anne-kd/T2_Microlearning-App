@@ -516,8 +516,16 @@ function multipleKarte(target) {
 /* Trefferquote - Chart */
 function charCurrent(){
   
-  let currentFail = falseCounter;
-  let currentRight = (inx + 1) - currentFail;
+  let currentFail = falseCounter
+  let currentRight;
+
+  if (curentMethode == "MULTIPLECHOICE"){
+     currentRight = (inx + 1) - currentFail;
+  }
+  else if (curentMethode=="KARTEIKARTEN"){
+    currentRight = (inx) - currentFail;
+  }
+  
   const chartTest = new Chart(donutChartCurrent, {
     type: 'doughnut',
     data: {
