@@ -1,3 +1,12 @@
+// Local Storage 
+const localStorage = window.localStorage;
+//Local Storage Objekt Funktinonen
+Storage.prototype.setObj = function(key, obj) {
+  return this.setItem(key, JSON.stringify(obj));
+}
+Storage.prototype.getObj = function(key) {
+  return JSON.parse(this.getItem(key));
+}
 // HTML DOM ELEMENTE
 const NAVCards = document.querySelector("#nav-index-card");
 const DOMNav = document.querySelector("nav");
@@ -15,15 +24,7 @@ DOMButtonExit.forEach((element) => {
   });
 });
 
-// Local Storage 
-const localStorage = window.localStorage;
-//Local Storage Objekt Funktinonen
-Storage.prototype.setObj = function(key, obj) {
-  return this.setItem(key, JSON.stringify(obj));
-}
-Storage.prototype.getObj = function(key) {
-  return JSON.parse(this.getItem(key));
-}
+
 
 // POP UP
 const popupFirst = document.querySelector("#popup-first");
@@ -135,111 +136,6 @@ DOMButtonContinue.addEventListener("click", continueGame);
 DOMButtonReset.addEventListener("click", ()=>{
   saveInstancesLocal();
 });
-
-//Storage
-
-function checkIfNewUser(courseName){
-  let session = 'session' + courseName.innerHTML;
-  let number = localStorage.getItem(session);
-  let storageValue = parseInt(number);
-  console.log(storageValue);
-
-  if(storageValue==0){
-    createArray();
-    localStorage.setItem(session, '1');
-    console.log('erstes mal');
-  }else if(storageValue==1){
-    console.log( JSON.stringify(localStorage, null, 2) );
-    getInstancesLocal(courseName);
-    console.log(firstArray);
-    showImages();
-    console.log('erneutes mal');
-  }else if(!storageValue){
-    localStorage.setItem(session, '1');
-    createArray();
-  }
-}
-//Instanzen des jeweiligen Kurses speichern
-function saveInstancesLocal(){
-  let courseName = course.innerHTML;
-
-  let sFalseCounter = `falseCounter${courseName}`;
-  localStorage.setItem(sFalseCounter, falseCounter);
-
-  let sInx = `inx${courseName}`;
-  localStorage.setItem(sInx, inx);
-
-  let sRound = `round${courseName}`;
-  localStorage.setItem(sRound, round);
-
-  let sFirstArray = `firstArray${courseName}`;
-  localStorage.setObj(sFirstArray, firstArray);
-
-  let sOddArray = `oddArray${courseName}`;
-  localStorage.setObj(sOddArray, oddArray);
-
-  let sEvenArray = `evenArray${courseName}`;
-  localStorage.setObj(sEvenArray, evenArray);
-
-  let sSession = `session${courseName}`;
-  let number = localStorage.getItem(sSession);
-  localStorage.setItem(sSession, number);
-
-  stopGame();
-}
-//Fortschritt löschen
-function clearStorageCourse(){
-  let courseName = course.innerHTML;
-  let session = 'session' + courseName;
-  localStorage.removeItem(session);
-  
-  let sFalseCounter = `falseCounter${courseName}`;
-  localStorage.removeItem(sFalseCounter);
-  
-  let sInx = `inx${courseName}`;
-  localStorage.removeItem(sInx);
-  
-  let sRound = `round${courseName}`;
-  localStorage.removeItem(sRound);
-  
-  let sFirstArray = `firstArray${courseName}`;
-  localStorage.removeItem(sFirstArray);
-  
-  let sOddArray = `oddArray${courseName}`;
-  localStorage.removeItem(sOddArray);
-  
-  let sEvenArray = `evenArray${courseName}`;
-  localStorage.removeItem(sEvenArray);
-  console.log('removed items')
-}
-
-function clearStorage(){
-  localStorage.clear();
-}
-//Instanzen des jeweiligen Kurses
-function getInstancesLocal(courseName){
-  courseName = courseName.innerHTML;
-
-  let sFalseCounter = `falseCounter${courseName}`;
-  console.log(sFalseCounter);
-  falseCounter = Number(localStorage.getItem(sFalseCounter));
-
-  let sInx = `inx${courseName}`;
-  inx = Number(localStorage.getItem(sInx));
-
-  let sRound = `round${courseName}`;
-  round = Number(localStorage.getItem(sRound));
-
-  let sFirstArray = `firstArray${courseName}`;
-  firstArray = localStorage.getObj(sFirstArray);
-
-  let sOddArray = `oddArray${courseName}`;
-  oddArray = localStorage.getObj(sOddArray);
-
-  let sEvenArray = `evenArray${courseName}`;
-  evenArray = localStorage.getObj(sEvenArray);
-  //clearStorage();
-}
 
 //verändert beim auswählen eines Kurses den Kursnamen
 const course = document.querySelector('.course');
@@ -404,4 +300,109 @@ function stopGame() {
   round = 1;
   falseCounter = 0;
   console.log(arr);
+}
+
+
+//Storage
+function checkIfNewUser(courseName){
+  let session = 'session' + courseName.innerHTML;
+  let number = localStorage.getItem(session);
+  let storageValue = parseInt(number);
+  console.log(storageValue);
+
+  if(storageValue==0){
+    createArray();
+    localStorage.setItem(session, '1');
+    console.log('erstes mal');
+  }else if(storageValue==1){
+    console.log( JSON.stringify(localStorage, null, 2) );
+    getInstancesLocal(courseName);
+    console.log(firstArray);
+    showImages();
+    console.log('erneutes mal');
+  }else if(!storageValue){
+    localStorage.setItem(session, '1');
+    createArray();
+  }
+}
+//Instanzen des jeweiligen Kurses speichern
+function saveInstancesLocal(){
+  let courseName = course.innerHTML;
+
+  let sFalseCounter = `falseCounter${courseName}`;
+  localStorage.setItem(sFalseCounter, falseCounter);
+
+  let sInx = `inx${courseName}`;
+  localStorage.setItem(sInx, inx);
+
+  let sRound = `round${courseName}`;
+  localStorage.setItem(sRound, round);
+
+  let sFirstArray = `firstArray${courseName}`;
+  localStorage.setObj(sFirstArray, firstArray);
+
+  let sOddArray = `oddArray${courseName}`;
+  localStorage.setObj(sOddArray, oddArray);
+
+  let sEvenArray = `evenArray${courseName}`;
+  localStorage.setObj(sEvenArray, evenArray);
+
+  let sSession = `session${courseName}`;
+  let number = localStorage.getItem(sSession);
+  localStorage.setItem(sSession, number);
+
+  stopGame();
+}
+//Fortschritt löschen
+function clearStorageCourse(){
+  let courseName = course.innerHTML;
+  let session = 'session' + courseName;
+  localStorage.removeItem(session);
+  
+  let sFalseCounter = `falseCounter${courseName}`;
+  localStorage.removeItem(sFalseCounter);
+  
+  let sInx = `inx${courseName}`;
+  localStorage.removeItem(sInx);
+  
+  let sRound = `round${courseName}`;
+  localStorage.removeItem(sRound);
+  
+  let sFirstArray = `firstArray${courseName}`;
+  localStorage.removeItem(sFirstArray);
+  
+  let sOddArray = `oddArray${courseName}`;
+  localStorage.removeItem(sOddArray);
+  
+  let sEvenArray = `evenArray${courseName}`;
+  localStorage.removeItem(sEvenArray);
+  console.log('removed items')
+}
+
+function clearStorage(){
+  localStorage.clear();
+}
+//Instanzen des jeweiligen Kurses
+function getInstancesLocal(courseName){
+  courseName = courseName.innerHTML;
+
+  let sFalseCounter = `falseCounter${courseName}`;
+  console.log(sFalseCounter);
+  falseCounter = Number(localStorage.getItem(sFalseCounter));
+
+  let sInx = `inx${courseName}`;
+  inx = Number(localStorage.getItem(sInx));
+
+  let sRound = `round${courseName}`;
+  round = Number(localStorage.getItem(sRound));
+
+  let sFirstArray = `firstArray${courseName}`;
+  firstArray = localStorage.getObj(sFirstArray);
+
+  let sOddArray = `oddArray${courseName}`;
+  oddArray = localStorage.getObj(sOddArray);
+
+  let sEvenArray = `evenArray${courseName}`;
+  evenArray = localStorage.getObj(sEvenArray);
+  //clearStorage();
 }
