@@ -169,7 +169,7 @@ nav::after {
 /* CONTENT */
 
 #wrapper {
-  width: 60%;
+  width: 70%;
   height: 100%;
   z-index: 100;
   margin-top: 15%;
@@ -180,10 +180,9 @@ nav::after {
   flex-direction: row;
   align-items: baseline;
   justify-content: baseline;
-  height: 8%;
 }
 
-.line {
+#line {
   display: block;
   width: 70px;
   background-color: white;
@@ -194,19 +193,27 @@ nav::after {
 .course {
   margin: 0 auto;
 }
+#chartandcounter{
+  display: inline-block;
+  margin-top: 35vh;
+  float: inline-end;
+  
+}
+#chartandcount::after{
+  clear: both;
+}
 #counter {
-  width: 15%;
-  height: 10px;
-  margin-right: 6%;
+  text-align: right;
   font-family: "Montserrat";
   font-weight: 200;
   font-size: 1em;
-  color: white;
+  color: black;
   font-weight: bold;
 }
 
 #content-bottom {
-  margin-top: 2%;
+  width: 80%;
+  margin: 2%;
 }
 
 /* CLOSE/CANCEL BUTTON */
@@ -233,7 +240,7 @@ nav::after {
 /* INDEX CARD */
 
 .card-container {
-  width: 100%;
+  width: 80%;
   height: 55%;
   margin-top: 2%;
 }
@@ -300,7 +307,7 @@ nav::after {
 
 .button {
   position: relative;
-  margin: 5% 10%;
+  margin: 2% 10%;
   display: flex;
   flex-direction: row;
   width: 100%;
