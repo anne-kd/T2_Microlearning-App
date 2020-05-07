@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-</head>
+  <body id="body">
+    <div id="background" class="blur"></div>
+    <nav class="blur">
+      <ul>
+        <li><a href="index.html" onclick="saveInstancesLocal()"><i class="fa fa-home" aria-hidden="true"></i>Startseite</a></li>
+        <li><a href="overview.html" onclick="saveInstancesLocal()"><i class="fa fa-th-large" aria-hidden="true"></i>Übersicht</a></li>
+        <li><a href="indexcard.html" class="active activeMethode" onclick="saveInstancesLocal()"><i class="fa fa-address-card-o" aria-hidden="true"></i>Karteikarten</a></li>
+        <li><a href="indexcard-multiplechoice.html" onclick="saveInstancesLocal()"><i class="fa fa-id-card" aria-hidden="true"></i>Multiplechoice</a> </li>
+      </ul>
+      <img id="logo" src="images/logo.jpg" />
+    </nav>
+    
+    <section id="wrapper" class="blur">
+      <div id="content-top">
+        <h2>
+          <span id="line"></span>
+          Wer bin ich?
+        </h2>
+        <h3 class="course"></h3>
 
-<body>
-  <div id="background" class="blur"></div>
-  <nav class="blur">
-    <ul>
-      <li><a href="index.html" onclick="saveInstancesLocal()"><i class="fa fa-home" aria-hidden="true"></i>Startseite</a></li>
-      <li><a href="overview.html" onclick="saveInstancesLocal()"><i class="fa fa-th-large" aria-hidden="true"></i>Übersicht</a></li>
-      <li><a href="indexcard.html" class="active activeMethode" onclick="saveInstancesLocal()"><i class="fa fa-address-card-o" aria-hidden="true"></i>Karteikarten</a></li>
-      <li><a href="indexcard-multiplechoice.html" onclick="saveInstancesLocal()"><i class="fa fa-id-card" aria-hidden="true"></i>Multiplechoice</a> </li>
-    </ul>
-    <img id="logo" src="images/logo.jpg" />
-    <img id="logo" src="images/PassendesLogo.png" />
-  </nav>
+        <!-- EXIT BUTTON -->
+        <a href="index.html" class="cancel reset">
+          <span></span>
+          <span></span>
+        </a>
+      </div>
 
-  <section id="wrapper" class="blur">
-    <div id="content-top">
-      <h2>
-        <span id="line"></span>
-        Wer bin ich?
-      </h2>
-      <h3 class="course"></h3>
-
-      <!-- EXIT BUTTON -->
-      <a href="index.html" class="cancel reset">
-        <span></span>
-        <span></span>
-      </a>
-    </div>
-        <!-- MENGENZÄHLER -->
-        <div id="chartandcounter">
-          Platzhalter für das Chart
-          <div id="counter"></div>
+      <!-- MENGENZÄHLER -->
+      <div id="chartandcounter">
+        <div id="counter"></div>
+        <div class="chart">
+          <canvas id="my2Chart" width="50" height="50">
+            
+          </canvas>
         </div>
-         
+      </div>
     <!-- KARTE -->
     <div class="card-container" id="buttonFlip">
       <div class="index-card" id="card">
@@ -60,23 +62,22 @@
           
           <div class="right">
             <div class="ok">
-              <h3>richitg</h3>
+              <span></span>
+              <span></span>
             </div>
           </div>
 
           <div class="false">
             <div class="cancel">
-              <h3>falsch</h3>
+              <span></span>
+              <span></span>
             </div>
           </div>
           
         </div>
       </div>
-  </section>
-
-
-   
-
+    </section>
+      
   <!-- POPUP -->
   
       <div class="popup" id="popup-first">
@@ -118,6 +119,8 @@
     </div>
   </div>
 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
   <script src="index.js"></script>
 </body>
 

@@ -215,7 +215,7 @@ nav::after {
   display: inline-block;
   margin-top: 35vh;
   float: inline-end;
-  
+  z-index: 100;
 }
 #chartandcount::after{
   clear: both;
@@ -331,11 +331,14 @@ nav::after {
 #multi {
   display: none;
 }
+#multi.button{
+  display: none;
+  margin-left: -2%;
+}
 
 
 .button {
   position: relative;
-  margin: 5% auto;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -360,6 +363,9 @@ nav::after {
   border-radius: 25px;
   margin: 0 2%;
 }
+#popup-round .button {
+  margin-top: 5%;
+}
 
 .right div,
 .false div {
@@ -369,7 +375,7 @@ nav::after {
 }
 
 .select {
-  background-color: black;
+  background-color: #88BC48;
 }
 
 

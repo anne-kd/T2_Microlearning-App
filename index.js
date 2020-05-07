@@ -52,6 +52,7 @@ let arrayGender;
 let mapGender;
 //Chart
 const donutChart = document.getElementById('myChart');
+const donutChartCurrent = document.getElementById('my2Chart');
 let fail = 0;
 let right = 0;
 // Local Storage 
@@ -125,6 +126,7 @@ function flipCard() {
   DOMCard.classList.add("card_hover");
   CardBack.classList.add("display");
   CardFront.classList.remove("display");
+  
 
   if (curentMethode == "KARTEIKARTEN") {
     DOMCheckButton.style.display = "flex";
@@ -134,6 +136,7 @@ function flipCard() {
     DOMButtonMulti.style.display = "none";
     DOMButtonNext.style.display = "flex";
     multipleKarte(event.target);
+    charCurrent();
   }
 }
 
@@ -145,6 +148,7 @@ function flipCardReverse() {
   if (curentMethode == "KARTEIKARTEN") {
     DOMCheckButton.style.display = "none";
     DOMIntro.style.display = "inline";
+    charCurrent();
   } 
   else if (curentMethode == "MULTIPLECHOICE") {
     DOMButtonMulti.style.display = "flex";
@@ -509,11 +513,34 @@ function multipleKarte(target) {
   }
 }
 
-
 /* Trefferquote - Chart */
+function charCurrent(){
+  
+  let currentFail = falseCounter;
+  let currentRight = (inx + 1) - currentFail;
+  const chartTest = new Chart(donutChartCurrent, {
+    type: 'doughnut',
+    data: {
+      labels: ['Richtig', 'Falsch'],
+      datasets: [{
+        label: 'Trefferquote',
+        backgroundColor: ['#88bc48', 'salmon'],
+        data: [[currentRight], [currentFail]]
+      }]
+    },
 
+    options: {
+      cutoutPercentage: 65,
+      animation: {
+        animateScale: true
+      },
+      legend: {
+        display: false
+      },
+    }
+  })
+}
 function charIt() {
-
   fail = falseCounter;
   console.log("Falsche Antworten Sackl Zement " + fail);
 
