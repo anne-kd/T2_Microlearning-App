@@ -349,21 +349,6 @@ nav::after {
   height: auto;
   width: auto;
 }
-.ok span {
-  display: block;
-  width: 20px;
-  height: 4px;
-  border-radius: 4px;
-  background-color: white;
-}
-.ok span:nth-child(1) {
-  width: 10px;
-  transform: translateY(3px) translateX(2px) rotate(45deg);
-}
-
-.ok span:nth-child(2) {
-  transform: translateY(-4px) translateX(5px) rotate(135deg);
-}
 .btn-course {
   text-align: center;
 }
