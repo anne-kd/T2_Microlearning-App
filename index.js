@@ -82,7 +82,7 @@ function firstPopUp() {
   blurElements();
   popupFirst.style.display = "block";
   let DOMH3 = popupFirst.querySelector("#test");
-  DOMH3.innerHTML = `Welchen Kurs wollen Sie lernen?`;
+  DOMH3.innerHTML = `Welche Namen wollen Sie lernen? Wählen Sie einen der Kurse.`;
 }
 
 function endPopUp(p_round, p_falseCounter) {
@@ -95,11 +95,13 @@ function endPopUp(p_round, p_falseCounter) {
 
   if (p_falseCounter == 0 && p_round % 2 == 1) {
     
-    DOMH3.innerText = `<span class="line"></span> Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft!`;
+    DOMH3.innerText = `<span class="line"></span> Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft! <br>
+    Wollen Sie weiter spielen oder einen neuen Kurs wählen?`;
     clearStorageCourse();
     stopGame();
   } else {
-    DOMH3.innerHTML = `<span class="line"></span> Sie haben Runde ${p_round} geschafft!`;
+    DOMH3.innerHTML = `<span class="line"></span> Sie haben Runde ${p_round} geschafft! <br>
+    Wollen Sie weiter spielen oder einen neuen Kurs wählen?`;
   }
 }
 

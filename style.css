@@ -409,10 +409,10 @@ nav::after {
   text-transform: uppercase;
   cursor: pointer;
 }
+#newCourse:hover,
+#continue:hover,
 .multbutton:hover{
-  background-color: white;
-  border: solid 1px black;
-  color: black;
+  background-color: #88BC48;
 }
 
 
