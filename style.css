@@ -124,9 +124,6 @@ nav a {
   color: white;
   text-decoration: none;
 }
-nav a:active  {
-  color: #88bc48;
-}
 
 nav a:hover {
   color: #88bc48;
@@ -139,7 +136,7 @@ nav a:hover {
 }
 
 .active {
-  background-color: #88bc48;
+  color: #88bc48;
 }
 
 .fa-home:before {
