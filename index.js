@@ -25,7 +25,7 @@ const CardBack = document.querySelector(".card--back");
 const CardFront = document.querySelector(".card--front");
 //nur für Methode Multiplechoice (Rückseite der Karte färben)
 const anzeige = document.querySelector(".anzeige");
-const rand = document.querySelector(".card--back");
+const rand = document.querySelector(".index-card");
 const DOMAnzeige = document.querySelector(".richtigFalsch");
 
 //VARIABLEN UND KONSTANTEN
@@ -155,6 +155,7 @@ function flipCardReverse() {
   else if (curentMethode == "MULTIPLECHOICE") {
     DOMButtonMulti.style.display = "flex";
     DOMButtonNext.style.display = "none";
+    rand.style.border = "none";
   }
 }
 
