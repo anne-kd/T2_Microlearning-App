@@ -155,7 +155,7 @@ function flipCardReverse() {
 //hier zur initial definition aller variablen und arrays die erstellt werden müssen
 function methodRW() {
   hidePopUp();
-  createArrayRW();
+  
 
   DOMCard.addEventListener("click", flipCard);
   DOMButtonRight.addEventListener("click", countAndNew);
@@ -321,7 +321,7 @@ function createArrayMC() {
   firstArray = arrayFemale.concat(arrayMale);
   firstArray = shuffle(firstArray);
 
-  showImages();
+  
 }
 
 //Hier wird das Aktuelle Array der Runde abgefragt
@@ -565,38 +565,44 @@ function percent () {
 
 //Storage
 function checkIfNewUser(courseName){
-  let session = 'session' + courseName.innerHTML;
+  let session = 'session' + courseName.innerHTML + curentMethode;
   let number = localStorage.getItem(session);
   let storageValue = parseInt(number);
   console.log(storageValue);
 
   if(storageValue==0){
+    localStorage.setItem(session, '1');
     if(curentMethode == "KARTEIKARTEN"){
+      createArrayRW();
       methodRW();
     }
     else if(curentMethode == "MULTIPLECHOICE"){
       methodMC();
+      showImages();
     }
-    localStorage.setItem(session, '1');
     console.log('erstes mal');
   }else if(storageValue==1){
     console.log( JSON.stringify(localStorage, null, 2) );
     getInstancesLocal(courseName);
     console.log(firstArray);
     if(curentMethode == "KARTEIKARTEN"){
+      showImages();
       methodRW();
     }
     else if(curentMethode == "MULTIPLECHOICE"){
       methodMC();
+      showImages();
     }
     console.log('erneutes mal');
   }else if(!storageValue){
     localStorage.setItem(session, '1');
     if(curentMethode == "KARTEIKARTEN"){
+      createArrayRW();
       methodRW();
     }
     else if(curentMethode == "MULTIPLECHOICE"){
       methodMC();
+      showImages();
     }
   }
 }
@@ -604,25 +610,25 @@ function checkIfNewUser(courseName){
 function saveInstancesLocal(){
   let courseName = course.innerHTML;
 
-  let sFalseCounter = `falseCounter${courseName}`;
+  let sFalseCounter = `falseCounter${courseName}${curentMethode}`;
   localStorage.setItem(sFalseCounter, falseCounter);
 
-  let sInx = `inx${courseName}`;
+  let sInx = `inx${courseName}${curentMethode}`;
   localStorage.setItem(sInx, inx);
 
-  let sRound = `round${courseName}`;
+  let sRound = `round${courseName}${curentMethode}`;
   localStorage.setItem(sRound, round);
 
-  let sFirstArray = `firstArray${courseName}`;
+  let sFirstArray = `firstArray${courseName}${curentMethode}`;
   localStorage.setObj(sFirstArray, firstArray);
 
-  let sOddArray = `oddArray${courseName}`;
+  let sOddArray = `oddArray${courseName}${curentMethode}`;
   localStorage.setObj(sOddArray, oddArray);
 
-  let sEvenArray = `evenArray${courseName}`;
+  let sEvenArray = `evenArray${courseName}${curentMethode}`;
   localStorage.setObj(sEvenArray, evenArray);
 
-  let sSession = `session${courseName}`;
+  let sSession = `session${courseName}${curentMethode}`;
   let number = localStorage.getItem(sSession);
   localStorage.setItem(sSession, number);
 
@@ -634,22 +640,22 @@ function clearStorageCourse(){
   let session = 'session' + courseName;
   localStorage.removeItem(session);
   
-  let sFalseCounter = `falseCounter${courseName}`;
+  let sFalseCounter = `falseCounter${courseName}${curentMethode}`;
   localStorage.removeItem(sFalseCounter);
   
-  let sInx = `inx${courseName}`;
+  let sInx = `inx${courseName}${curentMethode}`;
   localStorage.removeItem(sInx);
   
-  let sRound = `round${courseName}`;
+  let sRound = `round${courseName}${curentMethode}`;
   localStorage.removeItem(sRound);
   
-  let sFirstArray = `firstArray${courseName}`;
+  let sFirstArray = `firstArray${courseName}${curentMethode}`;
   localStorage.removeItem(sFirstArray);
   
-  let sOddArray = `oddArray${courseName}`;
+  let sOddArray = `oddArray${courseName}${curentMethode}`;
   localStorage.removeItem(sOddArray);
   
-  let sEvenArray = `evenArray${courseName}`;
+  let sEvenArray = `evenArray${courseName}${curentMethode}`;
   localStorage.removeItem(sEvenArray);
   console.log('removed items')
 }
@@ -661,23 +667,23 @@ function clearStorage(){
 function getInstancesLocal(courseName){
   courseName = courseName.innerHTML;
 
-  let sFalseCounter = `falseCounter${courseName}`;
+  let sFalseCounter = `falseCounter${courseName}${curentMethode}`;
   console.log(sFalseCounter);
   falseCounter = Number(localStorage.getItem(sFalseCounter));
 
-  let sInx = `inx${courseName}`;
+  let sInx = `inx${courseName}${curentMethode}`;
   inx = Number(localStorage.getItem(sInx));
 
-  let sRound = `round${courseName}`;
+  let sRound = `round${courseName}${curentMethode}`;
   round = Number(localStorage.getItem(sRound));
 
-  let sFirstArray = `firstArray${courseName}`;
+  let sFirstArray = `firstArray${courseName}${curentMethode}`;
   firstArray = localStorage.getObj(sFirstArray);
 
-  let sOddArray = `oddArray${courseName}`;
+  let sOddArray = `oddArray${courseName}${curentMethode}`;
   oddArray = localStorage.getObj(sOddArray);
 
-  let sEvenArray = `evenArray${courseName}`;
+  let sEvenArray = `evenArray${courseName}${curentMethode}`;
   evenArray = localStorage.getObj(sEvenArray);
   //clearStorage();
 }
