@@ -124,6 +124,9 @@ nav a {
   color: white;
   text-decoration: none;
 }
+nav a:active  {
+  color: #88bc48;
+}
 
 nav a:hover {
   color: #88bc48;
@@ -199,7 +202,7 @@ nav::after {
   height: 10px;
   margin-right: 6%;
   font-family: "Montserrat";
-  font-weight: 200;
+  font-weight: bold;
   font-size: 1em;
   color: white;
 }
@@ -327,12 +330,19 @@ nav::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #88bc48;
+  background-color: black;
+  cursor: pointer;
+}
+#check .right{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:#88BC48 ;
   cursor: pointer;
 }
 
 .select {
-  background-color: black;
+  background-color: #88BC48;
 }
 
 #exit,
@@ -378,7 +388,7 @@ nav::after {
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 .btn-course div:hover {
-  background-color: black;
+  background-color: #88BC48;
   cursor: pointer;
 }
 
@@ -452,6 +462,7 @@ nav::after {
   height: 8px;
   border-radius: 4px;
   margin-bottom: 10%;
+  
 }
 
 .auswahl-uebersicht {
