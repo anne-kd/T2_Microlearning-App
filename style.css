@@ -5,7 +5,7 @@
   padding: 0;
 }
 
-body {
+#body {
   position: fixed;
   top: 0;
   left: 0;
@@ -20,7 +20,7 @@ h1 {
   font-family: "Montserrat";
   font-weight: 700;
   font-size: 1.8em;
-  color:black;
+  color: black;
 }
 
 h2 {
@@ -41,7 +41,7 @@ p {
   font-weight: 200;
   font-size: 1em;
   text-transform: uppercase;
-  color: grey;
+  color: black;
 }
 
 a {
@@ -59,53 +59,62 @@ a {
 
 #bg-img {
   position: absolute;
-  height: 50%;
+  height: 40%;
   width: 100vw;
   top: 0;
   z-index: 0;
-  background-image: url("images/Startseite.png");
+  background-image: url("images/header.jpg");
   background-size: auto;
   background-repeat: no-repeat;
+  z-index: 0;
 }
 
 #container {
   position: relative;
-  width: 40%;
+  width: 40vw;
   z-index: 100;
-  margin-top: 20%;
+  margin-left: 10%;
+  margin-top: 50vh;
+  padding: 15px;
 }
-
-#st-line {
-  display: block;
-  width: 70px;
-  background-color:black;
-  height: 8px;
-  border-radius: 4px;
-  margin-bottom: 5%;
+#logobox{
+  width: 300px;
+  height: auto;
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  display: flex;
+  flex-direction: column;
 }
-
-#onlogo{
-  position: relative;
+#dhbwlogo{
   width: 200px;
-  margin-top: 35%;
-  margin-left: 20%;
+  height: 70px;
+  object-fit: cover;
+}
+
+#onlogo {
+  width: 300px;
+  height: 70px;
+  object-fit: cover;
 }
 /* NAVIGATION */
 
 nav {
   position: absolute;
-  top:0;
+  top: 0;
   padding-top: 3%;
   left: 0;
   padding-left: 10%;
-  width: 100vw;
+  width: 90vw;
   height: 6%;
   display: block;
   background-color: black;
+  z-index: 100;
 }
 
 nav ul {
   list-style: none;
+  width: 80%;
 }
 
 nav ul li {
@@ -130,23 +139,22 @@ nav a:hover {
 }
 
 #logo {
-  margin-left: 30%;
-  width: 100px;
-  padding-right: 10%;
+  float: right;
+  padding-right: 5%;
+  margin-top: -20px;
+  width: 150px;
+  height: 50px;
+  object-fit: cover;
+  background-position: center;
 }
 
 .active {
   color: #88bc48;
 }
 
-.fa-home:before {
-  padding: 10px;
-}
-
-.fa-th-large:before {
-  padding: 10px;
-}
-
+.fa-id-card::before,
+.fa-home:before,
+.fa-th-large:before,
 .fa-address-card-o:before {
   padding: 10px;
 }
@@ -155,7 +163,7 @@ nav::after {
   clear: both;
 }
 
-/* BALCK BOX */
+/* BLACK BOX */
 
 #background {
   background-color: black;
@@ -190,6 +198,16 @@ nav::after {
   border-radius: 4px;
   margin-bottom: 10%;
 }
+#st-line,
+.popup .line {
+  display: block;
+  width: 70px;
+  background-color: black;
+  height: 8px;
+  border-radius: 4px;
+  margin-bottom: 2%;
+}
+
 .course {
   margin: 0 auto;
 }
@@ -273,6 +291,11 @@ nav::after {
 .card_hover {
   transform: rotateY(180deg);
 }
+.card_hover .card--back {
+ width: 100%;
+ height: 100%;
+ border: solid 3px white;
+}
 
 .card--front {
   display: none;
@@ -303,32 +326,89 @@ nav::after {
 /* BUTTONS */
 #check {
   display: none;
+  margin: 5% 5%;
 }
+#multi {
+  display: none;
+}
+
 
 .button {
   position: relative;
-  margin: 2% 10%;
+  margin: 5% auto;
   display: flex;
   flex-direction: row;
   width: 100%;
 }
+.button.-next {
+  display: none;
+  margin-right: 0;
+  width: 100%;
+}
+.-next h2 {
+  width: 70%;
+  align-self: flex-start;
+}
+.-next #next {
+  width: 30%;
+}
 .button a,
 .button div {
   position: relative;
-  width: 30%;
+  width: 40%;
   height: 50px;
   border-radius: 25px;
-  margin: 0 5%;
+  margin: 0 2%;
 }
+
+.right div,
+.false div {
+  margin: 0;
+  height: auto;
+  width: auto;
+}
+
+.select {
+  background-color: black;
+}
+
+
 #popup-round .button {
-  margin-left: 0;
-  margin-top: 15%;
+  margin-left: 10%;
   font-family: "Montserrat";
   font-weight: 700;
   text-transform: uppercase;
   font-size: 1em;
   color: white;
+  width: 90%;
 }
+
+#multi div:first-child{
+  margin-left: 0;
+}
+#multi div:last-child{
+  margin-right: 0;
+}
+#newCourse,
+#next,
+.multbutton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.multbutton:hover{
+  background-color: white;
+  border: solid 1px black;
+  color: black;
+}
+
 
 #continue,
 .right {
@@ -343,14 +423,12 @@ nav::after {
   align-items: center;
   justify-content: center;
   background-color:#88BC48 ;
-  cursor: pointer;
 }
 
 .select {
   background-color: #88BC48;
 }
 
-#exit,
 .false {
   background-color: salmon;
   display: flex;
@@ -364,24 +442,49 @@ nav::after {
   height: auto;
   width: auto;
 }
+
+.ok span {
+  display: block;
+  width: 20px;
+  height: 4px;
+  border-radius: 4px;
+  background-color: white;
+}
+.ok span:nth-child(1) {
+  width: 10px;
+  transform: translateY(3px) translateX(2px) rotate(45deg);
+}
+
+.ok span:nth-child(2) {
+  transform: translateY(-4px) translateX(5px) rotate(135deg);
+}
+
+.btn-method,
 .btn-course {
   text-align: center;
 }
-
+.btn-method div,
 .btn-course div {
   width: 20%;
-  height: 35px;
+  height: 10%;
   border-radius: 25px;
   margin: 0 5%;
   display: inline-block;
   margin-top: 11%;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
+
+.btn-method div {
+  width: 30%;
+}
+
+.btn-method div:hover,
 .btn-course div:hover {
   background-color: #88BC48;
   cursor: pointer;
 }
 
+.btn-method div p,
 .btn-course div p {
   text-align: center;
   padding: 6%;
@@ -407,14 +510,17 @@ nav::after {
 }
 .popup h3 {
   color: black;
-  margin-top: 5%;
-  margin-left: 5%;
+  margin-top: 10%;
+  margin-left: 10%;
 }
 #popup-first {
-    display: block;
+  display: block;
 }
 #popup-round {
   display: none;
+  align-items: center;
+  height: 70%;
+  width: 60%;
 }
 .close {
   float: right;
@@ -426,63 +532,66 @@ nav::after {
 }
 
 /* UEBERSICHTSEITE*/
-#header-nav {
-  background-color: black;
-  height: 10vh;
-  width: 100vw;
-  position: absolute;
-  top: 0;
-  z-index: 0;
-}
 
-#headline-uebersicht{
+
+#headline-uebersicht {
   position: absolute;
   top: 20%;
-  padding-right: 70%;
+  left: 12%;
 }
 
-#headline-uebersicht h2{
+#headline-uebersicht h2 {
   color: black;
 }
 
-#line-black {
-  display: block;
-  width: 70px;
-  background-color: black;
-  height: 8px;
-  border-radius: 4px;
-  margin-bottom: 10%;
-  
-}
 
 .auswahl-uebersicht {
   width: 35%;
   height: 35%;
-  right: 3%;
+  right: 9%;
   position: absolute;
-  top: 17%;
+  top: 15%;
 }
 
 #bilder-container {
-  width: 90%;
+  width: 76%;
   height: 65%;
   background-color: white;
-  box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
-  -webkit-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
-  -moz-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.33);
+  box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 0px 45px 8px rgba(0, 0, 0, 0.16);
   transition: all 0.5s ease;
   position: absolute;
-  top: 35%;
+  left: 12%;
+  top: 30%;
   overflow-y: scroll;
   text-align: center;
 }
 
-#bilder-container ul li{
+#bilder-container ul li {
   list-style: none;
   display: inline-block;
   padding: 50px;
 }
 
-#bilder-container ul li img{
+#bilder-container ul li img {
   width: 150%;
+}
+
+.chart{
+  padding-top: 5%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup h4 {
+  position: absolute;
+  color: black;
+  font-size: 1.5em;
+  font-family: 'Montserrat', sans-serif;
+  z-index: 100;
 }
