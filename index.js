@@ -38,8 +38,7 @@ let inx = 0;
 let round = 1;
 let firstArray = [];
 let oddArray = []; //mod 2 = 1
-let evenArray = []; //mod 2 = 0
-let methode;
+let evenArray = []; //mod 2 = 0 
 //nur für Methode 2 gebraucht
 let arrayMale = [];
 let arrayFemale = [];
@@ -126,11 +125,11 @@ function flipCard() {
   CardBack.classList.add("display");
   CardFront.classList.remove("display");
 
-  if (methode == "rightwrong") {
+  if (curentMethode == "KARTEIKARTEN") {
     DOMCheckButton.style.display = "flex";
     DOMIntro.style.display = "none";
   } 
-  else if (methode == "multiplechoice") {
+  else if (curentMethode == "MULTIPLECHOICE") {
     DOMButtonMulti.style.display = "none";
     DOMButtonNext.style.display = "flex";
     multipleKarte(event.target);
@@ -142,11 +141,11 @@ function flipCardReverse() {
   CardBack.classList.remove("display");
   CardFront.classList.add("display");
 
-  if (methode == "rightwrong") {
+  if (curentMethode == "KARTEIKARTEN") {
     DOMCheckButton.style.display = "none";
     DOMIntro.style.display = "inline";
   } 
-  else if (methode == "multiplechoice") {
+  else if (curentMethode == "MULTIPLECHOICE") {
     DOMButtonMulti.style.display = "flex";
     DOMButtonNext.style.display = "none";
   }
@@ -155,7 +154,6 @@ function flipCardReverse() {
 
 //hier zur initial definition aller variablen und arrays die erstellt werden müssen
 function methodRW() {
-  methode = "rightwrong";
   hidePopUp();
   createArrayRW();
 
@@ -167,7 +165,6 @@ function methodRW() {
 }
 
 function methodMC() {
-  methode = "multiplechoice";
   hidePopUp();
   createArrayMC();
   DOMButtonMulti.style.display = "flex";
@@ -185,12 +182,7 @@ choosedCourse.forEach((element) => {
   element.addEventListener("click", (event) => {
     setCourse(event.target);
     checkIfNewUser(event.target);
-    if(curentMethode == "KARTEIKARTEN"){
-      methodRW();
-    }
-    else if(curentMethode == "MULTIPLECHOICE"){
-      methodMC();
-    }
+    
   });
 });
 
@@ -352,7 +344,7 @@ function showImages() {
   CardFront.firstElementChild.src = `${getSrc()}front/${arr[inx]}-vs.png`;
   //Rückseite
   CardBack.firstElementChild.src = `${getSrc()}back/${arr[inx]}-rs.png`;
-  if(methode=="multiplechoice"){
+  if(curentMethode == "MULTIPLECHOICE"){
     getName(arr[inx]);
   }
   counterUp(inx, arr);
@@ -392,11 +384,11 @@ function displayCardUp() {
   let num;
   let arr = getCurrentArray();
 
-  if (methode == "rightwrong"){
+  if (curentMethode == "KARTEIKARTEN"){
     countAndNew();
     num = arr[inx - 1];
   }
-  else if (methode == "multiplechoice"){
+  else if (curentMethode == "MULTIPLECHOICE"){
     num = arr[inx];
   }
     
@@ -579,18 +571,33 @@ function checkIfNewUser(courseName){
   console.log(storageValue);
 
   if(storageValue==0){
-    createArray();
+    if(curentMethode == "KARTEIKARTEN"){
+      methodRW();
+    }
+    else if(curentMethode == "MULTIPLECHOICE"){
+      methodMC();
+    }
     localStorage.setItem(session, '1');
     console.log('erstes mal');
   }else if(storageValue==1){
     console.log( JSON.stringify(localStorage, null, 2) );
     getInstancesLocal(courseName);
     console.log(firstArray);
-    showImages();
+    if(curentMethode == "KARTEIKARTEN"){
+      methodRW();
+    }
+    else if(curentMethode == "MULTIPLECHOICE"){
+      methodMC();
+    }
     console.log('erneutes mal');
   }else if(!storageValue){
     localStorage.setItem(session, '1');
-    createArray();
+    if(curentMethode == "KARTEIKARTEN"){
+      methodRW();
+    }
+    else if(curentMethode == "MULTIPLECHOICE"){
+      methodMC();
+    }
   }
 }
 //Instanzen des jeweiligen Kurses speichern
