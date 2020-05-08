@@ -507,13 +507,26 @@ function multipleKarte(target) {
     anzeige.innerHTML = "Super, richtig!";
     anzeige.style.color = 'green';
     rand.style.border = 'solid 3px green';
+    successSound();
   } 
   else {
     anzeige.innerHTML = "Das war leider falsch.";
     anzeige.style.color = 'red';
     rand.style.border = 'solid 3px red';
     displayCardUp();
+    failSound()
   }
+}
+
+/*Sound*/
+function successSound(){
+  let audio = document.getElementById('success');
+  audio.play();
+}
+
+function failSound(){
+  let audio = document.getElementById('fail');
+  audio.play();
 }
 
 /* Trefferquote - Chart */
