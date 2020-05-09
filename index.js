@@ -32,7 +32,7 @@ const DOMAnzeige = document.querySelector(".richtigFalsch");
 const curentMethode = document.querySelector(".activeMethode").innerText;
 const choosedCourse = document.querySelectorAll(".ON");
 const currentCard = document.getElementById("counter");
-const course = document.querySelector(".course");
+const course = document.getElementById("course");
 let falseCounter = 0; //zählt wie viele Falsche der Spieler in einer Runde hat
 let inx = 0;
 let round = 1;
@@ -95,7 +95,7 @@ function endPopUp(p_round, p_falseCounter) {
 
   if (p_falseCounter == 0 && p_round % 2 == 1) {
     
-    DOMH3.innerText = `<span class="line"></span> Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft! <br>
+    DOMH3.innerHTML = `<span class="line"></span> Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft! <br>
     Wollen Sie weiter spielen oder einen neuen Kurs wählen?`;
     clearStorageCourse();
     stopGame();
@@ -174,7 +174,7 @@ function methodRW() {
 
 function methodMC() {
   hidePopUp();
-  createArrayMC();
+
   DOMButtonMulti.style.display = "flex";
 
   DOMButtonMultbutton.forEach((element) => {
@@ -328,7 +328,6 @@ function createArrayMC() {
 
   firstArray = arrayFemale.concat(arrayMale);
   firstArray = shuffle(firstArray);
-
   
 }
 
@@ -444,14 +443,14 @@ function stopGame() {
 }
 
 //MULTIPLECHOICE RANDOM NAMEN
-function getName(stringNumber){
+async function getName(stringNumber){
 
   if (mapFemale.has(`${stringNumber}`)){
     arrayGender = arrayFemale;
     mapGender = mapFemale;
     nameRichtig = mapFemale.get(`${stringNumber}`);
-
-    randomName1 = getRandomName(arrayGender, mapGender);
+    
+    randomName1 = await getRandomName(arrayGender, mapGender);
     randomName2 = getRandomName2(arrayGender, mapGender, randomName1);
   
   }
@@ -459,8 +458,9 @@ function getName(stringNumber){
     arrayGender = arrayMale;
     mapGender = mapMale;
     nameRichtig = mapMale.get(`${stringNumber}`);
-    
-    randomName1 = getRandomName(arrayGender, mapGender);
+    console.log('arrayMale', arrayMale);
+    console.log('mapMale', mapMale);
+    randomName1 = await getRandomName(arrayGender, mapGender);
     randomName2 = getRandomName2(arrayGender, mapGender, randomName1);
   }
 
@@ -604,6 +604,7 @@ function percent () {
 
 //Storage
 function checkIfNewUser(courseName){
+  console.log('MapFemale', mapFemale);
   let session = 'session' + courseName.innerHTML + curentMethode;
   let number = localStorage.getItem(session);
   let storageValue = parseInt(number);
@@ -616,6 +617,7 @@ function checkIfNewUser(courseName){
       methodRW();
     }
     else if(curentMethode == "MULTIPLECHOICE"){
+      createArrayMC();
       methodMC();
       showImages();
     }
@@ -629,6 +631,10 @@ function checkIfNewUser(courseName){
       methodRW();
     }
     else if(curentMethode == "MULTIPLECHOICE"){
+
+      mapFemale = getStudentMap(`${course.innerHTML}Female`);
+      mapMale = getStudentMap(`${course.innerHTML}Male`);
+
       methodMC();
       showImages();
     }
@@ -640,6 +646,7 @@ function checkIfNewUser(courseName){
       methodRW();
     }
     else if(curentMethode == "MULTIPLECHOICE"){
+      createArrayMC();
       methodMC();
       showImages();
     }
@@ -647,30 +654,38 @@ function checkIfNewUser(courseName){
 }
 //Instanzen des jeweiligen Kurses speichern
 function saveInstancesLocal(){
-  let courseName = course.innerHTML;
+  const courseTest = document.getElementById("course").innerHTML;
+  const currentMethode = document.querySelector(".activeMethode").innerText;
 
-  let sFalseCounter = `falseCounter${courseName}${curentMethode}`;
+  let sFalseCounter = `falseCounter${courseTest}${currentMethode}`;
   localStorage.setItem(sFalseCounter, falseCounter);
 
-  let sInx = `inx${courseName}${curentMethode}`;
+  let sInx = `inx${courseTest}${currentMethode}`;
   localStorage.setItem(sInx, inx);
 
-  let sRound = `round${courseName}${curentMethode}`;
+  let sRound = `round${courseTest}${currentMethode}`;
   localStorage.setItem(sRound, round);
 
-  let sFirstArray = `firstArray${courseName}${curentMethode}`;
+  let sFirstArray = `firstArray${courseTest}${currentMethode}`;
   localStorage.setObj(sFirstArray, firstArray);
 
-  let sOddArray = `oddArray${courseName}${curentMethode}`;
+  let sOddArray = `oddArray${courseTest}${currentMethode}`;
   localStorage.setObj(sOddArray, oddArray);
 
-  let sEvenArray = `evenArray${courseName}${curentMethode}`;
+  let sEvenArray = `evenArray${courseTest}${currentMethode}`;
   localStorage.setObj(sEvenArray, evenArray);
 
-  let sSession = `session${courseName}${curentMethode}`;
+  let sSession = `session${courseTest}${currentMethode}`;
   let number = localStorage.getItem(sSession);
   localStorage.setItem(sSession, number);
 
+  if (curentMethode === 'MULTIPLECHOICE') {
+    let sArrayMale = `arrayMale${courseTest}${currentMethode}`;
+    localStorage.setObj(sArrayMale, arrayMale);
+
+    let sArrayFemale = `arrayFemale${courseTest}${currentMethode}`;
+    localStorage.setObj(sArrayFemale, arrayFemale);
+  } 
   stopGame();
 }
 //Fortschritt löschen
@@ -704,25 +719,34 @@ function clearStorage(){
 }
 //Instanzen des jeweiligen Kurses
 function getInstancesLocal(courseName){
-  courseName = courseName.innerHTML;
+  const courseTest = document.getElementById("course").innerHTML || courseName.innerHTML;
+  const currentMethode = document.querySelector(".activeMethode").innerText;
 
-  let sFalseCounter = `falseCounter${courseName}${curentMethode}`;
+  let sFalseCounter = `falseCounter${courseTest}${currentMethode}`;
   console.log(sFalseCounter);
   falseCounter = Number(localStorage.getItem(sFalseCounter));
 
-  let sInx = `inx${courseName}${curentMethode}`;
+  let sInx = `inx${courseTest}${currentMethode}`;
   inx = Number(localStorage.getItem(sInx));
 
-  let sRound = `round${courseName}${curentMethode}`;
+  let sRound = `round${courseTest}${currentMethode}`;
   round = Number(localStorage.getItem(sRound));
 
-  let sFirstArray = `firstArray${courseName}${curentMethode}`;
+  let sFirstArray = `firstArray${courseTest}${currentMethode}`;
   firstArray = localStorage.getObj(sFirstArray);
 
-  let sOddArray = `oddArray${courseName}${curentMethode}`;
+  let sOddArray = `oddArray${courseTest}${currentMethode}`;
   oddArray = localStorage.getObj(sOddArray);
 
-  let sEvenArray = `evenArray${courseName}${curentMethode}`;
+  let sEvenArray = `evenArray${courseTest}${currentMethode}`;
   evenArray = localStorage.getObj(sEvenArray);
+  
+  if (curentMethode === 'MULTIPLECHOICE') {
+    let sArrayMale = `arrayMale${courseTest}${currentMethode}`;
+    arrayMale = localStorage.getObj(sArrayMale);
+
+    let sArrayFemale = `arrayFemale${courseTest}${currentMethode}`;
+    arrayFemale = localStorage.getObj(sArrayFemale);
+  }
   //clearStorage();
 }
