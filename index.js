@@ -166,8 +166,14 @@ function getStudentMap(KursGender) {
       .set("4", "Nils Eisenhauer")
       .set("7", "Frederik Hellbauer");
       return map;
-    case "ON17":
-      return 0;
+    case "ON17Female":
+      map = new Map()
+      .set("", "");
+      return map;
+    case "ON17Male":
+      map = new Map()
+      .set("", "");
+      return map;
     default:
       return "Jemand hat einen Fehler gemacht";
   }
