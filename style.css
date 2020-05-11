@@ -156,7 +156,8 @@ nav a:hover {
 .fa-id-card::before,
 .fa-home:before,
 .fa-th-large:before,
-.fa-address-card-o:before {
+.fa-address-card-o:before,
+.fa-arrow-right:before {
   padding: 10px;
 }
 
