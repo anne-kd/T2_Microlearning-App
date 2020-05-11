@@ -74,7 +74,11 @@ DOMButtonReset.forEach((element) => {
     });
 });
 DOMButtonContinue.addEventListener("click", continueGame);
-DOMButtonCourse.addEventListener("click", firstPopUp);
+DOMButtonCourse.addEventListener("click", ()=>{
+  continueGame();
+  saveInstancesLocal();
+  firstPopUp();
+});
 
 // POPUP
 function firstPopUp() {
@@ -692,7 +696,7 @@ function saveInstancesLocal(){
 //Fortschritt löschen
 function clearStorageCourse(){
   let courseName = course.innerHTML;
-  let session = 'session' + courseName;
+  let session = 'session' + courseName + curentMethode;
   localStorage.removeItem(session);
   
   let sFalseCounter = `falseCounter${courseName}${curentMethode}`;
