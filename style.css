@@ -214,6 +214,7 @@ nav::after {
   margin-left: 17%;
 }
 #chartandcounter {
+  background-color: white;
   display: inline-block;
   width: 17%;
   margin-top: 30vh;
@@ -345,7 +346,7 @@ nav::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 15%;
+  width: 17%;
   height: 40px;
   border: solid 2px white;
   border-radius: 25px;
