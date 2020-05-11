@@ -3,6 +3,7 @@
 const uebersichtImages = document.querySelectorAll('.student');
 const uebersichtButtons = document.querySelectorAll('.ON');
 const button = document.querySelectorAll('.right');
+const kurs = document.querySelectorAll("#course");
 
 
 uebersichtButtons.forEach(element=>{
@@ -13,6 +14,7 @@ uebersichtButtons.forEach(element=>{
       
       element.parentElement.classList.add("select");
     let courseUebersicht = event.target.innerHTML;
+    course.innerHTML = `Jahrgang ${courseUebersicht}`;
     for(let i =0;i<uebersichtImages.length;i++){
         if(i<getAmountOfImages(courseUebersicht)){
             uebersichtImages.item(i).firstChild.src = `assets/${courseUebersicht}/back/${i+1}-rs.png`;

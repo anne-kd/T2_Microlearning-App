@@ -603,6 +603,17 @@ nav::after {
   width: 150%;
 }
 
+#bilder-container h5 {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 1em;
+  margin: 5%;
+  float: left;
+}
+#bilder-container h5::after{
+  clear: both;
+}
+
 .chart {
   padding-top: 5%;
   padding-left: 0;
