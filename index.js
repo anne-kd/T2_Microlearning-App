@@ -93,12 +93,9 @@ function endPopUp(p_round, p_falseCounter) {
     chart();
     percent();
 
-  if (p_falseCounter == 0 && p_round % 2 == 1) {
-    
+  if (p_falseCounter == 0) {
     DOMH3.innerHTML = `<span class="line"></span> Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft! <br>
     Wollen Sie weiter spielen oder einen neuen Kurs wählen?`;
-    clearStorageCourse();
-    stopGame();
   } else {
     DOMH3.innerHTML = `<span class="line"></span> Sie haben Runde ${p_round} geschafft! <br>
     Wollen Sie weiter spielen oder einen neuen Kurs wählen?`;
@@ -346,7 +343,9 @@ function getCurrentArray() {
 
 //Macht jeweiliges Bild sichtbar und ruft die Funktion auf für den Mengenzähler
 function showImages() {
+  
   let arr = getCurrentArray();
+  
   //Vorderseite
   CardFront.firstElementChild.src = `${getSrc()}front/${arr[inx]}-vs.png`;
   //Rückseite
@@ -413,7 +412,11 @@ function displayCardUp() {
 
 // Arrays werden geändert und geshuffelt
 function continueGame() {
-  if (round == 1) {
+
+  if (falseCounter == 0){
+    round = 0;
+  }
+  else if (round == 1) {
     evenArray = shuffle(evenArray);
   } else if (round % 2 == 0) {
     oddArray = oddArray.concat(firstArray);
@@ -428,7 +431,9 @@ function continueGame() {
   round++;
   showImages();
   hidePopUp();
-  console.log(evenArray);
+  console.log('oddArray', oddArray);
+  console.log('evenArray', evenArray);
+  console.log('firstArray', firstArray);
 }
 
 // Arrays und Varaiblen werden zurück gesetzt
@@ -458,8 +463,7 @@ async function getName(stringNumber){
     arrayGender = arrayMale;
     mapGender = mapMale;
     nameRichtig = mapMale.get(`${stringNumber}`);
-    console.log('arrayMale', arrayMale);
-    console.log('mapMale', mapMale);
+
     randomName1 = await getRandomName(arrayGender, mapGender);
     randomName2 = getRandomName2(arrayGender, mapGender, randomName1);
   }
@@ -553,10 +557,8 @@ function charCurrent(){
 }
 function charIt() {
   fail = falseCounter;
-  console.log("Falsche Antworten Sackl Zement " + fail);
 
   right = getStudents() - fail;
-  console.log("Richtige Antworten Fix Hehner " + right);
 
 
   const chartTest = new Chart(donutChart, {
@@ -584,7 +586,6 @@ function charIt() {
 
 
 function chart() {
-  console.log("Donut - Chart Drecks Zeug");
   charIt();
 };
 
@@ -711,7 +712,14 @@ function clearStorageCourse(){
   
   let sEvenArray = `evenArray${courseName}${curentMethode}`;
   localStorage.removeItem(sEvenArray);
-  console.log('removed items')
+
+  if (curentMethode === 'MULTIPLECHOICE') {
+    let sArrayMale = `arrayMale${courseTest}${currentMethode}`;
+    localStorage.removeItem(sArrayMale);
+
+    let sArrayFemale = `arrayFemale${courseTest}${currentMethode}`;
+    localStorage.removeItem(sArrayFemale);
+  } 
 }
 
 function clearStorage(){
