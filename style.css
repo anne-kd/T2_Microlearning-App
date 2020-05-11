@@ -335,6 +335,21 @@ nav::after {
   display: none;
   margin-left: -2%;
 }
+#exitbutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  height: 40px;
+  border: solid 2px white;
+  border-radius: 25px;
+}
+#exitbutton a {
+  color: white;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  text-decoration: none;
+}
 
 .button {
   position: relative;

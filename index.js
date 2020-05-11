@@ -66,6 +66,114 @@ Storage.prototype.getObj = function(key) {
   return JSON.parse(this.getItem(key));
 }
 
+//KURSNAME BEI AUSWAHL ÄNDERN
+function setCourse(courseName) {
+  switch (courseName.innerHTML) {
+    case "ON19":
+      course.innerHTML = "ON19";
+      break;
+    case "ON18":
+      course.innerHTML = "ON18";
+      break;
+    case "ON17":
+      course.innerHTML = "ON17";
+      break;
+    default:
+      "Jemand hat einen Fehler gemacht";
+      break;
+  }
+}
+
+//SRC FÜR DIE BILDER HOLEN
+function getSrc() {
+  switch (course.innerHTML) {
+    case "ON19":
+      return "assets/ON19/";
+    case "ON18":
+      return "assets/ON18/";
+    case "ON17":
+      return "assets/ON17/";
+    default:
+      return "Jemand hat einen Fehler gemacht";
+  }
+}
+
+//ANZAHL DER STUDENTEN IN DEN KURSEN
+function getStudents() {
+  switch (course.innerHTML) {
+    case "ON19":
+      return 31;
+    case "ON18":
+      return 7;
+    case "ON17":
+      return 0;
+    default:
+      return "Jemand hat einen Fehler gemacht";
+  }
+}
+
+//NAMEN UND BILD NUMMERN DER STUDENTEN JE KURS
+function getStudentMap(KursGender) {
+  let map;
+  switch (KursGender) {
+    case "ON19Female":
+      map = new Map()
+      .set("1", "Lisa Albers")
+      .set("3", "Nina Eberle")
+      .set("6", "Larissa Eirich")
+      .set("7", "Dalma Balogh")
+      .set("10", "Katharina Barth")
+      .set("11", "Anne-Kathrin Dortleff")
+      .set("12", "Milena Fiorino")
+      .set("14", "Julia Henschel")
+      .set("15", "Nicole Höfler")
+      .set("16", "Lina Käfer")
+      .set("17", "Alicia Kilian")
+      .set("20", "Kristin Zenger")
+      .set("21", "Laura Krumm")
+      .set("22", "Lara Neumaier")
+      .set("23", "Jessica Noe")
+      .set("24", "Livia Maxhaku")
+      .set("26", "Katharina Schmitt")
+      .set("28", "Leonie Müller")
+      .set("30", "Alischa Thomas")
+      .set("31", "Juliane Speck");
+      return map;
+    case "ON18Female":
+      map = new Map()
+      .set("1", "Jana Ballweg")
+      .set("3", "Theresa Brenner")
+      .set("5", "Fabienne Burgert")
+      .set("6", "Christina Bünnagel");
+      return map;
+    case "ON19Male":
+      map = new Map()
+      .set("2", "Steffen Brendle")
+      .set("4", "Jonas Althoff")
+      .set("5", "Christian Dänzer")
+      .set("8", "Laurin Dörre")
+      .set("9", "Pascal Feinauer")
+      .set("13", "Fabian Geitner")
+      .set("18", "Patrick Mäder")
+      .set("19", "Marco Scotarello")
+      .set("25", "Martin Panaget")
+      .set("27", "Niklas Schikora")
+      .set("29", "Calvin Reibenspieß");
+      return map;
+    case "ON18Male":
+      map = new Map()
+      .set("2", "Moritz Banhardt")
+      .set("4", "Nils Eisenhauer")
+      .set("7", "Frederik Hellbauer");
+      return map;
+    case "ON17":
+      return 0;
+    default:
+      return "Jemand hat einen Fehler gemacht";
+  }
+}
+
+
 //ALLGEMEINE ON KLICK EVENTS
 // x-Button, navigiert zur Startseite
 DOMButtonReset.forEach((element) => {
@@ -74,7 +182,11 @@ DOMButtonReset.forEach((element) => {
     });
 });
 DOMButtonContinue.addEventListener("click", continueGame);
-DOMButtonCourse.addEventListener("click", firstPopUp);
+DOMButtonCourse.addEventListener("click", ()=>{
+  continueGame();
+  saveInstancesLocal();
+  firstPopUp();
+});
 
 // POPUP
 function firstPopUp() {
@@ -93,12 +205,9 @@ function endPopUp(p_round, p_falseCounter) {
     chart();
     percent();
 
-  if (p_falseCounter == 0 && p_round % 2 == 1) {
-    
+  if (p_falseCounter == 0) {
     DOMH3.innerHTML = `<span class="line"></span> Super! Sie haben Runde ${p_round} ohne einen einzigen Fehler geschafft! <br>
     Wollen Sie weiter spielen oder einen neuen Kurs wählen?`;
-    clearStorageCourse();
-    stopGame();
   } else {
     DOMH3.innerHTML = `<span class="line"></span> Sie haben Runde ${p_round} geschafft! <br>
     Wollen Sie weiter spielen oder einen neuen Kurs wählen?`;
@@ -194,112 +303,6 @@ choosedCourse.forEach((element) => {
   });
 });
 
-//verändert beim auswählen eines Kurses den Kursnamen
-function setCourse(courseName) {
-  switch (courseName.innerHTML) {
-    case "ON19":
-      course.innerHTML = "ON19";
-      break;
-    case "ON18":
-      course.innerHTML = "ON18";
-      break;
-    case "ON17":
-      course.innerHTML = "ON17";
-      break;
-    default:
-      "Jemand hat einen Fehler gemacht";
-      break;
-  }
-}
-
-function getSrc() {
-  switch (course.innerHTML) {
-    case "ON19":
-      return "assets/ON19/";
-    case "ON18":
-      return "assets/ON18/";
-    case "ON17":
-      return "assets/ON17/";
-    default:
-      return "Jemand hat einen Fehler gemacht";
-  }
-}
-
-// Hier wird die Anzahl der Studenten in einem Kurs eingegeben und abgerufen
-function getStudents() {
-  switch (course.innerHTML) {
-    case "ON19":
-      return 31;
-    case "ON18":
-      return 7;
-    case "ON17":
-      return 0;
-    default:
-      return "Jemand hat einen Fehler gemacht";
-  }
-}
-
-//Maps für Multiplechoice Methode
-function getStudentMap(KursGender) {
-  let map;
-  switch (KursGender) {
-    case "ON19Female":
-      map = new Map()
-      .set("1", "Lisa Albers")
-      .set("3", "Nina Eberle")
-      .set("6", "Larissa Eirich")
-      .set("7", "Dalma Balogh")
-      .set("10", "Katharina Barth")
-      .set("11", "Anne-Kathrin Dortleff")
-      .set("12", "Milena Fiorino")
-      .set("14", "Julia Henschel")
-      .set("15", "Nicole Höfler")
-      .set("16", "Lina Käfer")
-      .set("17", "Alicia Kilian")
-      .set("20", "Kristin Zenger")
-      .set("21", "Laura Krumm")
-      .set("22", "Lara Neumaier")
-      .set("23", "Jessica Noe")
-      .set("24", "Livia Maxhaku")
-      .set("26", "Katharina Schmitt")
-      .set("28", "Leonie Müller")
-      .set("30", "Alischa Thomas")
-      .set("31", "Juliane Speck");
-      return map;
-    case "ON18Female":
-      map = new Map()
-      .set("1", "Jana Ballweg")
-      .set("3", "Theresa Brenner")
-      .set("5", "Fabienne Burgert")
-      .set("6", "Christina Bünnagel");
-      return map;
-    case "ON19Male":
-      map = new Map()
-      .set("2", "Steffen Brendle")
-      .set("4", "Jonas Althoff")
-      .set("5", "Christian Dänzer")
-      .set("8", "Laurin Dörre")
-      .set("9", "Pascal Feinauer")
-      .set("13", "Fabian Geitner")
-      .set("18", "Patrick Mäder")
-      .set("19", "Marco Scotarello")
-      .set("25", "Martin Panaget")
-      .set("27", "Niklas Schikora")
-      .set("29", "Calvin Reibenspieß");
-      return map;
-    case "ON18Male":
-      map = new Map()
-      .set("2", "Moritz Banhardt")
-      .set("4", "Nils Eisenhauer")
-      .set("7", "Frederik Hellbauer");
-      return map;
-    case "ON17":
-      return 0;
-    default:
-      return "Jemand hat einen Fehler gemacht";
-  }
-}
-
 //Funktion erstellt Array beim ersten mal
 //Methode richtig falsch
 function createArrayRW() {
@@ -346,7 +349,9 @@ function getCurrentArray() {
 
 //Macht jeweiliges Bild sichtbar und ruft die Funktion auf für den Mengenzähler
 function showImages() {
+  
   let arr = getCurrentArray();
+  
   //Vorderseite
   CardFront.firstElementChild.src = `${getSrc()}front/${arr[inx]}-vs.png`;
   //Rückseite
@@ -400,9 +405,13 @@ function displayCardUp() {
   }
     
   if (round == 1) {
-    evenArray.push(num, num);
+    if (!evenArray.includes(num)) {
+      evenArray.push(num,num);
+    }
   } else if (round % 2 == 1) {
-    evenArray.push(num, num);
+    if (!evenArray.includes(num)) {
+      evenArray.push(num,num);
+    }
   } else if (round % 2 == 0) {
     if (!oddArray.includes(num)) {
       oddArray.push(num);
@@ -413,7 +422,11 @@ function displayCardUp() {
 
 // Arrays werden geändert und geshuffelt
 function continueGame() {
-  if (round == 1) {
+
+  if (falseCounter == 0){
+    round = 0;
+  }
+  else if (round == 1) {
     evenArray = shuffle(evenArray);
   } else if (round % 2 == 0) {
     oddArray = oddArray.concat(firstArray);
@@ -428,7 +441,6 @@ function continueGame() {
   round++;
   showImages();
   hidePopUp();
-  console.log(evenArray);
 }
 
 // Arrays und Varaiblen werden zurück gesetzt
@@ -458,8 +470,7 @@ async function getName(stringNumber){
     arrayGender = arrayMale;
     mapGender = mapMale;
     nameRichtig = mapMale.get(`${stringNumber}`);
-    console.log('arrayMale', arrayMale);
-    console.log('mapMale', mapMale);
+
     randomName1 = await getRandomName(arrayGender, mapGender);
     randomName2 = getRandomName2(arrayGender, mapGender, randomName1);
   }
@@ -506,12 +517,12 @@ function multipleKarte(target) {
   if (name == nameRichtig) {
     anzeige.innerHTML = "Super, richtig!";
     anzeige.style.color = 'green';
-    rand.style.border = 'solid 3px green';
+    rand.style.border = 'solid 3px #88BC48';
   } 
   else {
     anzeige.innerHTML = "Das war leider falsch.";
     anzeige.style.color = 'red';
-    rand.style.border = 'solid 3px red';
+    rand.style.border = 'solid 3px salmon';
     displayCardUp();
   }
 }
@@ -553,10 +564,8 @@ function charCurrent(){
 }
 function charIt() {
   fail = falseCounter;
-  console.log("Falsche Antworten Sackl Zement " + fail);
 
   right = getStudents() - fail;
-  console.log("Richtige Antworten Fix Hehner " + right);
 
 
   const chartTest = new Chart(donutChart, {
@@ -584,7 +593,6 @@ function charIt() {
 
 
 function chart() {
-  console.log("Donut - Chart Drecks Zeug");
   charIt();
 };
 
@@ -691,7 +699,7 @@ function saveInstancesLocal(){
 //Fortschritt löschen
 function clearStorageCourse(){
   let courseName = course.innerHTML;
-  let session = 'session' + courseName;
+  let session = 'session' + courseName + curentMethode;
   localStorage.removeItem(session);
   
   let sFalseCounter = `falseCounter${courseName}${curentMethode}`;
@@ -711,7 +719,14 @@ function clearStorageCourse(){
   
   let sEvenArray = `evenArray${courseName}${curentMethode}`;
   localStorage.removeItem(sEvenArray);
-  console.log('removed items')
+
+  if (curentMethode === 'MULTIPLECHOICE') {
+    let sArrayMale = `arrayMale${courseTest}${currentMethode}`;
+    localStorage.removeItem(sArrayMale);
+
+    let sArrayFemale = `arrayFemale${courseTest}${currentMethode}`;
+    localStorage.removeItem(sArrayFemale);
+  } 
 }
 
 function clearStorage(){
