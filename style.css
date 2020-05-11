@@ -395,6 +395,16 @@ nav::after {
   height: auto;
   width: auto;
 }
+.right div p,
+.false div p {
+  font-family: "Montserrat";
+  text-align: center;
+  padding: 6%;
+  color: white;
+  font-weight: 700;
+  text-transform: none;
+
+} 
 
 .select {
   background-color: #88bc48;
