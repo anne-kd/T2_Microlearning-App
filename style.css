@@ -620,3 +620,29 @@ nav::after {
   font-family: "Montserrat", sans-serif;
   z-index: 100;
 }
+
+#onboardButton{
+  position: relative;
+  margin-top: 3%;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+
+}
+#onboardButton:hover {
+  color: #88bc48;
+}
+/*Video*/
+.videoextern {
+  position: absolute;
+  margin-left: 20%;
+  margin-top: 3%;
+  width: 60%;
+  height: 60%;
+}
+
+/*Checkbox*/
+.checkbox{
+  padding-left: 5%;
+  margin-top: 30%;
+}
