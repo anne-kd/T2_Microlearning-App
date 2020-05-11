@@ -517,12 +517,12 @@ function multipleKarte(target) {
   if (name == nameRichtig) {
     anzeige.innerHTML = "Super, richtig!";
     anzeige.style.color = 'green';
-    rand.style.border = 'solid 3px green';
+    rand.style.border = 'solid 3px #88BC48';
   } 
   else {
     anzeige.innerHTML = "Das war leider falsch.";
     anzeige.style.color = 'red';
-    rand.style.border = 'solid 3px red';
+    rand.style.border = 'solid 3px salmon';
     displayCardUp();
   }
 }
