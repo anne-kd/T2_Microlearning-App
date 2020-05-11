@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
 }
-
+.body,
 #body {
   position: fixed;
   top: 0;
@@ -621,6 +621,11 @@ nav::after {
   z-index: 100;
 }
 
+/* ONBOARDING */
+#PopUpOnboarding{
+  display: none;
+  height: 70%;
+}
 #onboardButton{
   position: relative;
   margin-top: 3%;
@@ -634,15 +639,8 @@ nav::after {
 }
 /*Video*/
 .videoextern {
-  position: absolute;
-  margin-left: 20%;
+  margin-left: 10%;
   margin-top: 3%;
-  width: 60%;
+  width: 80%;
   height: 60%;
-}
-
-/*Checkbox*/
-.checkbox{
-  padding-left: 5%;
-  margin-top: 30%;
 }
