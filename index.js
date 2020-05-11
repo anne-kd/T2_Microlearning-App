@@ -9,16 +9,21 @@ const DOMButtonNext = document.querySelector(".-next");
 const DOMCheckButton = document.querySelector("#check");
 const DOMButtonReset = document.querySelectorAll(".reset");
 const DOMButtonCourse = document.querySelector("#newCourse");
+const DOMOnboardButton = document.querySelector("#onboardButton");
+const DOMOnboardClose = document.querySelector("#onboardingClose");
 //"Klicken Sie auf die Karte"
 const DOMIntro = document.querySelector("#intro");
 // Pop up
 const popupFirst = document.querySelector("#popup-first");
 const popupEnd = document.querySelector("#popup-round");
 const PopupClose = document.querySelectorAll(".close");
+const Popuponboarding = document.querySelector("#PopUpOnboarding");
 // Blur HTML Elemente
 const DOMNav = document.querySelector("nav");
 const DOMBackground = document.querySelector("#background");
 const DOMWrapper = document.querySelector("#wrapper");
+const DOMBackgroundIMG = document.querySelector("#bg-img");
+const DOMContainer = document.querySelector("#container");
 //Karte (zum drehen)
 const DOMCard = document.getElementById("card");
 const CardBack = document.querySelector(".card--back");
@@ -188,6 +193,22 @@ DOMButtonCourse.addEventListener("click", ()=>{
   firstPopUp();
 });
 
+DOMOnboardButton.addEventListener("click", ()=>{
+  Popuponboarding.style.display = "block";
+  DOMNav.classList.add("blur");
+  DOMBackgroundIMG.classList.add("blur");
+  DOMContainer.classList.add("blur");
+});
+DOMOnboardClose.addEventListener("click", ()=>{
+  Popuponboarding.style.display = "none";
+  DOMNav.classList.remove("blur");
+  DOMBackgroundIMG.classList.remove("blur");
+  DOMContainer.classList.remove("blur");
+});
+
+
+
+
 // POPUP
 function firstPopUp() {
   stopGame();
@@ -224,7 +245,7 @@ function hidePopUp() {
   popupEnd.style.display = "none";
 }
 
-//Blur Effekt wenn das Popup aktiv ist
+//Funktion bei Popup Einblendung 
 function blurElements() {
   DOMNav.classList.add("blur");
   DOMBackground.classList.add("blur");

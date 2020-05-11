@@ -52,9 +52,21 @@ a {
 
 #textbox {
   position: relative;
-  margin-top: 5%;
+  margin-top: 2%;
   text-transform: none;
   width: 100%;
+}
+
+#onboardButton{
+  position: relative;
+  margin-top: 3%;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+
+}
+#onboardButton:hover {
+  color: #88bc48;
 }
 
 #bg-img {
@@ -157,6 +169,10 @@ nav a:hover {
 .fa-home:before,
 .fa-th-large:before,
 .fa-address-card-o:before {
+  padding: 10px;
+}
+
+.fa-arrow-right:before {
   padding: 10px;
 }
 
@@ -358,6 +374,7 @@ nav::after {
   text-decoration: none;
 }
 
+
 .button {
   position: relative;
   display: flex;
@@ -384,6 +401,19 @@ nav::after {
   border-radius: 25px;
   margin: 0 2%;
 }
+
+.right div,
+.false div {
+  margin: 0;
+  height: auto;
+  width: auto;
+}
+
+.select {
+  background-color: black;
+}
+
+
 #popup-round .button {
   margin-top: 5%;
 }
@@ -438,14 +468,32 @@ nav::after {
   text-transform: none;
 }
 
-#continue,
-.right {
+#multi div:first-child{
+  margin-left: 0;
+}
+#multi div:last-child{
+  margin-right: 0;
+}
+#next,
+.multbutton{
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: black;
   cursor: pointer;
+  color: white;
+  font-family: "Montserrat";
+  font-weight: 200;
+  font-size: 1em;
+  text-transform: uppercase;
+  cursor: pointer;
 }
+.multbutton:hover{
+  background-color: white;
+  border: solid 1px black;
+  color: black;
+}
+
 #check .right {
   display: flex;
   align-items: center;
@@ -455,6 +503,17 @@ nav::after {
 
 .select {
   background-color: #88bc48;
+}
+
+
+
+#continue,
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #88BC48;
+  cursor: pointer;
 }
 
 .false {
@@ -549,6 +608,10 @@ nav::after {
   height: 70%;
   width: 60%;
 }
+#popup-learningMethod {
+  display: none;
+}
+
 .close {
   float: right;
   margin-top: 5%;
@@ -556,6 +619,21 @@ nav::after {
 }
 .close span {
   background-color: black;
+}
+#PopUpOnboarding  {
+  height: 90%;
+  width: 90%;
+  display: none;
+}
+#PopUpOnboarding h2 {
+  margin-top: 3%;
+  margin-left: 5%;
+  color: black;
+}
+#PopUpOnboarding h3 {
+  color: #88bc48;
+  margin-top: 1%;
+  margin-left: 5%;
 }
 
 /* UEBERSICHTSEITE*/
@@ -619,4 +697,18 @@ nav::after {
   font-size: 1.5em;
   font-family: "Montserrat", sans-serif;
   z-index: 100;
+}
+/*Video*/
+.videoextern {
+  position: absolute;
+  margin-left: 20%;
+  margin-top: 3%;
+  width: 60%;
+  height: 60%;
+}
+
+/*Checkbox*/
+.checkbox{
+  padding-left: 5%;
+  margin-top: 30%;
 }
