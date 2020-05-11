@@ -646,7 +646,7 @@ nav::after {
 /* ONBOARDING */
 #PopUpOnboarding{
   display: none;
-  height: 70%;
+  height: 80%;
 }
 #onboardButton{
   position: relative;
