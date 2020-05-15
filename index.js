@@ -123,7 +123,7 @@ function getStudentMap(KursGender) {
       .set("6", "Larissa Eirich")
       .set("7", "Dalma Balogh")
       .set("10", "Katharina Barth")
-      .set("11", "Anne-Kathrin Dortleff")
+      .set("11", "Anne-Kathrin Drotleff")
       .set("12", "Milena Fiorino")
       .set("14", "Julia Henschel")
       .set("15", "Nicole Höfler")
@@ -522,13 +522,13 @@ function multipleKarte(target) {
   let name = target.innerHTML;
   if (name == nameRichtig) {
     anzeige.innerHTML = "Super, richtig!";
-    anzeige.style.color = 'green';
+    anzeige.style.color = '#88BC48';
     rand.style.border = 'solid 3px #88BC48';
     successSound();
   } 
   else {
     anzeige.innerHTML = "Das war leider falsch.";
-    anzeige.style.color = 'red';
+    anzeige.style.color = 'salmon';
     rand.style.border = 'solid 3px salmon';
     displayCardUp();
     failSound()
